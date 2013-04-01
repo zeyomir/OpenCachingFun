@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">OpenCachingFun</string>
+    <string name="not_implemented">Zostatnie dodane wkrótce ;)</string>
+    <!-- menu entries -->
+    <string name="menu_delete">Usuń wszystkie</string>
+    <string name="menu_search">Szukaj</string>
+    <string name="menu_refresh">Odśwież</string>
+    <string name="menu_add">Dodaj</string>
+    <string name="menu_photo">Zdjęcia</string>
+    <string name="menu_logs">Logi</string>
+    <string name="menu_map">Pokaż na mapie</string>
+    <string name="menu_web">Otwórz w oc.pl</string>
+    <string name="menu_coords">Skopiuj współrzędne</string>
+    <!-- cache - list and single -->
+    <string name="list_empty">Na razie pusto</string>
+    <string name="last_found">Ostatnio znaleziona:</string>
+    <string name="found">Zdobyta:</string>
+    <string name="found_y">TAK</string>
+    <string name="found_N">Zdobyta:</string>
+    
+    <string name="coords">Współrzędne:</string>
+    <string name="distance">Dystans:</string>
+    <string name="bearing">Kierunek:</string>
+    <string name="gps_wait">Ustalanie pozycji...</string>
+    <string name="hint">Podpowiedź:</string>
+    <string name="photos">Zdjęcia</string>
+    <string name="logs">Logi</string>
+    <string name="size_vbig">Bardzo duża</string>
+    <string name="size_big">Duża</string>
+    <string name="size_med">Normalna</string>
+    <string name="size_small">Mała</string>
+    <string name="size_vsmall">Mikro</string>
+    <string name="size_none">Bez pojemnika</string>
+
+    <!-- add -->
+    <string name="name">Nazwa</string>
+    <string name="description">Opis</string>
+    <string name="use_mine">Użyj moich</string>
+    <string name="codes">Kody</string>
+    <string name="km_from">km od</string>
+    <string name="from_address">Adresu</string>
+    <string name="from_cache">Skrzynki</string>
+    <string name="from_coords">Współrzędnych</string>
+    <string name="from_me">Moich współrzędnych</string>
+    <string name="hint_codes">Kody oddzielone przecinkami</string>
+    <string name="hint_name">nazwa, * zastępuje znaki</string>
+    <string name="hint_address">miasto, ulica nr</string>
+    <string name="hint_cache">kod pojedynczej skrzynki</string>
+    <string name="hint_coords">np 50.0, 39.0</string>
+    <!-- add tabs names -->
+    <string name="code_or_name">Kod/Nazwa</string>
+    <string name="near">W pobliżu</string>
+    <string name="custom">Własne</string>
+    <!-- activities titles -->
+    <string name="add">Dodaj skrzynki</string>
+    <string name="list">Zapisane skrzynki</string>
+    <string name="cache">Skrzynka</string>
+    <string name="images">Zdjęcia</string>
+    <string name="log_book">Logbook</string>
+    <string name="settings">Ustawienia</string>
+    <!-- dialogs -->
+    <string name="dialog_fill_fields">Uzupełnij wszystkie pola</string>
+    <string name="dialog_no_internet">Brak dostępu do internetu</string>
+    <string name="dialog_wait_for_location">Poczekaj na ustalenie pozycji</string>
+    <string name="dialog_ok">Zrozumiałem</string>
+    <!-- settings -->
+<string name="auth_do">Autoryzuj aplikację</string>
+<string name="auth_do_summary">by móc korzystać z bardziej zaawansowanych opcji</string>
+<string name="auth_undo">Anuluj autoryzację</string>
+<string name="auth_undo_summary"></string>
+</resources>

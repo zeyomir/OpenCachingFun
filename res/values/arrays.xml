@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="limitNames">
+        <item name="10">Ponad 10 cachy</item>
+        <item name="25">Ponad 25 cachy</item>
+        <item name="50">Ponad 50 cachy</item>
+        <item name="100">Ponad 100 cachy</item>
+        <item name="200">Ponad 200 cachy</item>
+        <item name="300">Ponad 300 cachy</item>
+        <item name="400">Ponad 400 cachy</item>
+    </string-array>
+    
+    <string-array name="limitValues">
+        <item name="10">10</item>
+        <item name="25">25</item>
+        <item name="50">50</item>
+        <item name="100">100</item>
+        <item name="200">200</item>
+        <item name="300">300</item>
+        <item name="400">400</item>
+    </string-array>
+</resources>
