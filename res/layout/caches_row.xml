@@ -22,7 +22,7 @@
         android:layout_margin="2dip"
         android:layout_toRightOf="@id/list_type_ico"
         android:gravity="fill_horizontal"
-        android:text="NAZWA"
+        android:text="@string/dummy_name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
@@ -42,6 +42,6 @@
         android:layout_below="@id/list_cache_name"
         android:layout_alignParentRight="true"
         android:layout_margin="2dip"
-        android:text="32,5km, NNW" />
+        android:text="@string/dummy_distance" />
 
 </RelativeLayout>

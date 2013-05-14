@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+
+
+
     <Button
         android:id="@+id/button1"
         style="?android:attr/buttonStyleSmall"
@@ -13,8 +15,9 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:onClick="cancel"
-        android:text="Tak, przerwij" />
-
+        android:text="@string/stop" />
+
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -22,7 +25,7 @@
         android:layout_above="@+id/button1"
         android:layout_alignParentLeft="true"
         android:layout_margin="10dp"
-        android:text="Czy na pewno chcesz przerwać pobieranie skrzynek?"
+        android:text="@string/wanna_stop"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

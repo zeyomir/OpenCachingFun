@@ -8,7 +8,7 @@
   <TextView android:id="@+id/image_title" 
   	android:textAppearance="?android:attr/textAppearanceMedium" 
   	android:layout_height="wrap_content" 
-  	android:text="TextView" 
+  	android:text="@string/dummy_name"
   	android:layout_width="wrap_content" 
   	android:layout_gravity="center_horizontal|bottom"
   	android:padding="12dip"

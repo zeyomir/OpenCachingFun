@@ -22,7 +22,7 @@
         android:layout_marginBottom="5dip"
         android:layout_marginLeft="5dip"
         android:layout_toRightOf="@+id/imageView1"
-        android:text="Downloading" />
+        android:text="@string/dummy_downloading" />
 
     <TextView
         android:id="@+id/text2"
@@ -32,7 +32,7 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="5dip"
         android:layout_marginRight="5dip"
-        android:text="x/y" />
+        android:text="@string/dummy_xy" />
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -23,6 +23,7 @@
     <string name="coords">Współrzędne:</string>
     <string name="distance">Dystans:</string>
     <string name="bearing">Kierunek:</string>
+
     <string name="gps_wait">Ustalanie pozycji...</string>
     <string name="hint">Podpowiedź:</string>
     <string name="photos">Zdjęcia</string>
@@ -49,7 +50,8 @@
     <string name="hint_address">miasto, ulica nr</string>
     <string name="hint_cache">kod pojedynczej skrzynki</string>
     <string name="hint_coords">np 50.0, 39.0</string>
-    <!-- add tabs names -->
+	<string name="description_hint">(opcjonalny)</string>
+	<!-- add tabs names -->
     <string name="code_or_name">Kod/Nazwa</string>
     <string name="near">W pobliżu</string>
     <string name="custom">Własne</string>
@@ -69,5 +71,26 @@
 <string name="auth_do">Autoryzuj aplikację</string>
 <string name="auth_do_summary">by móc korzystać z bardziej zaawansowanych opcji</string>
 <string name="auth_undo">Anuluj autoryzację</string>
-<string name="auth_undo_summary"></string>
+	<string name="dummy_name">NAZWA</string>
+	<string name="dummy_owner">OWNER</string>
+	<string name="dummy_code">CODEXX</string>
+	<string name="difficulty">Trudność:</string>
+	<string name="dummy_diff1">3.5</string>
+	<string name="slash">/</string>
+	<string name="dummy_diff2">4.5</string>
+	<string name="size">Rozmiar:</string>
+	<string name="dummy_date">23.05.2009</string>
+	<string name="dummy_coords">50.25 20.50</string>
+	<string name="dummy_atributes">atrybuty</string>
+	<string name="dummy_lorem">lorem ipsum dolor sit amet</string>
+	<string name="dummy_hint">HINT text coded in rot13</string>
+	<string name="dummy_workaround">workaround</string>
+	<string name="dummy_distance">32,5km, NNW</string>
+	<string name="stop">Tak, przerwij</string>
+	<string name="wanna_stop">Czy na pewno chcesz przerwać pobieranie skrzynek?</string>
+	<string name="dummy_username">USER_NAME</string>
+	<string name="dummy_downloading">Downloading</string>
+	<string name="dummy_xy">x/y</string>
+
+
 </resources>

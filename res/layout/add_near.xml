@@ -71,7 +71,7 @@
         android:layout_alignParentLeft="true"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:hint="miasto, ulica nr"
+        android:hint="@string/hint_address"
         android:layout_below="@+id/radioGroup1" />
 
 

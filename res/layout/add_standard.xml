@@ -32,7 +32,7 @@
         android:layout_alignParentLeft="true"
         android:singleLine="true"
         android:imeOptions="actionNext"
-        android:hint="kody oddzielone przecinkiem"
+        android:hint="@string/hint_codes"
         android:layout_below="@+id/radioGroup1" >
 
         <requestFocus />

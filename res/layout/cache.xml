@@ -26,7 +26,7 @@
             android:layout_margin="2dip"
             android:layout_toRightOf="@id/type_ico"
             android:gravity="fill_horizontal"
-            android:text="NAZWA"
+            android:text="@string/dummy_name"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_below="@+id/cache_name"
             android:layout_margin="2dip"
             android:layout_toRightOf="@+id/type_ico"
-            android:text="OWNER" />
+            android:text="@string/dummy_owner" />
 
         <TextView
             android:id="@+id/cache_code"
@@ -45,7 +45,7 @@
             android:layout_alignBaseline="@+id/cache_owner"
             android:layout_alignParentRight="true"
             android:layout_margin="2dip"
-            android:text="CODEXX" >
+            android:text="@string/dummy_code" >
         </TextView>
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/cache_owner"
             android:layout_margin="2dip"
-            android:text="Trudność: "
+            android:text="@string/difficulty"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
@@ -65,7 +65,7 @@
             android:layout_alignBaseline="@id/diff_phrase"
             android:layout_margin="2dip"
             android:layout_toRightOf="@id/diff_phrase"
-            android:text="3.5"
+            android:text="@string/dummy_diff1"
             android:textColor="#50A0FF" >
         </TextView>
 
@@ -76,7 +76,7 @@
             android:layout_alignBaseline="@+id/diff"
             android:layout_margin="2dip"
             android:layout_toRightOf="@+id/diff"
-            android:text="/"
+            android:text="@string/slash"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
@@ -86,7 +86,7 @@
             android:layout_alignBaseline="@+id/slash"
             android:layout_margin="2dip"
             android:layout_toRightOf="@+id/slash"
-            android:text="4.5"
+            android:text="@string/dummy_diff2"
             android:textColor="#20CC70" >
         </TextView>
 
@@ -97,7 +97,7 @@
             android:layout_alignBaseline="@+id/terrain"
             android:layout_margin="2dip"
             android:layout_toLeftOf="@+id/size"
-            android:text="Rozmiar: "
+            android:text="@string/size"
             android:textAppearance="?android:attr/textAppearanceSmall" >
         </TextView>
 
@@ -109,7 +109,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/cache_code"
             android:layout_margin="2dip"
-            android:text="Duża"
+            android:text="@string/size_big"
             android:textAppearance="?android:attr/textAppearanceSmall" >
         </TextView>
 
@@ -130,7 +130,7 @@
             android:layout_alignBaseline="@id/last_found_phrase"
             android:layout_alignParentRight="true"
             android:layout_margin="2dip"
-            android:text="23.05.2009" >
+            android:text="@string/dummy_date" >
         </TextView>
 
         <TextView
@@ -150,7 +150,7 @@
             android:layout_alignBaseline="@+id/cache_location_phrase"
             android:layout_alignParentRight="true"
             android:layout_margin="2dip"
-            android:text="50.25 20.50" >
+            android:text="@string/dummy_coords" >
         </TextView>
 
         <TextView
@@ -181,7 +181,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/distance_phrase"
             android:layout_margin="2dip"
-            android:text="atrybuty" />
+            android:text="@string/dummy_atributes" />
 
         <TextView
             android:id="@+id/cache_description"
@@ -194,7 +194,7 @@
             android:layout_marginRight="5dip"
             android:layout_marginTop="20dip"
             android:linksClickable="true"
-            android:text="lorem ipsum dolor sit amet" />
+            android:text="@string/dummy_lorem" />
 
         <TextView
             android:id="@+id/hint_phrase"
@@ -218,7 +218,7 @@
             android:background="#444"
             android:clickable="true"
             android:onClick="onClick"
-            android:text="HINT text coded in rot13"
+            android:text="@string/dummy_hint"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
@@ -228,7 +228,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:visibility="invisible"
-            android:text="workaround"
+            android:text="@string/dummy_workaround"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>

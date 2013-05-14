@@ -3,7 +3,8 @@
     android:id="@+id/relativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
-
+
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
@@ -13,13 +14,14 @@
         android:layout_alignParentTop="true"
         android:layout_margin="15dip"
         android:src="@drawable/notification_icon" />
-
+
+
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginLeft="41dp"
-        android:text="Downloading" />
+        android:text="@string/dummy_downloading" />
 
 </RelativeLayout>
