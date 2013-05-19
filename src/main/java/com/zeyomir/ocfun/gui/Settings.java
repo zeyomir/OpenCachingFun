@@ -2,6 +2,7 @@ package com.zeyomir.ocfun.gui;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -95,7 +96,9 @@ public class Settings extends PreferenceActivity implements
 				prefDAO.unsetAuthenticated();
 			}
 		} else if (p.getKey().equals("feedback")) {
-			Toast.makeText(this,"Just send me an email! :)", Toast.LENGTH_LONG);
+			Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "zeyomir@gmail.com", null));
+			i.putExtra(Intent.EXTRA_SUBJECT, "ocFun - feedback");
+			startActivity(Intent.createChooser(i,"Wyślij feedback"));
 		}
 		adjustView();
 		return false;
