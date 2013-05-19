@@ -160,7 +160,7 @@ public class AddCaches implements CacheDownloader {
 				R.layout.progressbar_notification);
 		contentView.setProgressBar(R.id.progressBar, 10, 0, false);
 		contentView.setTextViewText(R.id.text, "Pobieranie skrzynek...");
-		contentView.setTextViewText(R.id.text2, "nieznana ilo��...");
+		contentView.setTextViewText(R.id.text2, "nieznana ilość...");
 		notification.contentView = contentView;
 
 		Intent notificationIntent = new Intent(context, Cancel.class);
