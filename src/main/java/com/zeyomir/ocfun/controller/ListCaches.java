@@ -9,7 +9,6 @@ import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.helper.LocationHelper;
 import com.zeyomir.ocfun.dao.CacheDAO;
@@ -18,43 +17,43 @@ import com.zeyomir.ocfun.gui.SingleCache;
 
 public class ListCaches {
 	private static Location location = null;
-	
+
 	private static CacheDAO dao;
-	
+
 	static private final ViewBinder imagesBinder = new ViewBinder() {
 
 		@Override
 		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
 			switch (view.getId()) {
-			case R.id.list_type_ico:
-				int i = cursor.getInt(columnIndex);
-				((ImageView) view).setImageResource(InternalResourceMapper
-						.map(i));
-				return true;
-			case R.id.list_distance:
-				if (location == null)
-					((TextView) view).setText("Nieznana odleg³oœæ");
-				else {
-					String[] coords = cursor.getString(columnIndex)
-							.split("\\|");
-					Location l = new Location("???");
-					l.setLatitude(Double.parseDouble(coords[0]));
-					l.setLongitude(Double.parseDouble(coords[1]));
+				case R.id.list_type_ico:
+					int i = cursor.getInt(columnIndex);
+					((ImageView) view).setImageResource(InternalResourceMapper
+							.map(i));
+					return true;
+				case R.id.list_distance:
+					if (location == null)
+						((TextView) view).setText("Nieznana odlegï¿½oï¿½ï¿½");
+					else {
+						String[] coords = cursor.getString(columnIndex)
+								.split("\\|");
+						Location l = new Location("???");
+						l.setLatitude(Double.parseDouble(coords[0]));
+						l.setLongitude(Double.parseDouble(coords[1]));
 
-					String d = LocationHelper.getDistance(location, l);
-					String a = LocationHelper.getAzimuth(location, l);
-					String distance = d + ", " + a;
-					((TextView) view).setText(distance);
-				}
-				return true;
-			case R.id.list_found:
-				if (cursor.getString(columnIndex).equals("true")) 
-					((ImageView) view).setImageResource(R.drawable.found);
-				else
-					((ImageView) view).setImageResource(R.drawable.empty);
-				return true;
-			default:
-				return false;
+						String d = LocationHelper.getDistance(location, l);
+						String a = LocationHelper.getAzimuth(location, l);
+						String distance = d + ", " + a;
+						((TextView) view).setText(distance);
+					}
+					return true;
+				case R.id.list_found:
+					if (cursor.getString(columnIndex).equals("true"))
+						((ImageView) view).setImageResource(R.drawable.found);
+					else
+						((ImageView) view).setImageResource(R.drawable.empty);
+					return true;
+				default:
+					return false;
 			}
 		}
 	};
@@ -89,17 +88,17 @@ public class ListCaches {
 		dao.close();
 		ListImages.clean();
 		ListLogs.clean();
-		
+
 		dao.open();
 	}
-	
-	public static void openDB(){
-		if(dao == null)
+
+	public static void openDB() {
+		if (dao == null)
 			dao = new CacheDAO();
 		dao.open();
 	}
-	
-	public static void closeDB(){
+
+	public static void closeDB() {
 		dao.close();
 	}
 }

@@ -37,7 +37,7 @@ public class Cache {
 		this.terrain = data.getDouble("terrain");
 		this.requiresPassword = data.getBoolean("req_passwd");
 		this.description = data.getString("description");
-		this.attributes = data.isNull("attrnames") ? "bez atrybutów" : data.getJSONArray(
+		this.attributes = data.isNull("attrnames") ? "bez atrybutÃ³w" : data.getJSONArray(
 				"attrnames").join(", ");
 		this.hint = data.getString("hint");
 		String lastFound = data.getString("last_found").split("T")[0].replace(

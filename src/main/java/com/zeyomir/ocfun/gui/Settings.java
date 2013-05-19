@@ -9,6 +9,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.helper.OAuthWrapper;
@@ -94,8 +95,7 @@ public class Settings extends PreferenceActivity implements
 				prefDAO.unsetAuthenticated();
 			}
 		} else if (p.getKey().equals("feedback")) {
-			((LocationProvider) getApplicationContext()).getZubhium()
-					.openFeedbackDialog(Settings.this);
+			Toast.makeText(this,"Just send me an email! :)", Toast.LENGTH_LONG);
 		}
 		adjustView();
 		return false;

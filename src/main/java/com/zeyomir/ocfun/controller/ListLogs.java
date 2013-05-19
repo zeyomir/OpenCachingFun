@@ -8,9 +8,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.zeyomir.ocfun.R;
-import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.ImageDAO;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import com.zeyomir.ocfun.dao.LogDAO;
@@ -21,17 +19,17 @@ public class ListLogs {
 		@Override
 		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
 			switch (view.getId()) {
-			case R.id.list_logs_type:
-				int i = cursor.getInt(columnIndex);
-				((ImageView) view).setImageResource(InternalResourceMapper
-						.map(i));
-				return true;
-			default:
-				return false;
+				case R.id.list_logs_type:
+					int i = cursor.getInt(columnIndex);
+					((ImageView) view).setImageResource(InternalResourceMapper
+							.map(i));
+					return true;
+				default:
+					return false;
 			}
 		}
 	};
-	
+
 	public static SimpleCursorAdapter createAdapter(Activity c) {
 		long id = c.getIntent().getExtras().getLong(LogDAO.cacheIdColumn);
 		Cursor cursor = LogDAO.list(id);
@@ -46,6 +44,7 @@ public class ListLogs {
 		i.putExtra(ImageDAO.idColumn, id);
 		return i;
 	}
+
 	public static void clean() {
 		LogDAO.clean();
 	}

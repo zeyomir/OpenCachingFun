@@ -1,12 +1,5 @@
 package com.zeyomir.ocfun.controller;
 
-import java.io.IOException;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -19,22 +12,23 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
-
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.helper.CacheDownloader;
 import com.zeyomir.ocfun.controller.helper.ConnectionHelper;
 import com.zeyomir.ocfun.controller.helper.GetCachesListHelper;
-import com.zeyomir.ocfun.dao.CacheDAO;
-import com.zeyomir.ocfun.dao.ImageDAO;
-import com.zeyomir.ocfun.dao.InternalResourceMapper;
-import com.zeyomir.ocfun.dao.LogDAO;
-import com.zeyomir.ocfun.dao.PreferencesDAO;
+import com.zeyomir.ocfun.dao.*;
 import com.zeyomir.ocfun.gui.Add;
 import com.zeyomir.ocfun.gui.Cancel;
 import com.zeyomir.ocfun.gui.List;
 import com.zeyomir.ocfun.model.Cache;
 import com.zeyomir.ocfun.model.Image;
 import com.zeyomir.ocfun.model.LogbookEntry;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class AddCaches implements CacheDownloader {
 
@@ -52,15 +46,15 @@ public class AddCaches implements CacheDownloader {
 
 	public void add(int tag, Map<String, String> data) {
 		switch (tag) {
-		case R.id.add_standard:
-			addStandard(data);
-			break;
-		case R.id.add_near:
-			addNear(data);
-			break;
-		case R.id.add_custom:
-			addCustom(data);
-			break;
+			case R.id.add_standard:
+				addStandard(data);
+				break;
+			case R.id.add_near:
+				addNear(data);
+				break;
+			case R.id.add_custom:
+				addCustom(data);
+				break;
 		}
 	}
 
@@ -68,58 +62,58 @@ public class AddCaches implements CacheDownloader {
 		String tag = "adding standard";
 		String text;
 		switch (Integer.parseInt(data.get("option"))) {
-		case R.id.radioButton1:
-			Log.i(tag, "kod");
-			text = data.get("text");
-			Log.i(tag, text);
-			text = text.replaceAll("\\s", "").replaceAll(",+", ",")
-					.toUpperCase(); // remove all spaces and multiple commas
-			run(text.split(","));
-			break;
-		case R.id.radioButton2:
-			Log.i(tag, "nazwa");
-			text = data.get("text");
-			new GetCachesListHelper(this, context).getByName(text);
-			Log.i(tag, text);
-			break;
+			case R.id.radioButton1:
+				Log.i(tag, "kod");
+				text = data.get("text");
+				Log.i(tag, text);
+				text = text.replaceAll("\\s", "").replaceAll(",+", ",")
+						.toUpperCase(); // remove all spaces and multiple commas
+				run(text.split(","));
+				break;
+			case R.id.radioButton2:
+				Log.i(tag, "nazwa");
+				text = data.get("text");
+				new GetCachesListHelper(this, context).getByName(text);
+				Log.i(tag, text);
+				break;
 		}
 	}
 
 	private void addNear(Map<String, String> data) {
 		String tag = "adding near";
 		switch (Integer.parseInt(data.get("option"))) {
-		case R.id.radioButton1:
-			Log.i(tag, "addres");
-			Log.i(tag, data.get("distance") + ", " + data.get("text"));
-			Geocoder gc = new Geocoder(context);
-			try {
-				Address a = gc.getFromLocationName(data.get("text"), 1).get(0);
-				new GetCachesListHelper(this, context).getByLocation(
-						a.getLatitude() + "|" + a.getLongitude(),
+			case R.id.radioButton1:
+				Log.i(tag, "addres");
+				Log.i(tag, data.get("distance") + ", " + data.get("text"));
+				Geocoder gc = new Geocoder(context);
+				try {
+					Address a = gc.getFromLocationName(data.get("text"), 1).get(0);
+					new GetCachesListHelper(this, context).getByLocation(
+							a.getLatitude() + "|" + a.getLongitude(),
+							data.get("distance"));
+					Log.i("geocoder", a.getLatitude() + "|" + a.getLongitude());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			case R.id.radioButton2:
+				Log.i(tag, "cache");
+				Log.i(tag, data.get("distance") + ", " + data.get("text"));
+				new GetCachesListHelper(this, context).getByCache(data.get("text"),
 						data.get("distance"));
-				Log.i("geocoder", a.getLatitude() + "|" + a.getLongitude());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			break;
-		case R.id.radioButton2:
-			Log.i(tag, "cache");
-			Log.i(tag, data.get("distance") + ", " + data.get("text"));
-			new GetCachesListHelper(this, context).getByCache(data.get("text"),
-					data.get("distance"));
-			break;
-		case R.id.radioButton3:
-			Log.i(tag, "koords");
-			Log.i(tag, data.get("distance") + ", " + data.get("text"));
-			new GetCachesListHelper(this, context).getByLocation(
-					decodeLocation(data.get("text")), data.get("distance"));
-			break;
-		case R.id.radioButton4:
-			Log.i(tag, "auto koords");
-			Log.i(tag, data.get("distance") + ", " + data.get("text"));
-			new GetCachesListHelper(this, context).getByLocation(
-					decodeLocation(data.get("text")), data.get("distance"));
-			break;
+				break;
+			case R.id.radioButton3:
+				Log.i(tag, "koords");
+				Log.i(tag, data.get("distance") + ", " + data.get("text"));
+				new GetCachesListHelper(this, context).getByLocation(
+						decodeLocation(data.get("text")), data.get("distance"));
+				break;
+			case R.id.radioButton4:
+				Log.i(tag, "auto koords");
+				Log.i(tag, data.get("distance") + ", " + data.get("text"));
+				new GetCachesListHelper(this, context).getByLocation(
+						decodeLocation(data.get("text")), data.get("distance"));
+				break;
 		}
 	}
 
@@ -140,8 +134,8 @@ public class AddCaches implements CacheDownloader {
 				decodeLocation(data.get("coords")),
 				InternalResourceMapper.custom.id(), "Moja skrzynka", 0.0, 0.0,
 				0.0, false, "<p>"
-						+ data.get("description").replaceAll("\n", "<br>")
-						+ "</p>", "", "", "", false);
+				+ data.get("description").replaceAll("\n", "<br>")
+				+ "</p>", "", "", "", false);
 		CacheDAO.save(c);
 		Toast.makeText(context, "Dodano do bazy", Toast.LENGTH_SHORT).show();
 	}
@@ -166,7 +160,7 @@ public class AddCaches implements CacheDownloader {
 				R.layout.progressbar_notification);
 		contentView.setProgressBar(R.id.progressBar, 10, 0, false);
 		contentView.setTextViewText(R.id.text, "Pobieranie skrzynek...");
-		contentView.setTextViewText(R.id.text2, "nieznana iloœæ...");
+		contentView.setTextViewText(R.id.text2, "nieznana iloï¿½ï¿½...");
 		notification.contentView = contentView;
 
 		Intent notificationIntent = new Intent(context, Cancel.class);

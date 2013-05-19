@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
-
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;
 import com.zeyomir.ocfun.R;

@@ -1,17 +1,16 @@
 package com.zeyomir.ocfun.controller;
 
-import java.io.File;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Environment;
 import android.support.v4.widget.SimpleCursorAdapter;
-
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.dao.ImageDAO;
 import com.zeyomir.ocfun.gui.SingleImage;
+
+import java.io.File;
 
 public class ListImages {
 
@@ -28,16 +27,16 @@ public class ListImages {
 		i.putExtra(ImageDAO.idColumn, id);
 		return i;
 	}
-	
+
 	public static void clean() {
 		ImageDAO.clean();
 		new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				File dir = new File(Environment.getExternalStorageDirectory().toString() + "/OCFun");
 				File[] files = dir.listFiles();
-				for (int i = 0; i < files.length; i++){
+				for (int i = 0; i < files.length; i++) {
 					files[i].delete();
 				}
 			}

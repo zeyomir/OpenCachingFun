@@ -21,7 +21,6 @@ public class OCFun extends Activity {
 		super.onCreate(savedInstanceState);
 
 		globalContext = (LocationProvider) getApplicationContext();
-		globalContext.getZubhium().registerUpdateReceiver(OCFun.this);
 
 		setContentView(R.layout.main);
 		DbAdapter.initializeDbAdapter(this);
@@ -29,12 +28,6 @@ public class OCFun extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.app_name);
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		globalContext.getZubhium().unRegisterUpdateReceiver();
 	}
 
 	public void onClick(View v) {

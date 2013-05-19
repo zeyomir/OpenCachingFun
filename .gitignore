@@ -11,6 +11,8 @@
 # generated files
 bin/
 gen/
+gen-external-apklibs/
+target/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -18,3 +20,7 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+
+# intelliJ IDEA files
+.idea/
+*.iml

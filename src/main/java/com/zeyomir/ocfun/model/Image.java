@@ -21,7 +21,7 @@ public class Image {
 		this.cacheId = cacheId;
 		String name = data.getString("caption").trim();
 		if (name.equals(""))
-			name = "Zdjêcie";
+			name = "ZdjÄ™cie";
 		if (data.getBoolean("is_spoiler"))
 			name = "[SPOILER!] " + name;
 		this.name =  name;

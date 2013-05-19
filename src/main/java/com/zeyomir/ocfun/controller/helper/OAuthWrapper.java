@@ -1,23 +1,18 @@
 package com.zeyomir.ocfun.controller.helper;
 
-import oauth.signpost.OAuth;
-import oauth.signpost.OAuthConsumer;
-import oauth.signpost.OAuthProvider;
-import oauth.signpost.basic.DefaultOAuthProvider;
-import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
-import oauth.signpost.exception.OAuthCommunicationException;
-import oauth.signpost.exception.OAuthExpectationFailedException;
-import oauth.signpost.exception.OAuthMessageSignerException;
-import oauth.signpost.http.HttpParameters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.zeyomir.ocfun.dao.PreferencesDAO;
 import com.zeyomir.ocfun.gui.Settings;
+import oauth.signpost.OAuth;
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.OAuthProvider;
+import oauth.signpost.basic.DefaultOAuthProvider;
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 
 public class OAuthWrapper {
 	private static final String OAUTH_KEY = "YOUR_KEY";
@@ -90,7 +85,7 @@ public class OAuthWrapper {
 						.toString());
 			} catch (Exception e) {
 				Log.e("OAuth", e.getMessage());
-				Toast.makeText(c, "Wyst¹pi³ b³¹d...", Toast.LENGTH_SHORT)
+				Toast.makeText(c, "Wystï¿½piï¿½ bï¿½ï¿½d...", Toast.LENGTH_SHORT)
 						.show();
 			}
 			if (authURL != null) {
