@@ -3,16 +3,15 @@ package com.zeyomir.ocfun.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
-
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.model.Cache;
 
 public class CacheDAO {
-	public static final String[] from = { DbAdapter.KEY_CACHES_TYPE,
+	public static final String[] from = {DbAdapter.KEY_CACHES_TYPE,
 			DbAdapter.KEY_CACHES_NAME, DbAdapter.KEY_CACHES_COORDS,
-			DbAdapter.KEY_CACHES_IS_FOUND };
-	public static final int[] to = { R.id.list_type_ico, R.id.list_cache_name,
-			R.id.list_distance, R.id.list_found };
+			DbAdapter.KEY_CACHES_IS_FOUND};
+	public static final int[] to = {R.id.list_type_ico, R.id.list_cache_name,
+			R.id.list_distance, R.id.list_found};
 	public static final String searchableColumn = DbAdapter.KEY_CACHES_NAME;
 
 	public static final String idColumn = DbAdapter.KEY_CACHES_ID;
@@ -22,7 +21,7 @@ public class CacheDAO {
 	public static long save(Cache c) {
 		DbAdapter db = DbAdapter.open();
 		Log.d("DB", "trying to delete copy...");
-		db.clean(DbAdapter.DATABASE_TABLE_CACHES, "code='"+c.code+"'");
+		db.clean(DbAdapter.DATABASE_TABLE_CACHES, "code='" + c.code + "'");
 		long id = db.insert(map(c), DbAdapter.DATABASE_TABLE_CACHES);
 		DbAdapter.close();
 		return id;
@@ -105,7 +104,7 @@ public class CacheDAO {
 						+ DbAdapter.KEY_CACHES_CODE + " like %" + query
 						+ "% or " + DbAdapter.KEY_CACHES_NAME + " like %"
 						+ query + "%" + " COLLATE NOCASE")*/
-						+ " ORDER BY " + DbAdapter.KEY_CACHES_NAME);
+				+ " ORDER BY " + DbAdapter.KEY_CACHES_NAME);
 		Log.i("CacheDAO", "w bazie jest " + c.getCount() + " obiektow");
 		return c;
 	}

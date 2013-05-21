@@ -1,6 +1,5 @@
 package com.zeyomir.ocfun.controller;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,6 +8,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.dao.ImageDAO;
 import com.zeyomir.ocfun.gui.SingleImage;
+import org.holoeverywhere.app.Activity;
 
 import java.io.File;
 

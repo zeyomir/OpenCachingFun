@@ -1,27 +1,21 @@
 package com.zeyomir.ocfun.gui;
 
-import java.util.List;
-
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapController;
-import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
+import com.google.android.maps.*;
 import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.LocationUser;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.DisplayMap;
 import com.zeyomir.ocfun.model.MapItems;
 
+import java.util.List;
+
 public class Maps extends MapActivity implements LocationUser {
 
 	private MapItems myPos;
-	
+
 	@Override
 	protected void onCreate(Bundle b) {
 		super.onCreate(b);
@@ -47,30 +41,30 @@ public class Maps extends MapActivity implements LocationUser {
 	protected void onResume() {
 		super.onResume();
 		LocationProvider lp = ((LocationProvider) getApplicationContext());
-				lp.registerForFrequentlyLocationUpdates(this);
+		lp.registerForFrequentlyLocationUpdates(this);
 		List<Overlay> mapOverlays = ((MapView) findViewById(R.id.mapview))
 				.getOverlays();
 		mapOverlays.add(DisplayMap.getOverlays(this));
-		
+
 		Location l = lp.getLast();
-		if(l!=null)
+		if (l != null)
 			addMyPos(l);
 	}
 
-	private void addMyPos(Location l){
+	private void addMyPos(Location l) {
 		MapView map = ((MapView) findViewById(R.id.mapview));
-		
-		if(myPos != null){
+
+		if (myPos != null) {
 			map.getOverlays().remove(myPos);
 		}
 		myPos = new MapItems(this.getResources().getDrawable(R.drawable.blue_dot), this);
-		GeoPoint point = new GeoPoint((int)(l.getLatitude()*1E6), (int)(l.getLongitude()*1E6));
-		OverlayItem oi = new OverlayItem(point, "", "Błąd: "+l.getAccuracy());
+		GeoPoint point = new GeoPoint((int) (l.getLatitude() * 1E6), (int) (l.getLongitude() * 1E6));
+		OverlayItem oi = new OverlayItem(point, "", "Błąd: " + l.getAccuracy());
 		myPos.addOverlay(oi);
 		map.invalidate();
 		map.getOverlays().add(myPos);
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();

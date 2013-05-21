@@ -1,8 +1,5 @@
 package com.zeyomir.ocfun.gui;
 
-import android.app.ActionBar;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,16 +7,14 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.LocationUser;
 import com.zeyomir.ocfun.R;
@@ -29,11 +24,17 @@ import com.zeyomir.ocfun.gui.addtabs.CustomFragment;
 import com.zeyomir.ocfun.gui.addtabs.NearFragment;
 import com.zeyomir.ocfun.gui.addtabs.StandardFragment;
 import com.zeyomir.ocfun.gui.addtabs.TabListener;
+import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.app.Dialog;
+import org.holoeverywhere.widget.CheckBox;
+import org.holoeverywhere.widget.EditText;
+import org.holoeverywhere.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Add extends FragmentActivity implements LocationUser {
+public class Add extends Activity implements LocationUser {
 
 	private static final int fieldsDialog = 1;
 	private static final int internetDialog = 2;
@@ -54,7 +55,7 @@ public class Add extends FragmentActivity implements LocationUser {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		setActionBarOptions();
 		addTabs();
 	}
@@ -98,30 +99,29 @@ public class Add extends FragmentActivity implements LocationUser {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			Intent intent = new Intent(this, OCFun.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
-			return true;
-		case R.id.menu_add:
-			if (!checkInternet() && currentFragmentTag!=R.id.add_custom) {
-				showDialog(internetDialog);
-				break;
-			}
-			if (waitingForLocation){
-				showDialog(locationDialog);
-				break;
-			}
-			Map<String, String> data = new HashMap<String, String>();
-			boolean allOk = collectData(data);
-			if (allOk) {
-				(new AddCaches(this)).add(currentFragmentTag, data);
+			case android.R.id.home:
+				Intent intent = new Intent(this, OCFun.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
 				return true;
-			}
-			else {
-				showDialog(fieldsDialog);
-				break;
-			}
+			case R.id.menu_add:
+				if (!checkInternet() && currentFragmentTag != R.id.add_custom) {
+					showDialog(internetDialog);
+					break;
+				}
+				if (waitingForLocation) {
+					showDialog(locationDialog);
+					break;
+				}
+				Map<String, String> data = new HashMap<String, String>();
+				boolean allOk = collectData(data);
+				if (allOk) {
+					(new AddCaches(this)).add(currentFragmentTag, data);
+					return true;
+				} else {
+					showDialog(fieldsDialog);
+					break;
+				}
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -135,13 +135,13 @@ public class Add extends FragmentActivity implements LocationUser {
 		return true;
 	}
 
-	public void displayTooManyWarning(String[] codes, CacheDownloader downloader){
+	public void displayTooManyWarning(String[] codes, CacheDownloader downloader) {
 		Log.i("warning", "called");
 		_cachesToDownload = codes;
 		_cachesDownloader = downloader;
 		showDialog(tooMany);
 	}
-	
+
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		Dialog dialog;
@@ -154,43 +154,43 @@ public class Add extends FragmentActivity implements LocationUser {
 				dialog.cancel();
 			}
 		};
-		
-		switch (id) {
-		case fieldsDialog:
-			builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.dialog_fill_fields);
-			builder.setPositiveButton(R.string.dialog_ok,cl);
-			dialog = builder.create();
-			break;
-		case locationDialog:
-			builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.dialog_wait_for_location);
-			builder.setPositiveButton(R.string.dialog_ok,cl);
-			dialog = builder.create();
-			break;
-		case internetDialog:
-			builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.dialog_no_internet);
-			builder.setPositiveButton(R.string.dialog_ok,cl);
-			dialog = builder.create();
-			break;
-		case tooMany:
-			Log.i("warning", "happened");
-			builder = new AlertDialog.Builder(this);
-			builder.setMessage("Skrzynek do �ci�gni�cia: " + _cachesToDownload.length + ".\nCzy kontynuowa�?"); //TODO !!!
-			builder.setNegativeButton("Anuluj", cl);
-			builder.setPositiveButton("Tak, �ci�gaj", new DialogInterface.OnClickListener() {
 
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-					_cachesDownloader.run(_cachesToDownload);
-				}
-			});
-			dialog = builder.create();
-			break;
-		default:
-			dialog = null;
+		switch (id) {
+			case fieldsDialog:
+				builder = new AlertDialog.Builder(this);
+				builder.setMessage(R.string.dialog_fill_fields);
+				builder.setPositiveButton(R.string.dialog_ok, cl);
+				dialog = builder.create();
+				break;
+			case locationDialog:
+				builder = new AlertDialog.Builder(this);
+				builder.setMessage(R.string.dialog_wait_for_location);
+				builder.setPositiveButton(R.string.dialog_ok, cl);
+				dialog = builder.create();
+				break;
+			case internetDialog:
+				builder = new AlertDialog.Builder(this);
+				builder.setMessage(R.string.dialog_no_internet);
+				builder.setPositiveButton(R.string.dialog_ok, cl);
+				dialog = builder.create();
+				break;
+			case tooMany:
+				Log.i("warning", "happened");
+				builder = new AlertDialog.Builder(this);
+				builder.setMessage("Skrzynek do �ci�gni�cia: " + _cachesToDownload.length + ".\nCzy kontynuowa�?"); //TODO !!!
+				builder.setNegativeButton("Anuluj", cl);
+				builder.setPositiveButton("Tak, �ci�gaj", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+						_cachesDownloader.run(_cachesToDownload);
+					}
+				});
+				dialog = builder.create();
+				break;
+			default:
+				dialog = null;
 		}
 		return dialog;
 	}
@@ -198,53 +198,53 @@ public class Add extends FragmentActivity implements LocationUser {
 	private boolean collectData(Map<String, String> data) {
 		String temp;
 		switch (currentFragmentTag) {
-		case R.id.add_standard:
-			temp = ((EditText) findViewById(R.id.editText1)).getText()
-					.toString();
-			if (isEmpty(temp))
-				return false;
-			data.put("text", temp);
-			data.put(
-					"option",
-					""
-							+ ((RadioGroup) findViewById(R.id.radioGroup1))
-									.getCheckedRadioButtonId());
-			break;
-		case R.id.add_near:
-			temp = ((EditText) findViewById(R.id.editText1)).getText()
-					.toString();
-			if (isEmpty(temp))
-				return false;
-			data.put("distance", temp);
-			temp = ((EditText) findViewById(R.id.editText2)).getText()
-					.toString();
-			if (isEmpty(temp) && findViewById(R.id.editText2).isEnabled())
-				return false;
-			data.put("text", temp);
-			data.put(
-					"option",
-					""
-							+ ((RadioGroup) findViewById(R.id.radioGroup1))
-									.getCheckedRadioButtonId());
-			break;
-		case R.id.add_custom:
-			temp = ((EditText) findViewById(R.id.editText1)).getText()
-					.toString();
-			if (isEmpty(temp))
-				return false;
-			data.put("name", temp);
-			temp = ((EditText) findViewById(R.id.editText2)).getText()
-					.toString();
-			if (isEmpty(temp) && findViewById(R.id.editText2).isEnabled())
-				return false;
-			data.put("coords", temp);
-			temp = ((EditText) findViewById(R.id.editText3)).getText()
-					.toString();
-			
-			data.put("description", temp);
-			data.put("option",
-					"" + ((CheckBox) findViewById(R.id.switch1)).isChecked());
-			break;
+			case R.id.add_standard:
+				temp = ((EditText) findViewById(R.id.editText1)).getText()
+						.toString();
+				if (isEmpty(temp))
+					return false;
+				data.put("text", temp);
+				data.put(
+						"option",
+						""
+								+ ((RadioGroup) findViewById(R.id.radioGroup1))
+								.getCheckedRadioButtonId());
+				break;
+			case R.id.add_near:
+				temp = ((EditText) findViewById(R.id.editText1)).getText()
+						.toString();
+				if (isEmpty(temp))
+					return false;
+				data.put("distance", temp);
+				temp = ((EditText) findViewById(R.id.editText2)).getText()
+						.toString();
+				if (isEmpty(temp) && findViewById(R.id.editText2).isEnabled())
+					return false;
+				data.put("text", temp);
+				data.put(
+						"option",
+						""
+								+ ((RadioGroup) findViewById(R.id.radioGroup1))
+								.getCheckedRadioButtonId());
+				break;
+			case R.id.add_custom:
+				temp = ((EditText) findViewById(R.id.editText1)).getText()
+						.toString();
+				if (isEmpty(temp))
+					return false;
+				data.put("name", temp);
+				temp = ((EditText) findViewById(R.id.editText2)).getText()
+						.toString();
+				if (isEmpty(temp) && findViewById(R.id.editText2).isEnabled())
+					return false;
+				data.put("coords", temp);
+				temp = ((EditText) findViewById(R.id.editText3)).getText()
+						.toString();
+
+				data.put("description", temp);
+				data.put("option",
+						"" + ((CheckBox) findViewById(R.id.switch1)).isChecked());
+				break;
 		}
 		return true;
 	}
@@ -257,79 +257,79 @@ public class Add extends FragmentActivity implements LocationUser {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
+		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.add, menu);
 		return true;
 	}
 
 	public void onClick(View v) {
 		switch (currentFragmentTag) {
-		case R.id.add_standard:
-			if (v.getId() == R.id.radioButton1)
-				((EditText) findViewById(R.id.editText1))
-						.setHint(R.string.hint_codes);
-			else
-				((EditText) findViewById(R.id.editText1))
-						.setHint(R.string.hint_name);
-			unregister();
-			break;
-		case R.id.add_near:
-			if (v.getId() == R.id.radioButton1) {
-				((EditText) findViewById(R.id.editText2))
-						.setHint(R.string.hint_address);
-				findViewById(R.id.editText2).setEnabled(true);
+			case R.id.add_standard:
+				if (v.getId() == R.id.radioButton1)
+					((EditText) findViewById(R.id.editText1))
+							.setHint(R.string.hint_codes);
+				else
+					((EditText) findViewById(R.id.editText1))
+							.setHint(R.string.hint_name);
 				unregister();
-			} else if (v.getId() == R.id.radioButton2) {
-				((EditText) findViewById(R.id.editText2))
-						.setHint(R.string.hint_cache);
-				findViewById(R.id.editText2).setEnabled(true);
-				unregister();
-			} else if (v.getId() == R.id.radioButton3) {
-				((EditText) findViewById(R.id.editText2))
-						.setHint(R.string.hint_coords);
-				findViewById(R.id.editText2).setEnabled(true);
-				unregister();
-			} else {
-				((EditText) findViewById(R.id.editText2))
-						.setHint(R.string.gps_wait);
-				((EditText) findViewById(R.id.editText2)).setText("");
-				findViewById(R.id.editText2).setEnabled(false);
-				register();
-			}
-			break;
-		case R.id.add_custom:
-			if (((CheckBox) findViewById(R.id.switch1)).isChecked()) {
-				((EditText) findViewById(R.id.editText2))
-						.setHint(R.string.gps_wait);
-				((EditText) findViewById(R.id.editText2)).setText("");
-				findViewById(R.id.editText2).setEnabled(false);
-				register();
-			} else {
-				((EditText) findViewById(R.id.editText2))
-						.setHint(R.string.hint_coords);
-				findViewById(R.id.editText2).setEnabled(true);
-				unregister();
-			}
-			break;
+				break;
+			case R.id.add_near:
+				if (v.getId() == R.id.radioButton1) {
+					((EditText) findViewById(R.id.editText2))
+							.setHint(R.string.hint_address);
+					findViewById(R.id.editText2).setEnabled(true);
+					unregister();
+				} else if (v.getId() == R.id.radioButton2) {
+					((EditText) findViewById(R.id.editText2))
+							.setHint(R.string.hint_cache);
+					findViewById(R.id.editText2).setEnabled(true);
+					unregister();
+				} else if (v.getId() == R.id.radioButton3) {
+					((EditText) findViewById(R.id.editText2))
+							.setHint(R.string.hint_coords);
+					findViewById(R.id.editText2).setEnabled(true);
+					unregister();
+				} else {
+					((EditText) findViewById(R.id.editText2))
+							.setHint(R.string.gps_wait);
+					((EditText) findViewById(R.id.editText2)).setText("");
+					findViewById(R.id.editText2).setEnabled(false);
+					register();
+				}
+				break;
+			case R.id.add_custom:
+				if (((CheckBox) findViewById(R.id.switch1)).isChecked()) {
+					((EditText) findViewById(R.id.editText2))
+							.setHint(R.string.gps_wait);
+					((EditText) findViewById(R.id.editText2)).setText("");
+					findViewById(R.id.editText2).setEnabled(false);
+					register();
+				} else {
+					((EditText) findViewById(R.id.editText2))
+							.setHint(R.string.hint_coords);
+					findViewById(R.id.editText2).setEnabled(true);
+					unregister();
+				}
+				break;
 		}
 	}
 
 	@Override
 	public void locationFound(Location l) {
-		if (waitingForLocation){
+		if (waitingForLocation) {
 			((EditText) findViewById(R.id.editText2)).setText(l.getLatitude() + ", " + l.getLongitude());
 			Toast.makeText(this, "Błąd GPS: " + l.getAccuracy() + "m.", Toast.LENGTH_SHORT).show();
 		}
 		unregister();
 	}
-	
-	private void unregister(){
+
+	private void unregister() {
 		waitingForLocation = false;
 		((LocationProvider) getApplicationContext()).unregister(this);
 		Log.i("location", "UNregister");
 	}
-	
-	private void register(){
+
+	private void register() {
 		waitingForLocation = true;
 		((LocationProvider) getApplicationContext()).registerForFrequentlyLocationUpdates(this);
 		Log.i("location", "register");

@@ -76,10 +76,10 @@ public class DbAdapter {
 		Log.d("DB", "updating...");
 		return database.update(where, what, "where _id=" + id, null);
 	}*/
-	
+
 	Cursor fetch(String query) {
 		Log.d("DB", "fetching...");
-		Cursor mCursor = database.rawQuery(query, new String[] {});
+		Cursor mCursor = database.rawQuery(query, new String[]{});
 		mCursor.moveToFirst();
 		return mCursor;
 	}

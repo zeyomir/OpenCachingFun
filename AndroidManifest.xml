@@ -16,7 +16,8 @@
     <application
         android:name="LocationProvider"
         android:icon="@drawable/icon"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+		android:theme="@style/Holo.Theme">
         <uses-library android:required="true" android:name="com.google.android.maps"></uses-library>
         <activity
             android:name=".gui.OCFun"

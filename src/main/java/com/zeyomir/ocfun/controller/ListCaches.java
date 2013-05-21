@@ -5,22 +5,21 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.location.Location;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.helper.LocationHelper;
 import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import com.zeyomir.ocfun.gui.SingleCache;
+import org.holoeverywhere.widget.TextView;
 
 public class ListCaches {
 	private static Location location = null;
 
 	private static CacheDAO dao;
 
-	static private final ViewBinder imagesBinder = new ViewBinder() {
+	static private final SimpleCursorAdapter.ViewBinder imagesBinder = new SimpleCursorAdapter.ViewBinder() {
 
 		@Override
 		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {

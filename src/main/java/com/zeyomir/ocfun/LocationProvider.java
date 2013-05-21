@@ -1,11 +1,12 @@
 package com.zeyomir.ocfun;
 
-import android.app.Application;
+
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import org.holoeverywhere.app.Application;
 
 import java.util.Date;
 import java.util.List;

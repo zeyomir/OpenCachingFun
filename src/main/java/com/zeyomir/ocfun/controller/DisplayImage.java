@@ -2,7 +2,6 @@ package com.zeyomir.ocfun.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.zeyomir.ocfun.dao.ImageDAO;
 import com.zeyomir.ocfun.model.Image;
 

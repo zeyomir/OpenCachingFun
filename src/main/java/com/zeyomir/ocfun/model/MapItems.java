@@ -1,7 +1,5 @@
 package com.zeyomir.ocfun.model;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -11,13 +9,10 @@ import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.widget.Toast;
-
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.ItemizedOverlay;
-import com.google.android.maps.MapView;
-import com.google.android.maps.OverlayItem;
-import com.google.android.maps.Projection;
+import com.google.android.maps.*;
 import com.zeyomir.ocfun.gui.SingleCache;
+
+import java.util.ArrayList;
 
 public class MapItems extends ItemizedOverlay {
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();

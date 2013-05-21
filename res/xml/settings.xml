@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:holo="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory
-        android:key="acc"
-        android:title="Konto na oc.pl" >
-        <Preference
-            android:key="auth"
-            android:summary="@string/auth_do_summary"
-            android:title="@string/auth_do" />
+	<PreferenceCategory
+			holo:key="acc"
+			holo:title="Konto na oc.pl">
+		<Preference
+				holo:key="auth"
+				holo:summary="@string/auth_do_summary"
+				holo:title="@string/auth_do"/>
 
-        <CheckBoxPreference
-            android:key="own"
-            android:summary="Przy ściąganiu pomija skrzynki własne i już znalezione"
-            android:title="Pomijaj skrzynki">
-        </CheckBoxPreference>
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:key="settings"
-        android:title="Preferencje" >
-        <CheckBoxPreference
-            android:key="mobile"
-            android:summary="przy wyświetlaniu opisu skrzynki w przeglądarce, użyj mobilnej wersji strony"
-            android:title="Mobilne oc.pl" >
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:key="limit"
-            android:summary="przed pobieraniem dużej ilości skrzynek"
-            android:title="Ostrzegaj" android:defaultValue="true"/>
+		<CheckBoxPreference
+				holo:key="own"
+				holo:summary="Przy ściąganiu pomija skrzynki własne i już znalezione"
+				holo:title="Pomijaj skrzynki">
+		</CheckBoxPreference>
+	</PreferenceCategory>
+	<PreferenceCategory
+			holo:key="settings"
+			holo:title="Preferencje">
+		<CheckBoxPreference
+				holo:key="mobile"
+				holo:summary="przy wyświetlaniu opisu skrzynki w przeglądarce, użyj mobilnej wersji strony"
+				holo:title="Mobilne oc.pl">
+		</CheckBoxPreference>
+		<CheckBoxPreference
+				holo:key="limit"
+				holo:summary="przed pobieraniem dużej ilości skrzynek"
+				holo:title="Ostrzegaj"
+				holo:defaultValue="true"/>
 
-        <ListPreference
-            android:key="limit_value"
-            android:summary="Jeśli do ściągnięcia będzie więcej skrzynek, pokazane zostanie ostrzeżenie (500 to max ile można ściągnąć)"
-            android:dependency="limit"
-            android:title="Limit pobierania" android:entries="@array/limitNames" android:entryValues="@array/limitValues" android:defaultValue="100"/>
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:key="others"
-        android:title="Inne" >
-        <Preference
-            android:key="feedback"
-            android:summary="zgłoś błąd lub zaproponuj nową funckję"
-            android:title="Napisz do autora" />
-    </PreferenceCategory>
+		<ListPreference
+				holo:key="limit_value"
+				holo:summary="Jeśli do ściągnięcia będzie więcej skrzynek, pokazane zostanie ostrzeżenie (500 to max ile można ściągnąć)"
+				holo:dependency="limit"
+				holo:title="Limit pobierania"
+				holo:entries="@array/limitNames"
+				holo:entryValues="@array/limitValues"
+				holo:defaultValue="100"/>
+	</PreferenceCategory>
+	<PreferenceCategory
+			holo:key="others"
+			holo:title="Inne">
+		<Preference
+				holo:key="feedback"
+				holo:summary="zgłoś błąd lub zaproponuj nową funckję"
+				holo:title="Napisz do autora"/>
+	</PreferenceCategory>
 
 </PreferenceScreen>

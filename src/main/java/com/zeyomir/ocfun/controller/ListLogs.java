@@ -1,11 +1,9 @@
 package com.zeyomir.ocfun.controller;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.view.View;
 import android.widget.ImageView;
 import com.zeyomir.ocfun.R;
@@ -13,9 +11,10 @@ import com.zeyomir.ocfun.dao.ImageDAO;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import com.zeyomir.ocfun.dao.LogDAO;
 import com.zeyomir.ocfun.gui.SingleImage;
+import org.holoeverywhere.app.Activity;
 
 public class ListLogs {
-	static private final ViewBinder imagesBinder = new ViewBinder() {
+	static private final SimpleCursorAdapter.ViewBinder imagesBinder = new SimpleCursorAdapter.ViewBinder() {
 		@Override
 		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
 			switch (view.getId()) {

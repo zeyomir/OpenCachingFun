@@ -1,5 +1,16 @@
 package com.zeyomir.ocfun.controller.helper;
 
+
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,17 +19,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-
-import android.content.Context;
-import android.os.Environment;
-import android.util.Log;
 
 public class ConnectionHelper {
 
@@ -30,7 +30,7 @@ public class ConnectionHelper {
 		try {
 			url = OAuthWrapper.get(c).sign(url);
 			Log.i("OAuth", "Signed url: " + url);
-			
+
 			HttpClient client = new DefaultHttpClient();
 
 			HttpGet request = new HttpGet(url);
@@ -74,7 +74,7 @@ public class ConnectionHelper {
 			out.close();
 			Log.i("Image download", "sciagnalem obrazek " + name);
 		} catch (IOException e1) {
-			Log.i("Image download", "a jednak nie :P\n"+e1.getStackTrace());
+			Log.i("Image download", "a jednak nie :P\n" + e1.getStackTrace());
 		}
 	}
 

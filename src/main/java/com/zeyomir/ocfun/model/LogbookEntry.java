@@ -1,11 +1,9 @@
 package com.zeyomir.ocfun.model;
 
+import android.text.Html;
+import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.text.Html;
-
-import com.zeyomir.ocfun.dao.InternalResourceMapper;
 
 public class LogbookEntry {
 	public final long id;
@@ -14,9 +12,9 @@ public class LogbookEntry {
 	public final String date;
 	public final String message;
 	public final int type;
-	
+
 	public LogbookEntry(long id, long cacheId, String user, String date, String message,
-			int type) {
+	                    int type) {
 		super();
 		this.id = id;
 		this.cacheId = cacheId;
@@ -25,7 +23,7 @@ public class LogbookEntry {
 		this.message = message;
 		this.type = type;
 	}
-	
+
 	public LogbookEntry(long cacheId, JSONObject data) throws JSONException {
 		this.id = 0;
 		this.cacheId = cacheId;
@@ -34,7 +32,7 @@ public class LogbookEntry {
 		this.type = getTypeImageResource(data.getString("type"));
 		this.message = Html.fromHtml(data.getString("comment")).toString();
 	}
-	
+
 	private int getTypeImageResource(String s) {
 		s = s.toLowerCase();
 

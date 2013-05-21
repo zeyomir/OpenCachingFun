@@ -1,14 +1,12 @@
 package com.zeyomir.ocfun.controller.helper;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import com.zeyomir.ocfun.controller.AddCaches;
+import com.zeyomir.ocfun.dao.PreferencesDAO;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.content.Context;
-import android.os.AsyncTask;
-
-import com.zeyomir.ocfun.controller.AddCaches;
-import com.zeyomir.ocfun.dao.PreferencesDAO;
 
 public class GetCachesListHelper {
 	private final AddCaches notify;
@@ -38,12 +36,12 @@ public class GetCachesListHelper {
 		notify.download(list);
 	}
 
-	private String addOptionsToLink(String link){
+	private String addOptionsToLink(String link) {
 		if (p.isAuthenticated() && p.getSkipOwn())
 			link += "&found_status=notfound_only&exclude_my_own=true";
 		return link;
 	}
-	
+
 	private class GetListByName extends AsyncTask<String, Void, String> {
 
 		@Override
@@ -125,7 +123,7 @@ public class GetCachesListHelper {
 			if (jo == null)
 				return null;
 			try {
-				return new String[] {jo.getString("location"), params[1]};
+				return new String[]{jo.getString("location"), params[1]};
 			} catch (JSONException e) {
 				return null;
 			}

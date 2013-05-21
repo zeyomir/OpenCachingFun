@@ -3,7 +3,6 @@ package com.zeyomir.ocfun.controller;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.ImageDAO;
 import com.zeyomir.ocfun.dao.LogDAO;
@@ -18,7 +17,7 @@ public class DisplayCache {
 		long id = b.getLong(CacheDAO.idColumn);
 		return CacheDAO.get(id);
 	}
-	
+
 	public static String rot13(String s) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < s.length(); i++) {
@@ -35,18 +34,20 @@ public class DisplayCache {
 		}
 		return sb.toString();
 	}
-	
-	public static Intent createImagesIntent(Context c, long cacheId){
+
+	public static Intent createImagesIntent(Context c, long cacheId) {
 		Intent i = new Intent(c, Images.class);
 		i.putExtra(ImageDAO.cacheIdColumn, cacheId);
 		return i;
 	}
-	public static Intent createLogsIntent(Context c, long cacheId){
+
+	public static Intent createLogsIntent(Context c, long cacheId) {
 		Intent i = new Intent(c, Logs.class);
 		i.putExtra(LogDAO.cacheIdColumn, cacheId);
 		return i;
 	}
-	public static Intent createMapIntent(Context c, String coords){
+
+	public static Intent createMapIntent(Context c, String coords) {
 		Intent i = new Intent(c, Maps.class);
 		String[] temp = coords.split("\\|");
 		i.putExtra("lat", temp[0]);

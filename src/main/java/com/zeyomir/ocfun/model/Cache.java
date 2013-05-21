@@ -1,10 +1,9 @@
 package com.zeyomir.ocfun.model;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Cache {
 	public final long id;
@@ -48,11 +47,11 @@ public class Cache {
 		this.isFound = data.isNull("is_found") ? false : data
 				.getBoolean("is_found");
 	}
-	
+
 	public Cache(long id, String code, String name, String coords, int type, String owner, double size,
-			double difficulity, double terrain, boolean requiresPassword,
-			String description, String attributes, String hint,
-			String lastFoundOn, boolean isFound) {
+	             double difficulity, double terrain, boolean requiresPassword,
+	             String description, String attributes, String hint,
+	             String lastFoundOn, boolean isFound) {
 		this.id = id;
 		this.code = code;
 		this.name = name;
@@ -76,7 +75,7 @@ public class Cache {
 		else
 			return "http://" + url + code;
 	}
-	
+
 	private int getTypeImageResource(String s) {
 		s = s.toLowerCase();
 
@@ -99,8 +98,8 @@ public class Cache {
 		else
 			return InternalResourceMapper.unknown.id();
 	}
-	
-	public static int getSizeResource(double size){
+
+	public static int getSizeResource(double size) {
 		if (size >= 5)
 			return R.string.size_vbig;
 		else if (size >= 4)

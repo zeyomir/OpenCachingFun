@@ -1,18 +1,16 @@
 package com.zeyomir.ocfun.gui;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.LocationUser;
 import com.zeyomir.ocfun.R;
@@ -21,6 +19,8 @@ import com.zeyomir.ocfun.controller.helper.LocationHelper;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import com.zeyomir.ocfun.dao.PreferencesDAO;
 import com.zeyomir.ocfun.model.Cache;
+import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.widget.TextView;
 
 public class SingleCache extends Activity implements LocationUser {
 	private Cache cache;
@@ -33,7 +33,7 @@ public class SingleCache extends Activity implements LocationUser {
 		setContentView(R.layout.cache);
 
 		cache = DisplayCache.getCache(getIntent());
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		setActionBarOptions();
 		fillData();
 		((LocationProvider) getApplicationContext())
@@ -41,12 +41,12 @@ public class SingleCache extends Activity implements LocationUser {
 	}
 
 	@Override
-	protected void onPause(){
+	protected void onPause() {
 		super.onPause();
 		((LocationProvider) getApplicationContext())
-		.unregister(this);
+				.unregister(this);
 	}
-	
+
 	private void setActionBarOptions() {
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.cache);
@@ -64,8 +64,8 @@ public class SingleCache extends Activity implements LocationUser {
 		cacheLocation = new Location("???");
 		cacheLocation.setLatitude(Double.parseDouble(coords[0]));
 		cacheLocation.setLongitude(Double.parseDouble(coords[1]));
-		double d1 = (Math.round(cacheLocation.getLatitude()*100000000))/100000000.0;
-		double d2 = (Math.round(cacheLocation.getLongitude()*100000000))/100000000.0;
+		double d1 = (Math.round(cacheLocation.getLatitude() * 100000000)) / 100000000.0;
+		double d2 = (Math.round(cacheLocation.getLongitude() * 100000000)) / 100000000.0;
 		((TextView) findViewById(R.id.cache_location)).setText(d1 + ", " + d2);
 		((TextView) findViewById(R.id.cache_description))
 				.setMovementMethod(LinkMovementMethod.getInstance());
@@ -122,7 +122,7 @@ public class SingleCache extends Activity implements LocationUser {
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
+		MenuInflater inflater = getSupportMenuInflater();
 		if (cache.type != InternalResourceMapper.custom.id())
 			inflater.inflate(R.menu.single, menu);
 		else
@@ -134,49 +134,49 @@ public class SingleCache extends Activity implements LocationUser {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			i = new Intent(this, OCFun.class);
-			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(i);
-			return true;
-		case R.id.menu_photo:
-			startActivity(DisplayCache.createImagesIntent(this, cache.id));
-			return true;
-		case R.id.menu_logs:
-			startActivity(DisplayCache.createLogsIntent(this, cache.id));
-			return true;
-		case R.id.menu_web:
-			i = new Intent(Intent.ACTION_VIEW, Uri.parse(cache.getUrl(new PreferencesDAO(this).getMobile())));
-			startActivity(i);
-			return true;
-		case R.id.menu_coords:
-			sendCoordsToClipboard();
-			return true;
-		case R.id.menu_map:
-			i = new Intent(DisplayCache.createMapIntent(this, cache.coords));
-			startActivity(i);
-			return true;
+			case android.R.id.home:
+				i = new Intent(this, OCFun.class);
+				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(i);
+				return true;
+			case R.id.menu_photo:
+				startActivity(DisplayCache.createImagesIntent(this, cache.id));
+				return true;
+			case R.id.menu_logs:
+				startActivity(DisplayCache.createLogsIntent(this, cache.id));
+				return true;
+			case R.id.menu_web:
+				i = new Intent(Intent.ACTION_VIEW, Uri.parse(cache.getUrl(new PreferencesDAO(this).getMobile())));
+				startActivity(i);
+				return true;
+			case R.id.menu_coords:
+				sendCoordsToClipboard();
+				return true;
+			case R.id.menu_map:
+				i = new Intent(DisplayCache.createMapIntent(this, cache.coords));
+				startActivity(i);
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void sendCoordsToClipboard(){
+	private void sendCoordsToClipboard() {
 		int sdk = android.os.Build.VERSION.SDK_INT;
-		if(sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
-		    android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-		    clipboard.setText(((TextView) findViewById(R.id.cache_location)).getText());
+		if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
+			android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+			clipboard.setText(((TextView) findViewById(R.id.cache_location)).getText());
 		} else {
-		    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE); 
-		    android.content.ClipData clip = android.content.ClipData.newPlainText("coords", ((TextView) findViewById(R.id.cache_location)).getText());
-		    clipboard.setPrimaryClip(clip);
+			android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+			android.content.ClipData clip = android.content.ClipData.newPlainText("coords", ((TextView) findViewById(R.id.cache_location)).getText());
+			clipboard.setPrimaryClip(clip);
 		}
 	}
-	
+
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.cache_hint:
-			encodeHint();
-			break;
+			case R.id.cache_hint:
+				encodeHint();
+				break;
 		}
 	}
 

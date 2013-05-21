@@ -1,23 +1,20 @@
 package com.zeyomir.ocfun.gui;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
 import android.util.Log;
-import android.view.MenuItem;
-import android.widget.Toast;
-import com.zeyomir.ocfun.LocationProvider;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.helper.OAuthWrapper;
 import com.zeyomir.ocfun.dao.PreferencesDAO;
+import org.holoeverywhere.preference.CheckBoxPreference;
+import org.holoeverywhere.preference.Preference;
+import org.holoeverywhere.preference.PreferenceActivity;
 
 public class Settings extends PreferenceActivity implements
-		OnPreferenceClickListener {
+		Preference.OnPreferenceClickListener {
 	private PreferencesDAO prefDAO;
 	private OAuthWrapper oauthWrapper;
 	private ActionBar actionBar;
@@ -25,7 +22,7 @@ public class Settings extends PreferenceActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		setActionBarOptions();
 		addPreferencesFromResource(R.xml.settings);
 		prefDAO = new PreferencesDAO(this);
@@ -34,11 +31,11 @@ public class Settings extends PreferenceActivity implements
 	}
 
 	@Override
-	protected void onResume(){
+	protected void onResume() {
 		super.onResume();
 		oauthWrapper.authenticate(getIntent());
 	}
-	
+
 	@Override
 	protected void onNewIntent(Intent i) {
 		super.onNewIntent(i);
@@ -63,9 +60,9 @@ public class Settings extends PreferenceActivity implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			getBackHome();
-			return true;
+			case android.R.id.home:
+				getBackHome();
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -98,7 +95,7 @@ public class Settings extends PreferenceActivity implements
 		} else if (p.getKey().equals("feedback")) {
 			Intent i = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "zeyomir@gmail.com", null));
 			i.putExtra(Intent.EXTRA_SUBJECT, "ocFun - feedback");
-			startActivity(Intent.createChooser(i,"Wyślij feedback"));
+			startActivity(Intent.createChooser(i, "Wyślij feedback"));
 		}
 		adjustView();
 		return false;

@@ -23,7 +23,7 @@ public class LocationHelper {
 		if (azimuth < 0)
 			azimuth += 360;
 		return decodeAzimuth(azimuth);
-		
+
 	}
 
 	private static String decodeAzimuth(int azimuth) {

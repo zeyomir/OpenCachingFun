@@ -1,16 +1,17 @@
 package com.zeyomir.ocfun.gui;
 
-import android.app.ActionBar;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import com.actionbarsherlock.app.ActionBar;
 import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.dao.DbAdapter;
+import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.widget.Toast;
 
 public class OCFun extends Activity {
 
@@ -25,7 +26,7 @@ public class OCFun extends Activity {
 		setContentView(R.layout.main);
 		DbAdapter.initializeDbAdapter(this);
 
-		ActionBar actionBar = getActionBar();
+		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.app_name);
 	}
@@ -33,27 +34,27 @@ public class OCFun extends Activity {
 	public void onClick(View v) {
 		Intent i = null;
 		switch (v.getId()) {
-		case R.id.button1:
-			i = new Intent(this, Add.class);
-			break;
-		case R.id.button2:
-			i = new Intent(this, List.class);
-			break;
-		case R.id.button3:
-			i = new Intent(this, Maps.class);
-			Location l = ((LocationProvider)getApplicationContext()).getLast();
-			if(l == null){
-				Log.i("MAP", "location is null");
-				i.putExtra("lat", "");
+			case R.id.button1:
+				i = new Intent(this, Add.class);
 				break;
-			}
-			Log.i("MAP", "sent location: " + l.getLatitude() + ", " + l.getLongitude());
-			i.putExtra("lat", l.getLatitude()+"");
-			i.putExtra("lon", l.getLongitude()+"");
-			break;
-		case R.id.button5:
-			i = new Intent(this, Settings.class);
-			break;
+			case R.id.button2:
+				i = new Intent(this, List.class);
+				break;
+			case R.id.button3:
+				i = new Intent(this, Maps.class);
+				Location l = ((LocationProvider) getApplicationContext()).getLast();
+				if (l == null) {
+					Log.i("MAP", "location is null");
+					i.putExtra("lat", "");
+					break;
+				}
+				Log.i("MAP", "sent location: " + l.getLatitude() + ", " + l.getLongitude());
+				i.putExtra("lat", l.getLatitude() + "");
+				i.putExtra("lon", l.getLongitude() + "");
+				break;
+			case R.id.button5:
+				i = new Intent(this, Settings.class);
+				break;
 		}
 		if (i != null)
 			startActivity(i);

@@ -8,14 +8,14 @@ public class Image {
 	public final long cacheId;
 	public final String name;
 	public final String path;
-	
+
 	public Image(long id, long cacheId, String name, String path) {
 		this.id = id;
 		this.cacheId = cacheId;
 		this.name = name;
 		this.path = path;
 	}
-	
+
 	public Image(long cacheId, JSONObject data) throws JSONException {
 		this.id = 0;
 		this.cacheId = cacheId;
@@ -24,7 +24,7 @@ public class Image {
 			name = "Zdjęcie";
 		if (data.getBoolean("is_spoiler"))
 			name = "[SPOILER!] " + name;
-		this.name =  name;
+		this.name = name;
 		String[] temp = data.getString("url").split("/");
 		this.path = temp[temp.length - 1];
 	}

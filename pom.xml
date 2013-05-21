@@ -26,9 +26,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>android.support</groupId>
-			<artifactId>compatibility-v4</artifactId>
-			<version>13</version>
+			<groupId>org.holoeverywhere</groupId>
+			<artifactId>library</artifactId>
+			<version>1.4.2</version>
+			<type>apklib</type>
 		</dependency>
 
 		<dependency>
