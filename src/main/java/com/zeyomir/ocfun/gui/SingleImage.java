@@ -39,7 +39,6 @@ public class SingleImage extends Activity {
 		Log.i("Image", path);
 		((ImageView) findViewById(R.id.imageView1))
 				.setImageBitmap(BitmapFactory.decodeFile(path));
-		((TextView) findViewById(R.id.image_title)).setText(image.name);
 	}
 
 	@Override
