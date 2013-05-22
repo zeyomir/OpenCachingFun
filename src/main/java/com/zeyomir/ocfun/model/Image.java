@@ -16,7 +16,7 @@ public class Image {
 		this.path = path;
 	}
 
-	public Image(long cacheId, JSONObject data) throws JSONException {
+	public Image(long cacheId, String cacheCode, JSONObject data) throws JSONException {
 		this.id = 0;
 		this.cacheId = cacheId;
 		String name = data.getString("caption").trim();
@@ -26,6 +26,6 @@ public class Image {
 			name = "[SPOILER!] " + name;
 		this.name = name;
 		String[] temp = data.getString("url").split("/");
-		this.path = temp[temp.length - 1];
+		this.path = cacheCode + "/" + temp[temp.length - 1];
 	}
 }

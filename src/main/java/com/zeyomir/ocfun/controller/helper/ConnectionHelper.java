@@ -54,9 +54,11 @@ public class ConnectionHelper {
 
 	public static void download(String url, String name) {
 		String dir = Environment.getExternalStorageDirectory().toString() + "/OCFun";
-		if (!((new File(dir)).exists())) {
-			(new File(dir)).mkdir();
-		}
+		createDirIfNeeded(dir);
+		String[] explodedPath = name.split("/");
+		dir += "/" + explodedPath[0];
+		createDirIfNeeded(dir);
+
 		InputStream in = null;
 		FileOutputStream out = null;
 		byte buffer[] = new byte[1024];
@@ -65,7 +67,7 @@ public class ConnectionHelper {
 		try {
 			while (in == null)
 				in = openHttpConnection(url);
-			out = new FileOutputStream(new File(dir, name));
+			out = new FileOutputStream(new File(dir, explodedPath[1]));
 			while ((length = in.read(buffer)) > 0)
 				out.write(buffer, 0, length);
 
@@ -75,6 +77,13 @@ public class ConnectionHelper {
 			Log.i("Image download", "sciagnalem obrazek " + name);
 		} catch (IOException e1) {
 			Log.i("Image download", "a jednak nie :P\n" + e1.getStackTrace());
+		}
+	}
+
+	private static void createDirIfNeeded(String dirPath) {
+		File directory = new File(dirPath);
+		if (!directory.exists()) {
+			directory.mkdir();
 		}
 	}
 

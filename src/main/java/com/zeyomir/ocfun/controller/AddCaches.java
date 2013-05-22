@@ -230,7 +230,7 @@ public class AddCaches implements CacheDownloader {
 					JSONArray images = jo.getJSONArray("images");
 					for (int j = 0; j < images.length(); j++) {
 						JSONObject JSONimage = (JSONObject) images.get(j);
-						Image image = new Image(id, JSONimage);
+						Image image = new Image(id, c.code, JSONimage);
 						ConnectionHelper.download(JSONimage.getString("url"),
 								image.path);
 						ImageDAO.save(image);
