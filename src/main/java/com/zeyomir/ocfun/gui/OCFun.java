@@ -55,6 +55,9 @@ public class OCFun extends Activity {
 			case R.id.button5:
 				i = new Intent(this, Settings.class);
 				break;
+			case R.id.button6:
+				i = new Intent(this, Help.class);
+				break;
 		}
 		if (i != null)
 			startActivity(i);
