@@ -22,7 +22,11 @@ public class CacheDAO {
 		DbAdapter db = DbAdapter.open();
 		Log.d("DB", "trying to delete copy...");
 		db.clean(DbAdapter.DATABASE_TABLE_CACHES, "code='" + c.code + "'");
-		long id = db.insert(map(c), DbAdapter.DATABASE_TABLE_CACHES);
+		long id;
+		if (c.type == InternalResourceMapper.custom.id())
+			id = db.insert(map(c, db.count(DbAdapter.DATABASE_TABLE_CACHES, "code like '" + c.code + "%'")), DbAdapter.DATABASE_TABLE_CACHES);
+		else
+			id = db.insert(map(c), DbAdapter.DATABASE_TABLE_CACHES);
 		DbAdapter.close();
 		return id;
 	}
@@ -44,6 +48,12 @@ public class CacheDAO {
 		values.put(DbAdapter.KEY_CACHES_SIZE, "" + c.size);
 		values.put(DbAdapter.KEY_CACHES_TERRAIN, "" + c.terrain);
 		values.put(DbAdapter.KEY_CACHES_TYPE, "" + c.type);
+		return values;
+	}
+
+	private static ContentValues map(Cache c, int numOfCustomCaches){
+		ContentValues values = map(c);
+		values.put(DbAdapter.KEY_CACHES_CODE, c.code + numOfCustomCaches);
 		return values;
 	}
 

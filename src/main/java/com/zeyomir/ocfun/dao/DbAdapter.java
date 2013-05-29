@@ -89,6 +89,14 @@ public class DbAdapter {
 		database.delete(table, condition, null);
 	}
 
+	int count(String table, String condition){
+		Cursor c = database.rawQuery("select count(*) from " + table + " where " + condition, null);
+		c.moveToFirst();
+		int ret =  c.getInt(0);
+		c.close();
+		return ret;
+	}
+
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
 		private static final int DATABASE_VERSION = 3;
