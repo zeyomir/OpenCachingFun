@@ -32,13 +32,19 @@ public class ListImages {
 		ImageDAO.clean();
 		new Thread(new Runnable() {
 
+			private void delete(File f) {
+				if (f.isDirectory()) {
+					for (File file : f.listFiles()) {
+						delete(file);
+					}
+				}
+				f.delete();
+			}
+
 			@Override
 			public void run() {
 				File dir = new File(Environment.getExternalStorageDirectory().toString() + "/OCFun");
-				File[] files = dir.listFiles();
-				for (int i = 0; i < files.length; i++) {
-					files[i].delete();
-				}
+				delete(dir);
 			}
 		}).start();
 	}
