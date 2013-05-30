@@ -2,10 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<properties>
+		<versionName>0.6-SNAPSHOT</versionName>
+		<versionCode>6</versionCode>
+		<debuggable>true</debuggable>
+		<sdk>17</sdk>
+	</properties>
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.zeyomir.ocfun</groupId>
 	<artifactId>ocFun</artifactId>
-	<version>0.6-SNAPSHOT</version>
+	<version>${versionName}</version>
 	<packaging>apk</packaging>
 	<name>OpenCachingFun</name>
 
@@ -59,6 +66,13 @@
 						<platform>17</platform>
 					</sdk>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+					<manifest>
+						<versionName>${versionName}</versionName>
+						<versionCode>${versionCode}</versionCode>
+						<versionCodeAutoIncrement>false</versionCodeAutoIncrement>
+						<versionCodeUpdateFromVersion>false</versionCodeUpdateFromVersion>
+						<debuggable>${debuggable}</debuggable>
+					</manifest>
 				</configuration>
 				<extensions>true</extensions>
 			</plugin>

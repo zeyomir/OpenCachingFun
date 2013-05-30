@@ -1,54 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zeyomir.ocfun"
-    android:versionCode="5"
-    android:versionName="0.5" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="6" android:versionName="0.6-SNAPSHOT" package="com.zeyomir.ocfun">
 
-    <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="15" />
+    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="17"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-    <application
-        android:name="LocationProvider"
-        android:icon="@drawable/icon"
-        android:label="@string/app_name"
-		android:theme="@style/Holo.Theme">
-        <uses-library android:required="true" android:name="com.google.android.maps"></uses-library>
-        <activity
-            android:name=".gui.OCFun"
-            android:label="@string/app_name" >
+    <application android:debuggable="true" android:icon="@drawable/icon" android:label="@string/app_name" android:name="LocationProvider" android:theme="@style/Holo.Theme">
+        <uses-library android:name="com.google.android.maps" android:required="true"/>
+        <activity android:label="@string/app_name" android:name=".gui.OCFun">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".gui.Add" />
-        <activity android:name=".gui.List" />
-        <activity android:name=".gui.SingleCache" />
-        <activity android:name=".gui.Images" />
-        <activity android:name=".gui.SingleImage" />
-        <activity android:name=".gui.Logs" />
-        <activity android:name=".gui.Settings" 
-            android:launchMode="singleInstance">
+        <activity android:name=".gui.Add"/>
+        <activity android:name=".gui.List"/>
+        <activity android:name=".gui.SingleCache"/>
+        <activity android:name=".gui.Images"/>
+        <activity android:name=".gui.SingleImage"/>
+        <activity android:name=".gui.Logs"/>
+        <activity android:launchMode="singleInstance" android:name=".gui.Settings">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data
-                    android:host="callback"
-                    android:scheme="ocfun" />
+                <data android:host="callback" android:scheme="ocfun"/>
             </intent-filter>
         </activity>
-        <activity android:name=".gui.Cancel" />
-        <activity android:name=".gui.Maps" android:theme="@android:style/Theme.NoTitleBar" />
+        <activity android:name=".gui.Cancel"/>
+        <activity android:name=".gui.Maps" android:theme="@android:style/Theme.NoTitleBar"/>
 		<activity android:name=".gui.Help"/>
     </application>
 
