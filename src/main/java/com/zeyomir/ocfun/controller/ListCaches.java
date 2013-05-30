@@ -31,7 +31,7 @@ public class ListCaches {
 					return true;
 				case R.id.list_distance:
 					if (location == null)
-						((TextView) view).setText("Nieznana odleg�o��");
+						((TextView) view).setText("Nieznana odległość");
 					else {
 						String[] coords = cursor.getString(columnIndex)
 								.split("\\|");

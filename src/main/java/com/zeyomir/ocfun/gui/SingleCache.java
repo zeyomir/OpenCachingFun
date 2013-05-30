@@ -189,7 +189,7 @@ public class SingleCache extends Activity implements LocationUser {
 	@Override
 	public void locationFound(Location l) {
 		String s = LocationHelper.getDistance(l, cacheLocation) + " "
-				+ LocationHelper.getAzimuth(l, cacheLocation) + " (b��d: " + l.getAccuracy() + ")";
+				+ LocationHelper.getAzimuth(l, cacheLocation) + " (błąd: " + l.getAccuracy() + ")";
 		((TextView) findViewById(R.id.distance)).setText(s);
 	}
 }

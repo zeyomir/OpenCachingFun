@@ -177,9 +177,9 @@ public class Add extends Activity implements LocationUser {
 			case tooMany:
 				Log.i("warning", "happened");
 				builder = new AlertDialog.Builder(this);
-				builder.setMessage("Skrzynek do �ci�gni�cia: " + _cachesToDownload.length + ".\nCzy kontynuowa�?"); //TODO !!!
+				builder.setMessage("Skrzynek do ściągnięcia: " + _cachesToDownload.length + ".\nCzy kontynuować?"); //TODO !!!
 				builder.setNegativeButton("Anuluj", cl);
-				builder.setPositiveButton("Tak, �ci�gaj", new DialogInterface.OnClickListener() {
+				builder.setPositiveButton("Tak, ściągaj", new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {

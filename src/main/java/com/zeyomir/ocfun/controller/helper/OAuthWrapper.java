@@ -85,7 +85,7 @@ public class OAuthWrapper {
 						.toString());
 			} catch (Exception e) {
 				Log.e("OAuth", e.getMessage());
-				Toast.makeText(c, "Wyst�pi� b��d...", Toast.LENGTH_SHORT)
+				Toast.makeText(c, "Wystąpił błąd...", Toast.LENGTH_SHORT)
 						.show();
 			}
 			if (authURL != null) {
