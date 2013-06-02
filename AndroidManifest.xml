@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".gui.Cancel"/>
-        <activity android:name=".gui.Maps" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".gui.Maps" android:theme="@style/Holo.Theme.NoActionBar"/>
 		<activity android:name=".gui.Help"/>
     </application>
 
