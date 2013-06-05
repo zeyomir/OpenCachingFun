@@ -87,7 +87,12 @@ public class AddCaches implements CacheDownloader {
 				Log.i(tag, data.get("distance") + ", " + data.get("text"));
 				Geocoder gc = new Geocoder(context);
 				try {
-					Address a = gc.getFromLocationName(data.get("text"), 1).get(0);
+					java.util.List<Address> addresses = gc.getFromLocationName(data.get("text"), 1);
+					if (addresses.isEmpty()){
+						Toast.makeText(context, "Nie znaleziono adresu", Toast.LENGTH_SHORT).show();
+						break;
+					}
+					Address a = addresses.get(0);
 					new GetCachesListHelper(this, context).getByLocation(
 							a.getLatitude() + "|" + a.getLongitude(),
 							data.get("distance"));
