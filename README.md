@@ -14,6 +14,10 @@ If you are using Eclipse, it shouldn't be much different, look for something lik
 
 And there, you are all set! If you wish to build and use this app, you will have to fill OKAPI and GoogleMaps api keys.
 
+Working copy
+============
+You can donload a working copy from [Google Play](https://play.google.com/store/apps/details?id=com.zeyomir.ocfun). It's free!
+
 License
 =======
 Source code is available to anyone under GPLv3.
