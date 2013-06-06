@@ -16,7 +16,7 @@ And there, you are all set! If you wish to build and use this app, you will have
 
 Working copy
 ============
-You can donload a working copy from [Google Play](https://play.google.com/store/apps/details?id=com.zeyomir.ocfun). It's free!
+You can download a working copy from [Google Play](https://play.google.com/store/apps/details?id=com.zeyomir.ocfun). It's free!
 
 License
 =======
