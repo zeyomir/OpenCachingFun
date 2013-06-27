@@ -4,6 +4,9 @@
     <item android:id="@+id/menu_map"
           android:title="@string/menu_map"
           android:showAsAction="never" />
+	<item android:id="@+id/menu_compass"
+		  android:title="@string/menu_compass"
+		  android:showAsAction="never" />
     <item android:id="@+id/menu_coords"
           android:title="@string/menu_coords"
           android:showAsAction="never" />

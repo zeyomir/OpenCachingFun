@@ -7,9 +7,12 @@
     <item android:id="@+id/menu_logs"
           android:title="@string/menu_logs"
           android:showAsAction="always" />
-    <item android:id="@+id/menu_map"
-          android:title="@string/menu_map"
-          android:showAsAction="never" />
+	<item android:id="@+id/menu_map"
+		  android:title="@string/menu_map"
+		  android:showAsAction="never" />
+	<item android:id="@+id/menu_compass"
+		  android:title="@string/menu_compass"
+		  android:showAsAction="never" />
     <item android:id="@+id/menu_web"
           android:title="@string/menu_web"
           android:showAsAction="never" />

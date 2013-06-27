@@ -156,6 +156,10 @@ public class SingleCache extends Activity implements LocationUser {
 				i = new Intent(DisplayCache.createMapIntent(this, cache.coords));
 				startActivity(i);
 				return true;
+			case R.id.menu_compass:
+				i = new Intent(DisplayCache.createCompassIntent(this, cache.id));
+				startActivity(i);
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

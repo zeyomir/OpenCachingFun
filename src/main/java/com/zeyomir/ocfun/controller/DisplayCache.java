@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.ImageDAO;
 import com.zeyomir.ocfun.dao.LogDAO;
+import com.zeyomir.ocfun.gui.Compass;
 import com.zeyomir.ocfun.gui.Images;
 import com.zeyomir.ocfun.gui.Logs;
 import com.zeyomir.ocfun.gui.Maps;
@@ -47,6 +48,11 @@ public class DisplayCache {
 		return i;
 	}
 
+	public static Intent createCompassIntent(Context c, long cacheId) {
+		Intent i = new Intent(c, Compass.class);
+		i.putExtra(CacheDAO.idColumn, cacheId);
+		return i;
+	}
 	public static Intent createMapIntent(Context c, String coords) {
 		Intent i = new Intent(c, Maps.class);
 		String[] temp = coords.split("\\|");

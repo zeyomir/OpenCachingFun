@@ -10,8 +10,9 @@
     <string name="menu_add">Dodaj</string>
     <string name="menu_photo">Zdjęcia</string>
     <string name="menu_logs">Logi</string>
-    <string name="menu_map">Pokaż na mapie</string>
-    <string name="menu_web">Otwórz w oc.pl</string>
+	<string name="menu_map">Pokaż na mapie</string>
+	<string name="menu_compass">Prowadź do</string>
+	<string name="menu_web">Otwórz w oc.pl</string>
     <string name="menu_coords">Skopiuj współrzędne</string>
     <!-- cache - list and single -->
     <string name="list_empty">Na razie pusto</string>

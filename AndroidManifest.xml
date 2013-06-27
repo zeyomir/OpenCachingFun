@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="9" android:versionName="0.6.0.3-SNAPSHOT" package="com.zeyomir.ocfun">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="12" android:versionName="0.6.1.1-SNAPSHOT" package="com.zeyomir.ocfun">
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
 
@@ -23,7 +23,8 @@
         <activity android:name=".gui.Images"/>
         <activity android:name=".gui.SingleImage"/>
         <activity android:name=".gui.Logs"/>
-        <activity android:launchMode="singleInstance" android:name=".gui.Settings">
+		<activity android:name=".gui.Compass"/>
+		<activity android:launchMode="singleInstance" android:name=".gui.Settings">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
