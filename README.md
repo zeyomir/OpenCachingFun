@@ -2,6 +2,18 @@ OpenCachingFun
 ==============
 This is an Android app that helps in geocaching. It is using opencaching.pl site.
 
+How to contribute
+=================
+* if you are not a developer, you can contribute by suggesting/discussing new features/improvements or reporting bugs (with detailed description ;) )
+* if you are familiar with Android SDK, feel free to fork me, pick some issue, implement necessary changes and create a pull request
+
+This repository is using [git flow](http://nvie.com/posts/a-successful-git-branching-model/). Long story short: 
+* *master branch* contains only stable versions that were published
+* *develop branch* has the newest code base, on release the code from this branch is merged to master; **you will probably want to fork from this branch**
+* *feature branches* contain commits associated with single feature/issue; after the work is finished, they get merged into develop branch; **you should create one for each issue you want to take on, and when the work is done open a pull request to your feature branch**
+
+To make work with git and git flow easy, I'm using great (and free) app called [Source Tree](http://www.sourcetreeapp.com/)- it has versions for Windows and Mac. On Linux you would probably go with [git flow extension](https://github.com/nvie/gitflow).
+
 How to run/open in IDE
 ======================
 If you haven't been using maven for android projects before (or maven at all):
