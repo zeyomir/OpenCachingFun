@@ -55,6 +55,7 @@ public class ConnectionHelper {
 	public static void download(String url, String name) {
 		String dir = Environment.getExternalStorageDirectory().toString() + "/OCFun";
 		createDirIfNeeded(dir);
+		addNoMediaFileIfNeeded(dir);
 		String[] explodedPath = name.split("/");
 		dir += "/" + explodedPath[0];
 		createDirIfNeeded(dir);
@@ -84,6 +85,17 @@ public class ConnectionHelper {
 		File directory = new File(dirPath);
 		if (!directory.exists()) {
 			directory.mkdir();
+		}
+	}
+
+	private static void addNoMediaFileIfNeeded(String dirPath) {
+		File noMediaFile = new File(dirPath + "/.nomedia");
+		if (!noMediaFile.exists()) {
+			try {
+				noMediaFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
