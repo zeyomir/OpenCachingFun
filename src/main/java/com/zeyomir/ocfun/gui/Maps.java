@@ -8,6 +8,7 @@ import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.LocationUser;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.DisplayMap;
+import com.zeyomir.ocfun.dao.PreferencesDAO;
 import com.zeyomir.ocfun.model.MapItems;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class Maps extends MapActivity implements LocationUser {
 		setContentView(R.layout.map);
 		MapView mapView = (MapView) findViewById(R.id.mapview);
 		mapView.setBuiltInZoomControls(true);
+        boolean sateliteViewEnabled = new PreferencesDAO(this).getSateliteView();
+        mapView.setSatellite(sateliteViewEnabled);
+        //read prefs, then: mapView.setSatellite(true);
 		MapController mapControl = mapView.getController();
 		mapControl.setZoom(16);
 		Bundle extras = getIntent().getExtras();

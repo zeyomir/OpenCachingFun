@@ -3,10 +3,9 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<properties>
-		<versionName>0.6.1.1-SNAPSHOT</versionName>
-		<versionCode>12</versionCode>
-		<debuggable>true</debuggable>
-		<sdk>17</sdk>
+		<versionName>0.6.2.0</versionName>
+		<debuggable>false</debuggable>
+		<sdk>19</sdk>
 	</properties>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -20,7 +19,7 @@
 		<dependency>
 			<groupId>android</groupId>
 			<artifactId>android</artifactId>
-			<version>4.2.2_r2</version>
+			<version>4.4_r1</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -28,7 +27,7 @@
 		<dependency>
 			<groupId>com.google.android.maps</groupId>
 			<artifactId>maps</artifactId>
-			<version>17_r3</version>
+			<version>19_r1</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -59,17 +58,15 @@
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
-				<version>3.5.0</version>
+				<version>3.6.0</version>
 				<configuration>
 					<sdk>
-						<!-- platform or api level (api level 16 = platform 4.1)-->
-						<platform>17</platform>
+						<platform>${sdk}</platform>
 					</sdk>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
 					<manifest>
 						<versionName>${versionName}</versionName>
-						<versionCode>${versionCode}</versionCode>
-						<versionCodeAutoIncrement>false</versionCodeAutoIncrement>
+						<versionCodeAutoIncrement>true</versionCodeAutoIncrement>
 						<versionCodeUpdateFromVersion>false</versionCodeUpdateFromVersion>
 						<debuggable>${debuggable}</debuggable>
 					</manifest>

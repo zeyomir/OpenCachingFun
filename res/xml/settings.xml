@@ -24,6 +24,11 @@
 				holo:title="Mobilne oc.pl">
 		</CheckBoxPreference>
 		<CheckBoxPreference
+			holo:key="satelite_map"
+			holo:summary="używaj mapy satelitarnej"
+			holo:title="Mapa z widokiem satelitarnym">
+		</CheckBoxPreference>
+		<CheckBoxPreference
 				holo:key="limit"
 				holo:summary="przed pobieraniem dużej ilości skrzynek"
 				holo:title="Ostrzegaj"
