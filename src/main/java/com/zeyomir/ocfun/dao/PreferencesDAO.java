@@ -53,4 +53,8 @@ public class PreferencesDAO {
 		return sp.getBoolean("limit", false) ? Integer.parseInt(sp.getString("limit_value", "100")) : 500;
 	}
 
+    public boolean getSateliteView() {
+        return sp.getBoolean("satelite_map", false);
+    }
+
 }
