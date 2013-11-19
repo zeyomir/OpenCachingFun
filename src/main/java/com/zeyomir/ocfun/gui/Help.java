@@ -59,4 +59,16 @@ public class Help extends Activity {
 			}
 		});
 	}
+
+    private void getBackHome() {
+        Intent intent = new Intent(this, OCFun.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        getBackHome();
+        finish();
+    }
 }
