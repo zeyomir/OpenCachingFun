@@ -2,17 +2,21 @@ package com.zeyomir.ocfun.gui;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.DisplayImage;
+import com.zeyomir.ocfun.controller.helper.ConnectionHelper;
 import com.zeyomir.ocfun.model.Image;
 import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.widget.TextView;
+
+import java.io.File;
 
 public class SingleImage extends Activity {
 	private Image image;
@@ -34,14 +38,50 @@ public class SingleImage extends Activity {
 	}
 
 	private void fillData() {
-		String path = Environment.getExternalStorageDirectory().toString()
-				+ "/OCFun/" + image.path;
-		Log.i("Image", path);
-		((ImageView) findViewById(R.id.imageView1))
-				.setImageBitmap(BitmapFactory.decodeFile(path));
-	}
+        String path = getAbsoluteImagePath();
+        Log.i("Image", path);
+        if (new File(path).exists())
+            displayImage(path);
+        else {
+            download(image.path);
+        }
+    }
 
-	@Override
+    private String getAbsoluteImagePath() {
+        return Environment.getExternalStorageDirectory().toString()
+                    + "/OCFun/" + image.path;
+    }
+
+    private void download(String path) {
+        View imageView = findViewById(R.id.imageView1);
+        imageView.setVisibility(View.INVISIBLE);
+
+        View textView = findViewById(R.id.textView1);
+        View progressBarView = findViewById(R.id.progressBar1);
+
+        boolean internetAvailable = ConnectionHelper.isInternetAvailable(this);
+        if (!internetAvailable){
+            textView.setVisibility(View.VISIBLE);
+            progressBarView.setVisibility(View.INVISIBLE);
+            return;
+        }
+        textView.setVisibility(View.INVISIBLE);
+        progressBarView.setVisibility(View.VISIBLE);
+
+        OnDemandImagesDownloader onDemandImagesDownloader = new OnDemandImagesDownloader();
+        onDemandImagesDownloader.execute(path);
+    }
+
+    private void displayImage(String path) {
+        findViewById(R.id.textView1).setVisibility(View.INVISIBLE);
+        findViewById(R.id.progressBar1).setVisibility(View.INVISIBLE);
+        findViewById(R.id.imageView1).setVisibility(View.VISIBLE);
+
+        ((ImageView) findViewById(R.id.imageView1))
+                .setImageBitmap(BitmapFactory.decodeFile(path));
+    }
+
+    @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
@@ -52,4 +92,20 @@ public class SingleImage extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+    private class OnDemandImagesDownloader extends AsyncTask<String, Integer, Integer>{
+
+        @Override
+        protected Integer doInBackground(String... strings) {
+            String filePath = strings[0];
+            String url = "http://opencaching.pl/uploads/" + filePath.split("/")[1];
+            ConnectionHelper.download(url, filePath);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer param){
+            displayImage(getAbsoluteImagePath());
+        }
+    }
 }

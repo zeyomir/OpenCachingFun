@@ -173,7 +173,8 @@ public class AddCaches implements CacheDownloader {
 				| Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
 		mManager.notify(42, notification);
 		Log.i("DEBUG", "run- before execute");
-		downloader = new DownloadCaches();
+        boolean imagesOnDemand = p.getImagesOnDemand();
+        downloader = new DownloadCaches(imagesOnDemand);
 		downloader.execute(codes);
 	}
 
@@ -185,6 +186,11 @@ public class AddCaches implements CacheDownloader {
 	private class DownloadCaches extends AsyncTask<String[], Integer, Integer> {
 		String[] codes;
 		int max = 0;
+        boolean dowloadImagesOnDemand;
+
+        DownloadCaches(boolean dowloadImagesOnDemand){
+            this.dowloadImagesOnDemand = dowloadImagesOnDemand;
+        }
 
 		@Override
 		protected Integer doInBackground(String[]... params) {
@@ -233,9 +239,11 @@ public class AddCaches implements CacheDownloader {
 					for (int j = 0; j < images.length(); j++) {
 						JSONObject JSONimage = (JSONObject) images.get(j);
 						Image image = new Image(id, c.code, JSONimage);
-						ConnectionHelper.download(JSONimage.getString("url"),
-								image.path);
-						ImageDAO.save(image);
+                        if (!dowloadImagesOnDemand) {
+                            ConnectionHelper.download(JSONimage.getString("url"),
+                                    image.path);
+                        }
+                        ImageDAO.save(image);
 					}
 				} catch (Exception e) {
 

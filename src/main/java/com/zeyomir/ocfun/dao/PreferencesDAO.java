@@ -57,4 +57,7 @@ public class PreferencesDAO {
         return sp.getBoolean("satelite_map", false);
     }
 
+    public boolean getImagesOnDemand() {
+        return sp.getBoolean("imagesOnDemand", false);
+    }
 }

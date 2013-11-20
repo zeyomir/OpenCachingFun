@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -20,6 +17,7 @@ import com.zeyomir.ocfun.LocationUser;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.AddCaches;
 import com.zeyomir.ocfun.controller.helper.CacheDownloader;
+import com.zeyomir.ocfun.controller.helper.ConnectionHelper;
 import com.zeyomir.ocfun.gui.addtabs.CustomFragment;
 import com.zeyomir.ocfun.gui.addtabs.NearFragment;
 import com.zeyomir.ocfun.gui.addtabs.StandardFragment;
@@ -105,7 +103,7 @@ public class Add extends Activity implements LocationUser {
 				startActivity(intent);
 				return true;
 			case R.id.menu_add:
-				if (!checkInternet() && currentFragmentTag != R.id.add_custom) {
+				if (!ConnectionHelper.isInternetAvailable(this) && currentFragmentTag != R.id.add_custom) {
 					showDialog(internetDialog);
 					break;
 				}
@@ -126,14 +124,7 @@ public class Add extends Activity implements LocationUser {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private boolean checkInternet() {
-		NetworkInfo ni = ((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))
-				.getActiveNetworkInfo();
-		if ((ni == null) || !(ni.isConnectedOrConnecting())) {
-			return false;
-		}
-		return true;
-	}
+
 
 	public void displayTooManyWarning(String[] codes, CacheDownloader downloader) {
 		Log.i("warning", "called");

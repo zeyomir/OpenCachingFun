@@ -23,11 +23,16 @@
 				holo:summary="przy wyświetlaniu opisu skrzynki w przeglądarce, użyj mobilnej wersji strony"
 				holo:title="Mobilne oc.pl">
 		</CheckBoxPreference>
-		<CheckBoxPreference
-			holo:key="satelite_map"
-			holo:summary="używaj mapy satelitarnej"
-			holo:title="Mapa z widokiem satelitarnym">
-		</CheckBoxPreference>
+        <CheckBoxPreference
+                holo:key="satelite_map"
+                holo:summary="używaj mapy satelitarnej"
+                holo:title="Mapa z widokiem satelitarnym">
+        </CheckBoxPreference>
+        <CheckBoxPreference
+                holo:key="imagesOnDemand"
+                holo:summary="dopiero kiedy będę chciał je wyświetlić"
+                holo:title="Pobieraj zdjęcia na żądanie">
+        </CheckBoxPreference>
 		<CheckBoxPreference
 				holo:key="limit"
 				holo:summary="przed pobieraniem dużej ilości skrzynek"

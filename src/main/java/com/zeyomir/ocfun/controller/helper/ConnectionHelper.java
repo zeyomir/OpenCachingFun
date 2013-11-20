@@ -2,6 +2,8 @@ package com.zeyomir.ocfun.controller.helper;
 
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.util.Log;
 import org.apache.http.HttpEntity;
@@ -127,4 +129,12 @@ public class ConnectionHelper {
 		return ret;
 	}
 
+    public static boolean isInternetAvailable(Context context) {
+        NetworkInfo ni = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE))
+                .getActiveNetworkInfo();
+        if ((ni == null) || !(ni.isConnectedOrConnecting())) {
+            return false;
+        }
+        return true;
+    }
 }
