@@ -101,4 +101,16 @@ public class List extends ListActivity {
 		sca.notifyDataSetInvalidated();
 		fillData();
 	}
+
+    @Override
+    public void onBackPressed() {
+        getBackHome();
+        finish();
+    }
+
+    private void getBackHome() {
+        Intent intent = new Intent(this, OCFun.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }

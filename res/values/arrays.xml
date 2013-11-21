@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="limitNames">
-        <item name="10">Ponad 10 cachy</item>
-        <item name="25">Ponad 25 cachy</item>
-        <item name="50">Ponad 50 cachy</item>
-        <item name="100">Ponad 100 cachy</item>
-        <item name="200">Ponad 200 cachy</item>
-        <item name="300">Ponad 300 cachy</item>
-        <item name="400">Ponad 400 cachy</item>
+        <item name="10">Ponad 10 keszy</item>
+        <item name="25">Ponad 25 keszy</item>
+        <item name="50">Ponad 50 keszy</item>
+        <item name="100">Ponad 100 keszy</item>
+        <item name="200">Ponad 200 keszy</item>
+        <item name="300">Ponad 300 keszy</item>
+        <item name="400">Ponad 400 keszy</item>
     </string-array>
     
     <string-array name="limitValues">
