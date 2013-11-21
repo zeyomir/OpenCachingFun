@@ -64,7 +64,9 @@ public class DbAdapter {
 
 	static void close() {
 		Log.d("DB", "closing...");
-		instance.dbHelper.close();
+        DatabaseHelper databaseHelper = instance.dbHelper;
+        if (databaseHelper != null)
+            databaseHelper.close();
 	}
 
 	long insert(ContentValues what, String where) {
