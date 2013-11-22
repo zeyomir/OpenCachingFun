@@ -15,35 +15,35 @@ import oauth.signpost.basic.DefaultOAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 
 public class OAuthWrapper {
-	private static final String OAUTH_KEY = "YOUR_KEY";
-	private static final String OAUTH_SECRET = "YOUR_SECRET";
+	private final String OAUTH_KEY;
+	private final String OAUTH_SECRET;
 	private static final String OAUTH_CALLBACK_SCHEME = "ocfun";
 	private static final String OAUTH_CALLBACK_URL = OAUTH_CALLBACK_SCHEME
 			+ "://callback";
 	private final OAuthConsumer mConsumer;
 	private final OAuthProvider mProvider;
-	private static Context c;
+	private static Context context;
 	private static OAuthWrapper instance = null;
 
-	private OAuthWrapper(Context context) {
-		c = context;
-		mConsumer = new CommonsHttpOAuthConsumer(OAUTH_KEY, OAUTH_SECRET);
-		mProvider = new DefaultOAuthProvider(
-				"http://opencaching.pl/okapi/services/oauth/request_token",
-				"http://opencaching.pl/okapi/services/oauth/access_token",
-				"http://opencaching.pl/okapi/services/oauth/authorize");
-	}
+    private OAuthWrapper() {
+        OAUTH_KEY = PropertiesLoader.get().okapiKey;
+        OAUTH_SECRET = PropertiesLoader.get().okapiSecret;
+        mConsumer = new CommonsHttpOAuthConsumer(OAUTH_KEY, OAUTH_SECRET);
+        mProvider = new DefaultOAuthProvider(
+                "http://opencaching.pl/okapi/services/oauth/request_token",
+                "http://opencaching.pl/okapi/services/oauth/access_token",
+                "http://opencaching.pl/okapi/services/oauth/authorize");
+    }
 
 	public static OAuthWrapper get(Context context) {
 		if (instance == null)
-			instance = new OAuthWrapper(context);
-		else
-			c = context;
+			instance = new OAuthWrapper();
+		OAuthWrapper.context = context;
 		return instance;
 	}
 
 	public String sign(String url) {
-		PreferencesDAO p = new PreferencesDAO(c);
+		PreferencesDAO p = new PreferencesDAO(context);
 		if (p.isAuthenticated()) {
 			try {
 				mConsumer.setTokenWithSecret(p.getToken(), p.getSecret());
@@ -85,7 +85,7 @@ public class OAuthWrapper {
 						.toString());
 			} catch (Exception e) {
 				Log.e("OAuth", e.getMessage());
-				Toast.makeText(c, "Wystąpił błąd...", Toast.LENGTH_SHORT)
+				Toast.makeText(context, "Wystąpił błąd...", Toast.LENGTH_SHORT)
 						.show();
 			}
 			if (authURL != null) {
@@ -93,7 +93,7 @@ public class OAuthWrapper {
 						Uri.parse(authURL));
 				intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 				intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-				c.startActivity(intent);
+				context.startActivity(intent);
 			}
 			return null;
 		}
@@ -122,7 +122,7 @@ public class OAuthWrapper {
 
 		@Override
 		protected void onPostExecute(OAuthConsumer params) {
-			((Settings) c).authenticated(mConsumer.getToken(),
+			((Settings) context).authenticated(mConsumer.getToken(),
 					mConsumer.getTokenSecret());
 		}
 	}

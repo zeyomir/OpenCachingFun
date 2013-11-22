@@ -1,83 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<properties>
-		<versionName>0.6.3.1-SNAPSHOT</versionName>
-		<debuggable>true</debuggable>
-		<sdk>19</sdk>
-	</properties>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <properties>
+        <version>0.6.3.1</version>
+        <sdk>19</sdk>
+        <okapiOauthKey></okapiOauthKey>
+        <okapiOauthSecret></okapiOauthSecret>
+        <mapsApiKey></mapsApiKey>
+    </properties>
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.zeyomir.ocfun</groupId>
-	<artifactId>ocFun</artifactId>
-	<version>${versionName}</version>
-	<packaging>apk</packaging>
-	<name>OpenCachingFun</name>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.zeyomir.ocfun</groupId>
+    <artifactId>ocFun</artifactId>
+    <version>${versionName}</version>
+    <packaging>apk</packaging>
+    <name>OpenCachingFun</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>android</groupId>
-			<artifactId>android</artifactId>
-			<version>4.4_r1</version>
-			<scope>provided</scope>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>android</groupId>
+            <artifactId>android</artifactId>
+            <version>4.4_r1</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<!-- Make sure this is below the android dependencies -->
-		<dependency>
-			<groupId>com.google.android.maps</groupId>
-			<artifactId>maps</artifactId>
-			<version>19_r1</version>
-			<scope>provided</scope>
-		</dependency>
+        <!-- Make sure this is below the android dependencies -->
+        <dependency>
+            <groupId>com.google.android.maps</groupId>
+            <artifactId>maps</artifactId>
+            <version>19_r1</version>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.holoeverywhere</groupId>
-			<artifactId>library</artifactId>
-			<version>1.4.2</version>
-			<type>apklib</type>
-		</dependency>
+        <dependency>
+            <groupId>org.holoeverywhere</groupId>
+            <artifactId>library</artifactId>
+            <version>1.4.2</version>
+            <type>apklib</type>
+        </dependency>
 
-		<dependency>
-			<groupId>oauth.signpost</groupId>
-			<artifactId>signpost-core</artifactId>
-			<version>1.2.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>oauth.signpost</groupId>
-			<artifactId>signpost-commonshttp4</artifactId>
-			<version>1.2.1.2</version>
-		</dependency>
+        <dependency>
+            <groupId>oauth.signpost</groupId>
+            <artifactId>signpost-core</artifactId>
+            <version>1.2.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>oauth.signpost</groupId>
+            <artifactId>signpost-commonshttp4</artifactId>
+            <version>1.2.1.2</version>
+        </dependency>
+    </dependencies>
 
-	</dependencies>
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <versionName>${version}-SNAPSHOT</versionName>
+                <mapsApiKey>0YtyAdk6bxBiL-HPnKaZ_wj0t4lciCw_7I-bCiQ</mapsApiKey>
+                <incrementVersion>false</incrementVersion>
+                <debuggable>true</debuggable>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <versionName>${version}</versionName>
+                <incrementVersion>true</incrementVersion>
+                <debuggable>false</debuggable>
+            </properties>
+        </profile>
+    </profiles>
 
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<plugins>
-			<plugin>
-				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-				<artifactId>android-maven-plugin</artifactId>
-				<version>3.6.0</version>
-				<configuration>
-					<sdk>
-						<platform>${sdk}</platform>
-					</sdk>
-					<undeployBeforeDeploy>true</undeployBeforeDeploy>
-					<manifest>
-						<versionName>${versionName}</versionName>
-						<versionCodeAutoIncrement>true</versionCodeAutoIncrement>
-						<versionCodeUpdateFromVersion>false</versionCodeUpdateFromVersion>
-						<debuggable>${debuggable}</debuggable>
-					</manifest>
-				</configuration>
-				<extensions>true</extensions>
-			</plugin>
-		</plugins>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <sdk>
+                        <platform>${sdk}</platform>
+                    </sdk>
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <manifest>
+                        <versionName>${versionName}</versionName>
+                        <versionCodeAutoIncrement>${incrementVersion}</versionCodeAutoIncrement>
+                        <versionCodeUpdateFromVersion>false</versionCodeUpdateFromVersion>
+                        <debuggable>${debuggable}</debuggable>
+                    </manifest>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>res/layout</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/map.xml</include>
+                </includes>
             </resource>
         </resources>
     </build>
