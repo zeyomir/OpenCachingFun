@@ -11,7 +11,12 @@ import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.dao.DbAdapter;
 import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class OCFun extends Activity {
 
@@ -29,6 +34,19 @@ public class OCFun extends Activity {
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.app_name);
+
+        TextView textView = (TextView) findViewById(R.id.version);
+        Properties prop = new Properties();
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        InputStream stream = loader.getResourceAsStream("application.properties");
+
+        textView.setText("");
+        try {
+            prop.load(stream);
+            textView.setText("wersja " + prop.getProperty("app.versionName"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	public void onClick(View v) {
