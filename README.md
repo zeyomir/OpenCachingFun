@@ -24,7 +24,19 @@ Now all you have to do is import project to your favorite IDE. I'm using intelli
 
 If you are using Eclipse, it shouldn't be much different, look for something like 'import' and then 'existing maven project'.
 
-And there, you are all set! If you wish to build and use this app, you will have to fill OKAPI and GoogleMaps api keys.
+And there, you are all set! 
+
+If you wish to build and use this app, you will have to fill OKAPI and GoogleMaps api keys in `pom.xml` file (actually all project's configuration takes place here, changes in `AndroidManifest.xml` will be overwritten). 
+
+**to run**
+
+To compile and install the app on any connected device or running symulator just issue this command in main project dir:
+`mvn clean install android:deploy`
+
+**to debug**
+
+Run the app with the above command, open Android Monitor, search for this app's process name and check the corresponding port.
+Now, in your IDE of choice, configure remote debug on localhost and provide port number from Android Monitor.
 
 Working copy
 ============
