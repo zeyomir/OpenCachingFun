@@ -10,6 +10,7 @@ public class PropertiesLoader {
     public final String applicationVersionName;
     public final String okapiKey;
     public final String okapiSecret;
+    public final String googleMapsApiKey;
 
 
     private PropertiesLoader(){
@@ -18,10 +19,12 @@ public class PropertiesLoader {
             this.applicationVersionName = "";
             this.okapiKey = "";
             this.okapiSecret = "";
+            this.googleMapsApiKey = "";
         } else {
             this.applicationVersionName = properties.getProperty("app.versionName");
             this.okapiKey = properties.getProperty("okapi.oauthKey");
             this.okapiSecret = properties.getProperty("okapi.oauthSecret");
+            this.googleMapsApiKey = properties.getProperty("googleMaps.apiKey");
         }
     }
 

@@ -4,10 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <properties>
         <version>0.6.3.1</version>
-        <sdk>19</sdk>
         <okapiOauthKey></okapiOauthKey>
         <okapiOauthSecret></okapiOauthSecret>
-        <mapsApiKey></mapsApiKey>
+        <debugMapsApiKey></debugMapsApiKey>
+        <!-- You won't need these if you are just running the app in emulator or on your own device -->
+        <releaseMapsApiKey></releaseMapsApiKey>
+        <keystorePath></keystorePath>
+        <keystorePassword></keystorePassword>
+        <keyAlias></keyAlias>
+        <keyPassword></keyPassword>
+        <!-- You probably don't want to change these -->
+        <sdk>19</sdk>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <modelVersion>4.0.0</modelVersion>
@@ -60,18 +68,66 @@
             </activation>
             <properties>
                 <versionName>${version}-SNAPSHOT</versionName>
-                <mapsApiKey>0YtyAdk6bxBiL-HPnKaZ_wj0t4lciCw_7I-bCiQ</mapsApiKey>
                 <incrementVersion>false</incrementVersion>
                 <debuggable>true</debuggable>
+                <mapsApiKey>${debugMapsApiKey}</mapsApiKey>
             </properties>
         </profile>
+
         <profile>
             <id>release</id>
             <properties>
                 <versionName>${version}</versionName>
                 <incrementVersion>true</incrementVersion>
                 <debuggable>false</debuggable>
+                <mapsApiKey>${releaseMapsApiKey}</mapsApiKey>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jarsigner-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <id>signing</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <inherited>true</inherited>
+                                <configuration>
+                                    <archiveDirectory></archiveDirectory>
+                                    <includes>
+                                        <include>target/*.apk</include>
+                                    </includes>
+                                    <keystore>${keystorePath}</keystore>
+                                    <storepass>${keystorePassword}</storepass>
+                                    <keypass>${keyPassword}</keypass>
+                                    <alias>${keyAlias}</alias>
+                                    <arguments>
+                                        <argument>-sigalg</argument>
+                                        <argument>MD5withRSA</argument>
+                                        <argument>-digestalg</argument>
+                                        <argument>SHA1</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                        <artifactId>android-maven-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <sign>
+                                <debug>false</debug>
+                            </sign>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
@@ -96,6 +152,13 @@
                     </manifest>
                 </configuration>
                 <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>manifest-update</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
@@ -103,13 +166,6 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>res/layout</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/map.xml</include>
-                </includes>
             </resource>
         </resources>
     </build>
