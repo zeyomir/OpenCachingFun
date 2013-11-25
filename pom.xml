@@ -120,10 +120,25 @@
                         <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                         <artifactId>android-maven-plugin</artifactId>
                         <inherited>true</inherited>
+                        <executions>
+                            <execution>
+                                <id>alignApk</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>zipalign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                         <configuration>
                             <sign>
                                 <debug>false</debug>
                             </sign>
+                            <zipalign>
+                                <verbose>true</verbose>
+                                <skip>false</skip>
+                                <inputApk>${project.build.directory}/${project.artifactId}.apk</inputApk>
+                                <outputApk>${project.artifactId}-aligned.apk</outputApk>
+                            </zipalign>
                         </configuration>
                     </plugin>
                 </plugins>
