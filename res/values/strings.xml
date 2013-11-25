@@ -52,10 +52,12 @@
     <string name="hint_cache">kod pojedynczej skrzynki</string>
     <string name="hint_coords">np 50.0, 39.0</string>
 	<string name="description_hint">(opcjonalny)</string>
+    <string name="watched_disclaimer">Możesz przygotować listę interesujących Cię skrzynek na komputerze (dodając je do obserwowanych), a potem łatwo ściągnąć je wszystkie tutaj.</string>
 	<!-- add tabs names -->
     <string name="code_or_name">Kod/Nazwa</string>
     <string name="near">W pobliżu</string>
     <string name="custom">Własne</string>
+    <string name="watched">Obserwowane</string>
     <!-- activities titles -->
     <string name="add">Dodaj skrzynki</string>
     <string name="list">Zapisane skrzynki</string>
@@ -67,6 +69,7 @@
     <string name="dialog_fill_fields">Uzupełnij wszystkie pola</string>
     <string name="dialog_no_internet">Brak dostępu do internetu</string>
     <string name="dialog_wait_for_location">Poczekaj na ustalenie pozycji</string>
+    <string name="dialog_authenticate">Musisz najpierw zezwolić aplikacji na dostęp do swojego konta. Sprawdź ustawienia.</string>
     <string name="dialog_ok">Zrozumiałem</string>
     <!-- settings -->
 <string name="auth_do">Autoryzuj aplikację</string>

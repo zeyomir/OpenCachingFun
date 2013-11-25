@@ -31,6 +31,10 @@ public class GetCachesListHelper {
 		new GetListByLocation().execute(location, distance);
 	}
 
+    public void getWatched() {
+        new GetListWatched().execute();
+    }
+
 	private void go(String list) {
 		list = list.replaceAll("\"", "");
 		notify.download(list);
@@ -42,7 +46,7 @@ public class GetCachesListHelper {
 		return link;
 	}
 
-	private class GetListByName extends AsyncTask<String, Void, String> {
+    private class GetListByName extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
@@ -134,4 +138,13 @@ public class GetCachesListHelper {
 		}
 
 	}
+
+    private class GetListWatched extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            //TODO: add code to get watched caches codes...
+            return null;
+        }
+    }
 }
