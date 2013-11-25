@@ -18,10 +18,8 @@ import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.AddCaches;
 import com.zeyomir.ocfun.controller.helper.CacheDownloader;
 import com.zeyomir.ocfun.controller.helper.ConnectionHelper;
-import com.zeyomir.ocfun.gui.addtabs.CustomFragment;
-import com.zeyomir.ocfun.gui.addtabs.NearFragment;
-import com.zeyomir.ocfun.gui.addtabs.StandardFragment;
-import com.zeyomir.ocfun.gui.addtabs.TabListener;
+import com.zeyomir.ocfun.dao.PreferencesDAO;
+import com.zeyomir.ocfun.gui.addtabs.*;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.app.AlertDialog;
 import org.holoeverywhere.app.Dialog;
@@ -41,6 +39,7 @@ public class Add extends Activity implements LocationUser {
 	private static String[] _cachesToDownload;
 	private static CacheDownloader _cachesDownloader;
 	private static boolean waitingForLocation = false;
+    private PreferencesDAO p;
 
 	private static int currentFragmentTag;
 	private ActionBar actionBar;
@@ -53,7 +52,8 @@ public class Add extends Activity implements LocationUser {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		actionBar = getSupportActionBar();
+		p = new PreferencesDAO(this);
+        actionBar = getSupportActionBar();
 		setActionBarOptions();
 		addTabs();
 	}
@@ -92,6 +92,12 @@ public class Add extends Activity implements LocationUser {
 								CustomFragment.class));
 		actionBar.addTab(tab);
 
+        tab = actionBar.newTab()
+                .setText(R.string.watched)
+                .setTabListener(
+                        new TabListener<WatchedFragment>(this, "watched",
+                                WatchedFragment.class));
+        actionBar.addTab(tab);
 	}
 
 	@Override
@@ -112,8 +118,7 @@ public class Add extends Activity implements LocationUser {
 					break;
 				}
 				Map<String, String> data = new HashMap<String, String>();
-				boolean allOk = collectData(data);
-				if (allOk) {
+				if (allOk(data)) {
 					(new AddCaches(this)).add(currentFragmentTag, data);
 					return true;
 				} else {
@@ -124,7 +129,11 @@ public class Add extends Activity implements LocationUser {
 		return super.onOptionsItemSelected(item);
 	}
 
-
+    private boolean allOk(Map data) {
+        if (currentFragmentTag == R.id.add_watched)
+            return p.isAuthenticated();
+        return collectData(data);
+    }
 
 	public void displayTooManyWarning(String[] codes, CacheDownloader downloader) {
 		Log.i("warning", "called");
@@ -149,7 +158,10 @@ public class Add extends Activity implements LocationUser {
 		switch (id) {
 			case fieldsDialog:
 				builder = new AlertDialog.Builder(this);
-				builder.setMessage(R.string.dialog_fill_fields);
+                if (currentFragmentTag == R.id.add_watched)
+                    builder.setMessage(R.string.dialog_authenticate);
+				else
+                    builder.setMessage(R.string.dialog_fill_fields);
 				builder.setPositiveButton(R.string.dialog_ok, cl);
 				dialog = builder.create();
 				break;
