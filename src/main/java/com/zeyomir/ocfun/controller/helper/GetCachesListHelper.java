@@ -31,6 +31,10 @@ public class GetCachesListHelper {
 		new GetListByLocation().execute(location, distance);
 	}
 
+    public void getWatched() {
+        new GetListWatched().execute();
+    }
+
 	private void go(String list) {
 		list = list.replaceAll("\"", "");
 		notify.download(list);
@@ -42,30 +46,29 @@ public class GetCachesListHelper {
 		return link;
 	}
 
-	private class GetListByName extends AsyncTask<String, Void, String> {
+    private String handleSimpleJSONAnswer(String link) {
+        String jsonAnswer = ConnectionHelper.get(addOptionsToLink(link), context);
+
+        try {
+            JSONObject jo = new JSONObject(jsonAnswer);
+            JSONArray ja = jo.getJSONArray("results");
+            return ja.join(",");
+        } catch (JSONException je) {
+            return null;
+        } catch (NullPointerException npe) {
+            return null;
+        }
+    }
+
+    private class GetListByName extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
 			String link = ConnectionHelper.baseLink
 					+ "/services/caches/search/all?name=" + params[0] + "&limit=500";
-			String answer = ConnectionHelper.get(addOptionsToLink(link), context);
-			if (answer == null)
-				return null;
-			JSONObject jo = null;
-			try {
-				jo = new JSONObject(answer);
-			} catch (JSONException e1) {
-			}
-			if (jo == null)
-				return null;
-			try {
-				JSONArray ja = jo.getJSONArray("results");
-				return ja.join(",");
-			} catch (JSONException e) {
-				return null;
-			}
+            return handleSimpleJSONAnswer(link);
 		}
-
+        @Override
 		protected void onPostExecute(String param) {
 			if (param != null) {
 				go(param);
@@ -80,24 +83,10 @@ public class GetCachesListHelper {
 			String link = ConnectionHelper.baseLink
 					+ "/services/caches/search/nearest?center=" + ConnectionHelper.encode(params[0])
 					+ "&radius=" + params[1] + "&limit=500";
-			String answer = ConnectionHelper.get(addOptionsToLink(link), context);
-			if (answer == null)
-				return null;
-			JSONObject jo = null;
-			try {
-				jo = new JSONObject(answer);
-			} catch (JSONException e1) {
-			}
-			if (jo == null)
-				return null;
-			try {
-				JSONArray ja = jo.getJSONArray("results");
-				return ja.join(",");
-			} catch (JSONException e) {
-				return null;
-			}
+			return handleSimpleJSONAnswer(link);
 		}
 
+        @Override
 		protected void onPostExecute(String param) {
 			if (param != null) {
 				go(param);
@@ -105,7 +94,7 @@ public class GetCachesListHelper {
 		}
 	}
 
-	private class GetListByCache extends AsyncTask<String, Void, String[]> {
+    private class GetListByCache extends AsyncTask<String, Void, String[]> {
 
 		@Override
 		protected String[] doInBackground(String... params) {
@@ -129,9 +118,27 @@ public class GetCachesListHelper {
 			}
 		}
 
+        @Override
 		protected void onPostExecute(String[] param) {
 			new GetListByLocation().execute(param);
 		}
 
 	}
+
+    private class GetListWatched extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String link = ConnectionHelper.baseLink
+                    + "/services/caches/search/all?watched_only=true&limit=500";
+            return handleSimpleJSONAnswer(link);
+        }
+
+        @Override
+        protected void onPostExecute(String param) {
+            if (param != null) {
+                go(param);
+            }
+        }
+    }
 }

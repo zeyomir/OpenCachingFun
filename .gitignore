@@ -25,3 +25,6 @@ local.properties
 # intelliJ IDEA files
 .idea/
 *.iml
+
+# keystore file
+*.keystore

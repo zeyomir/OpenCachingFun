@@ -9,8 +9,10 @@ import android.view.View;
 import com.actionbarsherlock.app.ActionBar;
 import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.R;
+import com.zeyomir.ocfun.controller.helper.PropertiesLoader;
 import com.zeyomir.ocfun.dao.DbAdapter;
 import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.widget.TextView;
 import org.holoeverywhere.widget.Toast;
 
 public class OCFun extends Activity {
@@ -29,6 +31,9 @@ public class OCFun extends Activity {
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(R.string.app_name);
+
+        TextView textView = (TextView) findViewById(R.id.version);
+        textView.setText(PropertiesLoader.get().applicationVersionName);
 	}
 
 	public void onClick(View v) {

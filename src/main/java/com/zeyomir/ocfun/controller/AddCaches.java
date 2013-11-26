@@ -55,10 +55,17 @@ public class AddCaches implements CacheDownloader {
 			case R.id.add_custom:
 				addCustom(data);
 				break;
+            case R.id.add_watched:
+                addWatched();
+                break;
 		}
 	}
 
-	private void addStandard(Map<String, String> data) {
+    private void addWatched() {
+        new GetCachesListHelper(this, context).getWatched();
+    }
+
+    private void addStandard(Map<String, String> data) {
 		String tag = "adding standard";
 		String text;
 		switch (Integer.parseInt(data.get("option"))) {

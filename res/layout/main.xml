@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zeyomir.ocfun.DashboardLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"  android:layout_width="fill_parent"
+                      android:layout_height="fill_parent" android:orientation="vertical">
+<com.zeyomir.ocfun.DashboardLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
     android:orientation="vertical" >
 
     <Button
@@ -45,5 +47,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/help"
         android:onClick="onClick" />
-
 </com.zeyomir.ocfun.DashboardLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="asdf"
+              android:layout_alignParentBottom="true" android:layout_alignParentRight="true"
+              android:layout_margin="1dp" android:id="@+id/version"/>
+</RelativeLayout>
