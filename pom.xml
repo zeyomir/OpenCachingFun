@@ -3,10 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <properties>
-        <version>0.6.3.1</version>
         <okapiOauthKey></okapiOauthKey>
         <okapiOauthSecret></okapiOauthSecret>
         <debugMapsApiKey></debugMapsApiKey>
+        <version>0.6.4.0</version>
         <!-- You won't need these if you are just running the app in emulator or on your own device -->
         <releaseMapsApiKey></releaseMapsApiKey>
         <keystorePath></keystorePath>
