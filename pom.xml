@@ -6,7 +6,8 @@
         <okapiOauthKey></okapiOauthKey>
         <okapiOauthSecret></okapiOauthSecret>
         <debugMapsApiKey></debugMapsApiKey>
-        <version>0.6.4.0</version>
+        <version>0.6.4.1</version>
+        
         <!-- You won't need these if you are just running the app in emulator or on your own device -->
         <releaseMapsApiKey></releaseMapsApiKey>
         <keystorePath></keystorePath>
