@@ -197,11 +197,24 @@
             android:text="@string/dummy_lorem" />
 
         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/notes"
+                android:id="@+id/note_phrase" android:layout_below="@+id/cache_description"
+                android:layout_margin="5dip"/>
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/dummy_lorem"
+                android:id="@+id/note" android:layout_below="@+id/note_phrase" android:layout_margin="5dip"/>
+        <TextView
             android:id="@+id/hint_phrase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/cache_description"
+            android:layout_below="@+id/note"
             android:layout_margin="2dip"
             android:text="@string/hint" />
 

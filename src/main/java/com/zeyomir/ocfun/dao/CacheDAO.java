@@ -37,6 +37,7 @@ public class CacheDAO {
 		values.put(DbAdapter.KEY_CACHES_NAME, c.name);
 		values.put(DbAdapter.KEY_CACHES_ATTRIBUTES, c.attributes);
 		values.put(DbAdapter.KEY_CACHES_DESCRIPTION, c.description);
+        values.put(DbAdapter.KEY_CACHES_NOTE, c.notes);
 		values.put(DbAdapter.KEY_CACHES_DIFFICULTY, "" + c.difficulty);
 		values.put(DbAdapter.KEY_CACHES_HINT, c.hint);
 		values.put(DbAdapter.KEY_CACHES_IS_FOUND, "" + c.isFound);
@@ -76,6 +77,10 @@ public class CacheDAO {
 				.equals("true");
 		String description = c.getString(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_DESCRIPTION));
+        String notes = c
+                .getString(c.getColumnIndex(DbAdapter.KEY_CACHES_NOTE));
+        if (notes == null)
+            notes = "";
 		String attributes = c.getString(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_ATTRIBUTES));
 		String hint = c.getString(c.getColumnIndex(DbAdapter.KEY_CACHES_HINT));
@@ -85,7 +90,7 @@ public class CacheDAO {
 				c.getColumnIndex(DbAdapter.KEY_CACHES_IS_FOUND)).equals("true");
 
 		return new Cache(id, code, name, coords, type, owner, size,
-				difficulity, terrain, requiresPassword, description,
+				difficulity, terrain, requiresPassword, description, notes,
 				attributes, hint, lastFoundOn, isFound);
 	}
 

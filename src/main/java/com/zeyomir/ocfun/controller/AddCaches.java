@@ -144,7 +144,7 @@ public class AddCaches implements CacheDownloader {
 				InternalResourceMapper.custom.id(), "Moja skrzynka", 0.0, 0.0,
 				0.0, false, "<p>"
 				+ data.get("description").replaceAll("\n", "<br>")
-				+ "</p>", "", "", "", false);
+				+ "</p>", "", "", "", "", false);
 		CacheDAO.save(c);
 		Toast.makeText(context, "Dodano do bazy", Toast.LENGTH_SHORT).show();
 	}
@@ -207,7 +207,7 @@ public class AddCaches implements CacheDownloader {
 			int progress = 0;
 			Log.i("DEBUG", "get prefs");
 			String f = new PreferencesDAO(context).isAuthenticated() ? fields
-					+ "|is_found" : fields;
+					+ "|my_notes|is_found" : fields;
 			Log.i("DEBUG", "fields ready");
 			for (int i = 0; i < max; i++) {
 				if (isCancelled())

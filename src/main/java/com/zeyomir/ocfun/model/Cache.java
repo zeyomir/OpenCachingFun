@@ -17,6 +17,7 @@ public class Cache {
 	public final double terrain;
 	public final boolean requiresPassword;
 	public final String description;
+    public final String notes;
 	public final String attributes;
 	public final String hint;
 	public final String lastFoundOn;
@@ -36,6 +37,7 @@ public class Cache {
 		this.terrain = data.getDouble("terrain");
 		this.requiresPassword = data.getBoolean("req_passwd");
 		this.description = data.getString("description");
+        this.notes = data.isNull("my_notes") ? "" : data.getString("my_notes");
 		this.attributes = data.isNull("attrnames") ? "bez atrybutów" : data.getJSONArray(
 				"attrnames").join(", ");
 		this.hint = data.getString("hint");
@@ -50,7 +52,7 @@ public class Cache {
 
 	public Cache(long id, String code, String name, String coords, int type, String owner, double size,
 	             double difficulity, double terrain, boolean requiresPassword,
-	             String description, String attributes, String hint,
+	             String description, String notes, String attributes, String hint,
 	             String lastFoundOn, boolean isFound) {
 		this.id = id;
 		this.code = code;
@@ -63,6 +65,7 @@ public class Cache {
 		this.terrain = terrain;
 		this.requiresPassword = requiresPassword;
 		this.description = description;
+        this.notes = notes;
 		this.attributes = attributes;
 		this.hint = hint;
 		this.lastFoundOn = lastFoundOn;

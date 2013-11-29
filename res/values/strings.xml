@@ -86,6 +86,7 @@
 	<string name="dummy_date">23.05.2009</string>
 	<string name="dummy_coords">50.25 20.50</string>
 	<string name="dummy_atributes">atrybuty</string>
+    <string name="notes">Własna notatka:</string>
 	<string name="dummy_lorem">lorem ipsum dolor sit amet</string>
 	<string name="dummy_hint">HINT text coded in rot13</string>
 	<string name="dummy_workaround">workaround</string>
