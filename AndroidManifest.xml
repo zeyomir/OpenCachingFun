@@ -23,6 +23,7 @@
         <activity android:name=".gui.Images"/>
         <activity android:name=".gui.SingleImage"/>
         <activity android:name=".gui.Logs"/>
+        <activity android:name=".gui.LogAdd"/>
 		<activity android:name=".gui.Compass"/>
 		<activity android:launchMode="singleInstance" android:name=".gui.Settings">
             <intent-filter>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <org.holoeverywhere.widget.TextView
+            android:layout_margin="1dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/dummy_name"
+            android:id="@+id/textView"/>
+    <org.holoeverywhere.widget.Spinner
+            android:layout_margin="1dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner" android:clickable="true"
+            android:entries="@array/logTypes"/>
+    <org.holoeverywhere.widget.EditText
+            android:layout_margin="1dp"
+            android:layout_width="fill_parent"
+            android:layout_height="164dp"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText" android:hint="@string/log_comment"/>
+    <org.holoeverywhere.widget.EditText
+            android:layout_margin="1dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText2" android:hint="@string/log_pass"/>
+    <org.holoeverywhere.widget.Button
+            android:layout_margin="1dp"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/log_more"
+            android:onClick="onClick"
+            android:id="@+id/button"/>
+    <org.holoeverywhere.widget.CheckBox
+            android:layout_margin="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/log_rate"
+            android:visibility="gone"
+            android:id="@+id/checkBox"
+            android:onClick="onClick"/>
+    <RatingBar
+            android:layout_margin="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:id="@+id/ratingBar"
+            android:numStars="5" android:stepSize="1.0" android:rating="3"/>
+    <org.holoeverywhere.widget.CheckBox
+            android:layout_margin="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/log_recommend"
+            android:id="@+id/checkBox2"/>
+    <org.holoeverywhere.widget.CheckBox
+            android:layout_margin="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/log_maintenance"
+            android:id="@+id/checkBox3"/>
+</LinearLayout>
