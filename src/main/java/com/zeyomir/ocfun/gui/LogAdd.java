@@ -3,16 +3,22 @@ package com.zeyomir.ocfun.gui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RatingBar;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.R;
+import com.zeyomir.ocfun.controller.AddLog;
 import com.zeyomir.ocfun.dao.CacheDAO;
+import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import com.zeyomir.ocfun.dao.LogDAO;
 import com.zeyomir.ocfun.model.Cache;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LogAdd extends Activity implements AdapterView.OnItemSelectedListener{
 
@@ -28,6 +34,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
     private boolean maintenanceFieldVisible = false;
     private boolean moreOptionsVisible = false;
     private boolean wantToRate = false;
+    private long spinnerSelectedId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,10 +103,51 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
                     Toast.makeText(this,"Musisz podać hasło!", Toast.LENGTH_SHORT).show();
                     return true;
                 }
+                (new AddLog(this)).add(gatherData());
                 Toast.makeText(this,"dodawanie wpisu", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private Map<String, String> gatherData() {
+        Map<String, String> data = new HashMap<String, String>();
+
+        long cacheId = cache.id;
+        String message = ((EditText)findViewById(R.id.editText)).getText().toString();
+
+        int type;
+        if (isOfFoundItType)
+            type = InternalResourceMapper.found.id();
+        else if (spinnerSelectedId == 1)
+            type = InternalResourceMapper.notfound.id();
+        else
+            type = InternalResourceMapper.comment.id();
+
+        String password;
+        if (passwordFieldVisible)
+            password = ((EditText)findViewById(R.id.editText2)).getText().toString();
+        else
+            password = null;
+
+        int rating;
+        if (rateFieldVisible && wantToRate)
+            rating = (int) ((RatingBar)findViewById(R.id.ratingBar)).getRating();
+        else
+            rating = 0;
+
+        boolean recommendation = ((CheckBox)findViewById(R.id.checkBox2)).isChecked();
+        boolean needsMaintenance = ((CheckBox)findViewById(R.id.checkBox3)).isChecked();
+
+        data.put("cacheId", ""+cacheId);
+        data.put("message", message);
+        data.put("type", ""+type);
+        data.put("password", password);
+        data.put("rating", ""+rating);
+        data.put("recommendation", ""+recommendation);
+        data.put("needsMaintenance", ""+needsMaintenance);
+
+        return data;
     }
 
     public void onClick(View v) {
@@ -116,6 +164,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        spinnerSelectedId = id;
         isOfFoundItType = id == 0;
         updateViews();
     }

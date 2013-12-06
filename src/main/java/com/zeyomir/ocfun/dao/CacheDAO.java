@@ -144,4 +144,9 @@ public class CacheDAO {
 		db.clean(DbAdapter.DATABASE_TABLE_CACHES, "where id=" + id);
 		DbAdapter.close();
 	}
+
+    public static void update(Cache updatedCache) {
+        DbAdapter db = DbAdapter.open();
+        db.update(map(updatedCache), DbAdapter.DATABASE_TABLE_CACHES, ""+updatedCache.id);
+    }
 }
