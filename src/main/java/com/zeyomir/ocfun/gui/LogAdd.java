@@ -104,7 +104,8 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
                     return true;
                 }
                 (new AddLog(this)).add(gatherData());
-                Toast.makeText(this,"dodawanie wpisu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Dodawanie wpisu", Toast.LENGTH_SHORT).show();
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);

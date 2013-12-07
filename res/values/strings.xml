@@ -73,6 +73,7 @@
     <string name="log_book">Logbook</string>
     <string name="settings">Ustawienia</string>
     <string name="log_add">Dodaj wpis</string>
+    <string name="my_logs">Moje logi</string>
     <!-- dialogs -->
     <string name="dialog_fill_fields">Uzupełnij wszystkie pola</string>
     <string name="dialog_no_internet">Brak dostępu do internetu</string>

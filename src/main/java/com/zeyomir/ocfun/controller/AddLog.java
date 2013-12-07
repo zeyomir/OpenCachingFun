@@ -21,7 +21,7 @@ public class AddLog {
 
     public void add(Map<String, String> data){
         long cacheId = Long.parseLong(data.get("cacheId"));
-        String user = "###";
+        String user = "OCFun";
         String date = dateFormat.format(new Date());
         String message = data.get("message");
         int type = Integer.parseInt(data.get("type"));
