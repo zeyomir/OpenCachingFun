@@ -5,6 +5,7 @@
     <string name="not_implemented">Zostatnie dodane wkrótce ;)</string>
     <!-- menu entries -->
     <string name="menu_delete">Usuń wszystkie</string>
+    <string name="menu_delete_one">Usuń</string>
     <string name="menu_search">Szukaj</string>
     <string name="menu_refresh">Odśwież</string>
     <string name="menu_add">Dodaj</string>
@@ -58,6 +59,13 @@
     <string name="near">W pobliżu</string>
     <string name="custom">Własne</string>
     <string name="watched">Obserwowane</string>
+    <!-- add log entry -->
+    <string name="log_comment">Treść wpisu</string>
+    <string name="log_pass">Hasło</string>
+    <string name="log_more">Więcej opcji</string>
+    <string name="log_rate">Oceniam</string>
+    <string name="log_recommend">Rekomenduję</string>
+    <string name="log_maintenance">Potrzebuje serwisu</string>
     <!-- activities titles -->
     <string name="add">Dodaj skrzynki</string>
     <string name="list">Zapisane skrzynki</string>
@@ -65,6 +73,8 @@
     <string name="images">Zdjęcia</string>
     <string name="log_book">Logbook</string>
     <string name="settings">Ustawienia</string>
+    <string name="log_add">Dodaj wpis</string>
+    <string name="my_logs">Moje logi</string>
     <!-- dialogs -->
     <string name="dialog_fill_fields">Uzupełnij wszystkie pola</string>
     <string name="dialog_no_internet">Brak dostępu do internetu</string>

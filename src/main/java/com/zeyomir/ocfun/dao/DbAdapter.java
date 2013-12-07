@@ -30,7 +30,12 @@ public class DbAdapter {
 	static final String KEY_LOGS_DATE = "date";
 	static final String KEY_LOGS_WHO = "user";
 	static final String KEY_LOGS_TYPE = "type";
-	static final String KEY_LOGS_BODY = "body";
+    static final String KEY_LOGS_BODY = "body";
+    static final String KEY_LOGS_PASSWORD = "pass";
+    static final String KEY_LOGS_RATING = "rating";
+    static final String KEY_LOGS_RECOMMEND = "recommend";
+    static final String KEY_LOGS_MAINTENANCE = "maintenance";
+    static final String KEY_LOGS_ERROR = "error";
 	static final String KEY_LOGS_CACHE_ID = "cacheId";
 
 	static final String KEY_IMAGES_ID = "_id";
@@ -40,7 +45,8 @@ public class DbAdapter {
 
 	private static final String DATABASE_NAME = "data";
 	static final String DATABASE_TABLE_CACHES = "caches";
-	static final String DATABASE_TABLE_LAST_LOGS = "lastLogs";
+    static final String DATABASE_TABLE_LAST_LOGS = "lastLogs";
+    static final String DATABASE_TABLE_MY_LOGS = "myLogs";
 	static final String DATABASE_TABLE_IMAGES = "images";
 	private static DbAdapter instance;
 
@@ -71,14 +77,14 @@ public class DbAdapter {
 	}
 
 	long insert(ContentValues what, String where) {
-		Log.d("DB", "inserting...");
+		Log.d("DB", "inserting " + what + " into " + where);
 		return database.insert(where, null, what);
 	}
 
-/*	long update(ContentValues what, String where, String id) {
+	long update(ContentValues what, String where, String id) {
 		Log.d("DB", "updating...");
-		return database.update(where, what, "where _id=" + id, null);
-	}*/
+		return database.update(where, what, "_id=" + id, null);
+	}
 
 	Cursor fetch(String query) {
 		Log.d("DB", "fetching...");
@@ -102,7 +108,7 @@ public class DbAdapter {
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 
-		private static final int DATABASE_VERSION = 4;
+		private static final int DATABASE_VERSION = 5;
 
 		private static final String CREATE_TABLE_IMAGES = "create table if not exists "
 				+ DATABASE_TABLE_IMAGES + "(" + KEY_IMAGES_ID
@@ -131,6 +137,17 @@ public class DbAdapter {
 				+ KEY_LOGS_TYPE + " integer not null, " + KEY_LOGS_WHO
 				+ " text not null, " + KEY_LOGS_BODY + " text not null); ";
 
+        private static final String CREATE_TABLE_MY_LOGS = "create table if not exists "
+                + DATABASE_TABLE_MY_LOGS + "(" + KEY_LOGS_ID
+                + " integer primary key autoincrement, " + KEY_LOGS_CACHE_ID
+                + " integer not null, " + KEY_LOGS_DATE + " text not null, "
+                + KEY_LOGS_TYPE + " integer not null, " + KEY_LOGS_WHO
+                + " text not null, " + KEY_LOGS_BODY + " text not null, "
+                + KEY_LOGS_PASSWORD + " text, " + KEY_LOGS_RATING
+                + " integer, " + KEY_LOGS_RECOMMEND + " boolean not null, "
+                + KEY_LOGS_MAINTENANCE + " boolean not null, " + KEY_LOGS_ERROR
+                + " text); ";
+
 		DatabaseHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
@@ -140,14 +157,17 @@ public class DbAdapter {
 			db.execSQL(CREATE_TABLE_CACHES);
 			db.execSQL(CREATE_TABLE_IMAGES);
 			db.execSQL(CREATE_TABLE_LAST_LOGS);
+            db.execSQL(CREATE_TABLE_MY_LOGS);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            if (oldVersion < 4){
-                db.execSQL("ALTER TABLE " + DbAdapter.DATABASE_TABLE_CACHES +
-                        " ADD " + DbAdapter.KEY_CACHES_NOTE + " text;");
-                Log.v("DB", "done the upgrade from " + oldVersion + " to " + newVersion);
+            if (oldVersion < 4) {
+                db.execSQL("alter table " + DbAdapter.DATABASE_TABLE_CACHES +
+                        " add " + DbAdapter.KEY_CACHES_NOTE + " text;");
+            }
+            if (oldVersion < 5) {
+                db.execSQL(CREATE_TABLE_MY_LOGS);
             }
 		}
 	}
