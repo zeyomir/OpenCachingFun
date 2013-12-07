@@ -48,7 +48,7 @@ public class MyLogDAO {
 
     public static void delete(long id) {
         DbAdapter db = DbAdapter.open();
-        db.clean(DbAdapter.DATABASE_TABLE_MY_LOGS, " where id=" + id);
+        db.clean(DbAdapter.DATABASE_TABLE_MY_LOGS, "_id=" + id);
         DbAdapter.close();
     }
 }

@@ -5,6 +5,7 @@
     <string name="not_implemented">Zostatnie dodane wkrótce ;)</string>
     <!-- menu entries -->
     <string name="menu_delete">Usuń wszystkie</string>
+    <string name="menu_delete_one">Usuń</string>
     <string name="menu_search">Szukaj</string>
     <string name="menu_refresh">Odśwież</string>
     <string name="menu_add">Dodaj</string>

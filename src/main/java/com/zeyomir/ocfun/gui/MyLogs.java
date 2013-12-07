@@ -52,6 +52,24 @@ public class MyLogs extends ListActivity {
 		setListAdapter(sca);
 	}
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, android.view.ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0,DELETE_ID,0, R.string.menu_delete_one);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case DELETE_ID:
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                MyLogDAO.delete(info.id);
+                fillData();
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
