@@ -115,6 +115,8 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
         Map<String, String> data = new HashMap<String, String>();
 
         long cacheId = cache.id;
+        String cacheCode = cache.code;
+        String cacheName = cache.name;
         String message = ((EditText)findViewById(R.id.editText)).getText().toString();
 
         int type;
@@ -141,6 +143,8 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
         boolean needsMaintenance = ((CheckBox)findViewById(R.id.checkBox3)).isChecked();
 
         data.put("cacheId", ""+cacheId);
+        data.put("cacheCode", cacheCode);
+        data.put("cacheName", cacheName);
         data.put("message", message);
         data.put("type", ""+type);
         data.put("password", password);

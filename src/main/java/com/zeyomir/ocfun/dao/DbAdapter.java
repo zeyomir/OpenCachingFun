@@ -37,6 +37,8 @@ public class DbAdapter {
     static final String KEY_LOGS_MAINTENANCE = "maintenance";
     static final String KEY_LOGS_ERROR = "error";
 	static final String KEY_LOGS_CACHE_ID = "cacheId";
+    static final String KEY_LOGS_CACHE_CODE = "cacheCode";
+    static final String KEY_LOGS_CACHE_NAME = "cacheName";
 
 	static final String KEY_IMAGES_ID = "_id";
 	static final String KEY_IMAGES_CACHE_ID = "cacheId";
@@ -140,7 +142,9 @@ public class DbAdapter {
         private static final String CREATE_TABLE_MY_LOGS = "create table if not exists "
                 + DATABASE_TABLE_MY_LOGS + "(" + KEY_LOGS_ID
                 + " integer primary key autoincrement, " + KEY_LOGS_CACHE_ID
-                + " integer not null, " + KEY_LOGS_DATE + " text not null, "
+                + " integer not null, " + KEY_LOGS_CACHE_CODE
+                + " text not null, " + KEY_LOGS_CACHE_NAME
+                + " text not null, " + KEY_LOGS_DATE + " text not null, "
                 + KEY_LOGS_TYPE + " integer not null, " + KEY_LOGS_WHO
                 + " text not null, " + KEY_LOGS_BODY + " text not null, "
                 + KEY_LOGS_PASSWORD + " text, " + KEY_LOGS_RATING

@@ -47,4 +47,8 @@ public class ListLogs {
 	public static void clean() {
 		LogDAO.clean();
 	}
+
+    public static void deleteForCacheId(long id){
+        LogDAO.deleteForCache(id);
+    }
 }

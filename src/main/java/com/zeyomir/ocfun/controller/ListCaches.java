@@ -91,6 +91,12 @@ public class ListCaches {
 		dao.open();
 	}
 
+    public static void delete(long id){
+        ListImages.deleteForCacheId(id);
+        ListLogs.deleteForCacheId(id);
+        CacheDAO.delete(id);
+    }
+
 	public static void openDB() {
 		if (dao == null)
 			dao = new CacheDAO();

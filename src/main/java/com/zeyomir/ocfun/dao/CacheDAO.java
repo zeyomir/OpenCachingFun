@@ -141,7 +141,7 @@ public class CacheDAO {
 
 	public static void delete(long id) {
 		DbAdapter db = DbAdapter.open();
-		db.clean(DbAdapter.DATABASE_TABLE_CACHES, "where id=" + id);
+		db.clean(DbAdapter.DATABASE_TABLE_CACHES, "_id=" + id);
 		DbAdapter.close();
 	}
 

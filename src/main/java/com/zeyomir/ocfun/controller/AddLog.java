@@ -21,6 +21,8 @@ public class AddLog {
 
     public void add(Map<String, String> data){
         long cacheId = Long.parseLong(data.get("cacheId"));
+        String cacheCode = data.get("cacheCode");
+        String cacheName = data.get("cacheName");
         String user = "OCFun";
         String date = dateFormat.format(new Date());
         String message = data.get("message");
@@ -31,7 +33,7 @@ public class AddLog {
         boolean needsMaintenance = Boolean.parseBoolean(data.get("needsMaintenance"));
         String errorMessage = null;
 
-        MyLogbookEntry myLogbookEntry = new MyLogbookEntry(cacheId, user, date, message, type, password, rating, recommendation, needsMaintenance, errorMessage);
+        MyLogbookEntry myLogbookEntry = new MyLogbookEntry(cacheId, cacheCode, cacheName, user, date, message, type, password, rating, recommendation, needsMaintenance, errorMessage);
         MyLogDAO.save(myLogbookEntry);
         if (type == InternalResourceMapper.found.id()) {
             Cache cache = CacheDAO.get(cacheId);

@@ -6,7 +6,7 @@ import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.model.MyLogbookEntry;
 
 public class MyLogDAO {
-    public static final String[] from = {DbAdapter.KEY_LOGS_TYPE, DbAdapter.KEY_LOGS_RECOMMEND, DbAdapter.KEY_LOGS_MAINTENANCE, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_CACHE_ID, DbAdapter.KEY_LOGS_DATE, DbAdapter.KEY_LOGS_BODY, DbAdapter.KEY_LOGS_PASSWORD, DbAdapter.KEY_LOGS_ERROR};
+    public static final String[] from = {DbAdapter.KEY_LOGS_TYPE, DbAdapter.KEY_LOGS_RECOMMEND, DbAdapter.KEY_LOGS_MAINTENANCE, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_RATING, DbAdapter.KEY_LOGS_CACHE_NAME, DbAdapter.KEY_LOGS_DATE, DbAdapter.KEY_LOGS_BODY, DbAdapter.KEY_LOGS_PASSWORD, DbAdapter.KEY_LOGS_ERROR};
     public static final int[] to = {R.id.list_logs_type, R.id.list_logs_recommend, R.id.list_logs_maintenance, R.id.list_logs_rating1, R.id.list_logs_rating2, R.id.list_logs_rating3, R.id.list_logs_rating4, R.id.list_logs_rating5, R.id.list_logs_cache_name, R.id.list_logs_date, R.id.list_logs_body, R.id.list_logs_pass, R.id.list_logs_error};
 
     public static final String idColumn = DbAdapter.KEY_LOGS_ID;
@@ -21,6 +21,8 @@ public class MyLogDAO {
     private static ContentValues map(MyLogbookEntry l) {
         ContentValues values = new ContentValues();
         values.put(DbAdapter.KEY_LOGS_CACHE_ID ,l.cacheId);
+        values.put(DbAdapter.KEY_LOGS_CACHE_CODE ,l.cacheCode);
+        values.put(DbAdapter.KEY_LOGS_CACHE_NAME ,l.cacheName);
         values.put(DbAdapter.KEY_LOGS_WHO ,l.user);
         values.put(DbAdapter.KEY_LOGS_DATE ,l.date);
         values.put(DbAdapter.KEY_LOGS_BODY ,l.message);

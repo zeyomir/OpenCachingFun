@@ -5,11 +5,9 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.widget.ImageView;
 import com.zeyomir.ocfun.R;
-import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import com.zeyomir.ocfun.dao.MyLogDAO;
 import org.holoeverywhere.app.Activity;
-import org.holoeverywhere.widget.TextView;
 
 public class ListMyLogs {
 	static private final SimpleCursorAdapter.ViewBinder myLogsBinder = new SimpleCursorAdapter.ViewBinder() {
@@ -35,10 +33,6 @@ public class ListMyLogs {
                 case R.id.list_logs_rating4:
                 case R.id.list_logs_rating5:
                     handleRating(view, cursor, columnIndex);
-                    return true;
-                case R.id.list_logs_cache_name:
-                    String name = CacheDAO.get(cursor.getLong(columnIndex)).name;
-                    ((TextView)view).setText(name);
                     return true;
                 case R.id.list_logs_pass:
                 case R.id.list_logs_error:
@@ -78,4 +72,8 @@ public class ListMyLogs {
 	public static void clean() {
 		MyLogDAO.clean();
 	}
+
+    public static void delete(long id){
+        MyLogDAO.delete(id);
+    }
 }

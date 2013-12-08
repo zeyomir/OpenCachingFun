@@ -4,6 +4,8 @@ public class MyLogbookEntry {
 
     public final long id;
     public final long cacheId;
+    public final String cacheCode;
+    public final String cacheName;
     public final String user;
     public final String date;
     public final String message;
@@ -14,9 +16,11 @@ public class MyLogbookEntry {
     public final boolean needsMaintenance;
     public final String errorMessage;
 
-    public MyLogbookEntry(long cacheId, String user, String date, String message, int type, String password, int rating, boolean recommendation, boolean needsMaintenance, String errorMessage) {
+    public MyLogbookEntry(long cacheId, String cacheCode, String cacheName, String user, String date, String message, int type, String password, int rating, boolean recommendation, boolean needsMaintenance, String errorMessage) {
         this.id = 0;
         this.cacheId = cacheId;
+        this.cacheCode = cacheCode;
+        this.cacheName = cacheName;
         this.user = user;
         this.date = date;
         this.message = message;

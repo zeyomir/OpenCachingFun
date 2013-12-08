@@ -43,9 +43,9 @@ public class LogDAO {
 		DbAdapter.close();
 	}
 
-	public static void delete(long id) {
+	public static void deleteForCache(long id) {
 		DbAdapter db = DbAdapter.open();
-		db.clean(DbAdapter.DATABASE_TABLE_LAST_LOGS, " where id=" + id);
+        db.clean(DbAdapter.DATABASE_TABLE_LAST_LOGS, "cacheId=" + id);
 		DbAdapter.close();
 	}
 }

@@ -5,7 +5,9 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
+import android.widget.AdapterView;
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.ContextMenu;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -17,7 +19,8 @@ import org.holoeverywhere.widget.ListView;
 
 public class List extends ListActivity {
 
-	private ActionBar actionBar;
+    private static final int DELETE_ID = 1;
+    private ActionBar actionBar;
 	private SimpleCursorAdapter sca;
 
 	@Override
@@ -26,6 +29,7 @@ public class List extends ListActivity {
 		actionBar = getSupportActionBar();
 		setActionBarOptions();
 		setContentView(R.layout.list);
+        registerForContextMenu(getListView());
 	}
 
 	private void setActionBarOptions() {
@@ -55,6 +59,25 @@ public class List extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 		startActivity(ListCaches.createIntent(this, id));
 	}
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, android.view.ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0,DELETE_ID,0, R.string.menu_delete_one);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case DELETE_ID:
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                ListCaches.delete(info.id);
+                onResume();
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

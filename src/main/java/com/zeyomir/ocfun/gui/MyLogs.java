@@ -10,7 +10,6 @@ import com.actionbarsherlock.view.ContextMenu;
 import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.ListMyLogs;
-import com.zeyomir.ocfun.dao.MyLogDAO;
 import org.holoeverywhere.app.ListActivity;
 
 public class MyLogs extends ListActivity {
@@ -63,7 +62,7 @@ public class MyLogs extends ListActivity {
         switch(item.getItemId()) {
             case DELETE_ID:
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                MyLogDAO.delete(info.id);
+                ListMyLogs.delete(info.id);
                 fillData();
                 return true;
         }
