@@ -133,7 +133,7 @@ public class CacheDAO {
                 + DbAdapter.KEY_CACHES_IS_FOUND
                 + " from "
                 + DbAdapter.DATABASE_TABLE_CACHES
-                + " where " + DbAdapter.KEY_CACHES_IS_FOUND + "<>0"
+                + " where " + DbAdapter.KEY_CACHES_IS_FOUND + "<>1"
 				/*+ (query.equals("") ? query : (" where "
 						+ DbAdapter.KEY_CACHES_CODE + " like %" + query
 						+ "% or " + DbAdapter.KEY_CACHES_NAME + " like %"
