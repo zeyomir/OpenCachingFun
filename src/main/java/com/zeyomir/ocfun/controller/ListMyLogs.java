@@ -22,7 +22,7 @@ public class ListMyLogs {
                 case R.id.list_logs_recommend:
                 case R.id.list_logs_maintenance:
                     view.setVisibility(View.VISIBLE);
-                    int visible = Integer.parseInt(cursor.getString(columnIndex));
+                    int visible = cursor.getInt(columnIndex);
                     if (visible != 1) {
                             view.setVisibility(View.GONE);
                     }

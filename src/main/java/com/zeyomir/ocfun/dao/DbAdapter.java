@@ -126,11 +126,11 @@ public class DbAdapter {
                 + " integer not null, " + KEY_CACHES_OWNER + " text not null, "
                 + KEY_CACHES_SIZE + " real, " + KEY_CACHES_DIFFICULTY
                 + " real not null, " + KEY_CACHES_TERRAIN + " real not null, "
-                + KEY_CACHES_REQUIRE_PASSWORD + " boolean not null, "
+                + KEY_CACHES_REQUIRE_PASSWORD + " integer not null, "
                 + KEY_CACHES_DESCRIPTION + " text, " + KEY_CACHES_NOTE + " text, "
                 + KEY_CACHES_ATTRIBUTES + " text, " + KEY_CACHES_HINT + " text, "
                 + KEY_CACHES_LAST_FOUND + " text, " + KEY_CACHES_IS_FOUND
-                + " boolean); ";
+                + " integer); ";
 
         private static final String CREATE_TABLE_LAST_LOGS = "create table if not exists "
 				+ DATABASE_TABLE_LAST_LOGS + "(" + KEY_LOGS_ID
@@ -148,8 +148,8 @@ public class DbAdapter {
                 + KEY_LOGS_TYPE + " integer not null, " + KEY_LOGS_WHO
                 + " text not null, " + KEY_LOGS_BODY + " text not null, "
                 + KEY_LOGS_PASSWORD + " text, " + KEY_LOGS_RATING
-                + " integer, " + KEY_LOGS_RECOMMEND + " boolean not null, "
-                + KEY_LOGS_MAINTENANCE + " boolean not null, " + KEY_LOGS_ERROR
+                + " integer, " + KEY_LOGS_RECOMMEND + " integer not null, "
+                + KEY_LOGS_MAINTENANCE + " integer not null, " + KEY_LOGS_ERROR
                 + " text); ";
 
 		DatabaseHelper(Context context) {
@@ -172,6 +172,42 @@ public class DbAdapter {
             }
             if (oldVersion < 5) {
                 db.execSQL(CREATE_TABLE_MY_LOGS);
+                db.execSQL("create table if not exists "
+                        + DATABASE_TABLE_CACHES + "2 (" + KEY_CACHES_ID
+                        + " integer primary key autoincrement, " + KEY_CACHES_CODE
+                        + " text not null, " + KEY_CACHES_NAME + " text not null, "
+                        + KEY_CACHES_COORDS + " text not null, " + KEY_CACHES_TYPE
+                        + " integer not null, " + KEY_CACHES_OWNER + " text not null, "
+                        + KEY_CACHES_SIZE + " real, " + KEY_CACHES_DIFFICULTY
+                        + " real not null, " + KEY_CACHES_TERRAIN + " real not null, "
+                        + KEY_CACHES_REQUIRE_PASSWORD + " integer not null, "
+                        + KEY_CACHES_DESCRIPTION + " text, " + KEY_CACHES_NOTE + " text, "
+                        + KEY_CACHES_ATTRIBUTES + " text, " + KEY_CACHES_HINT + " text, "
+                        + KEY_CACHES_LAST_FOUND + " text, " + KEY_CACHES_IS_FOUND
+                        + " integer); ");
+                db.execSQL("insert into " + DATABASE_TABLE_CACHES + "2 select " + KEY_CACHES_ID
+                        + ", " + KEY_CACHES_CODE
+                        + ", " + KEY_CACHES_NAME + ", "
+                        + KEY_CACHES_COORDS + ", " + KEY_CACHES_TYPE
+                        + ", " + KEY_CACHES_OWNER + ", "
+                        + KEY_CACHES_SIZE + ", " + KEY_CACHES_DIFFICULTY
+                        + ", " + KEY_CACHES_TERRAIN + ", "
+                        + " 0, "
+                        + KEY_CACHES_DESCRIPTION + ", " + KEY_CACHES_NOTE + ", "
+                        + KEY_CACHES_ATTRIBUTES + ", " + KEY_CACHES_HINT + ", "
+                        + KEY_CACHES_LAST_FOUND + ", " + "0 from " + DATABASE_TABLE_CACHES +";");
+                db.execSQL("update " + DATABASE_TABLE_CACHES + "2 set "
+                        + KEY_CACHES_REQUIRE_PASSWORD + "=1 where " + KEY_CACHES_ID + " in (select "
+                        + KEY_CACHES_ID + " from "
+                        + DATABASE_TABLE_CACHES
+                        + " where " + KEY_CACHES_REQUIRE_PASSWORD + "='true');");
+                db.execSQL("update " + DATABASE_TABLE_CACHES + "2 set "
+                        + KEY_CACHES_IS_FOUND + "=1 where " + KEY_CACHES_ID + " in (select "
+                        + KEY_CACHES_ID + " from "
+                        + DATABASE_TABLE_CACHES
+                        + " where " + KEY_CACHES_IS_FOUND + "='true');");
+                db.execSQL("drop table " + DATABASE_TABLE_CACHES + ";");
+                db.execSQL("alter table " + DATABASE_TABLE_CACHES + "2 rename to " + DATABASE_TABLE_CACHES + ";");
             }
 		}
 	}

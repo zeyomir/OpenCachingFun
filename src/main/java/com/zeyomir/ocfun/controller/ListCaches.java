@@ -46,7 +46,7 @@ public class ListCaches {
 					}
 					return true;
 				case R.id.list_found:
-					if (cursor.getString(columnIndex).equals("true"))
+					if (cursor.getInt(columnIndex)==1)
 						((ImageView) view).setImageResource(R.drawable.found);
 					else
 						((ImageView) view).setImageResource(R.drawable.empty);

@@ -29,8 +29,8 @@ public class MyLogDAO {
         values.put(DbAdapter.KEY_LOGS_TYPE ,l.type);
         values.put(DbAdapter.KEY_LOGS_PASSWORD ,l.password);
         values.put(DbAdapter.KEY_LOGS_RATING ,l.rating);
-        values.put(DbAdapter.KEY_LOGS_RECOMMEND ,l.recommendation);
-        values.put(DbAdapter.KEY_LOGS_MAINTENANCE ,l.needsMaintenance);
+        values.put(DbAdapter.KEY_LOGS_RECOMMEND ,l.recommendation ? 1 : 0);
+        values.put(DbAdapter.KEY_LOGS_MAINTENANCE ,l.needsMaintenance ? 1 : 0);
         values.put(DbAdapter.KEY_LOGS_ERROR ,l.errorMessage);
         return values;
     }

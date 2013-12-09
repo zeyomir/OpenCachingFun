@@ -40,12 +40,11 @@ public class CacheDAO {
         values.put(DbAdapter.KEY_CACHES_NOTE, c.notes);
 		values.put(DbAdapter.KEY_CACHES_DIFFICULTY, "" + c.difficulty);
 		values.put(DbAdapter.KEY_CACHES_HINT, c.hint);
-		values.put(DbAdapter.KEY_CACHES_IS_FOUND, "" + c.isFound);
+		values.put(DbAdapter.KEY_CACHES_IS_FOUND, c.isFound ? 1 : 0);
 		values.put(DbAdapter.KEY_CACHES_LAST_FOUND, c.lastFoundOn);
 		values.put(DbAdapter.KEY_CACHES_COORDS, c.coords);
 		values.put(DbAdapter.KEY_CACHES_OWNER, c.owner);
-		values.put(DbAdapter.KEY_CACHES_REQUIRE_PASSWORD, ""
-				+ c.requiresPassword);
+		values.put(DbAdapter.KEY_CACHES_REQUIRE_PASSWORD, c.requiresPassword ? 1 : 0);
 		values.put(DbAdapter.KEY_CACHES_SIZE, "" + c.size);
 		values.put(DbAdapter.KEY_CACHES_TERRAIN, "" + c.terrain);
 		values.put(DbAdapter.KEY_CACHES_TYPE, "" + c.type);
@@ -72,9 +71,8 @@ public class CacheDAO {
 				.getColumnIndex(DbAdapter.KEY_CACHES_DIFFICULTY));
 		double terrain = c.getDouble(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_TERRAIN));
-		boolean requiresPassword = c.getString(
-				c.getColumnIndex(DbAdapter.KEY_CACHES_REQUIRE_PASSWORD))
-				.equals("true");
+		boolean requiresPassword =
+                    c.getInt(c.getColumnIndex(DbAdapter.KEY_CACHES_REQUIRE_PASSWORD))==1;
 		String description = c.getString(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_DESCRIPTION));
         String notes = c
@@ -86,8 +84,8 @@ public class CacheDAO {
 		String hint = c.getString(c.getColumnIndex(DbAdapter.KEY_CACHES_HINT));
 		String lastFoundOn = c.getString(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_LAST_FOUND));
-		boolean isFound = c.getString(
-				c.getColumnIndex(DbAdapter.KEY_CACHES_IS_FOUND)).equals("true");
+		boolean isFound =
+                c.getInt(c.getColumnIndex(DbAdapter.KEY_CACHES_IS_FOUND))==1;
 
 		return new Cache(id, code, name, coords, type, owner, size,
 				difficulity, terrain, requiresPassword, description, notes,
