@@ -33,7 +33,13 @@
                 holo:summary="dopiero kiedy będę chciał je wyświetlić"
                 holo:title="Pobieraj zdjęcia na żądanie">
         </CheckBoxPreference>
-		<CheckBoxPreference
+        <CheckBoxPreference
+                holo:key="displayFoundCaches"
+                holo:summary="na liście zapisanych skrzynek"
+                holo:title="Pokazuj znalezione"
+                holo:defaultValue="true">
+        </CheckBoxPreference>
+        <CheckBoxPreference
 				holo:key="limit"
 				holo:summary="przed pobieraniem dużej ilości skrzynek"
 				holo:title="Ostrzegaj"

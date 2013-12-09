@@ -11,6 +11,7 @@ import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.helper.LocationHelper;
 import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
+import com.zeyomir.ocfun.dao.PreferencesDAO;
 import com.zeyomir.ocfun.gui.SingleCache;
 import org.holoeverywhere.widget.TextView;
 
@@ -58,7 +59,14 @@ public class ListCaches {
 	};
 
 	public static SimpleCursorAdapter createAdapter(Context c, Location l) {
-		Cursor cursor = dao.list("");
+        PreferencesDAO p = new PreferencesDAO(c);
+        boolean displayFoundCaches = p.getDisplayFoundCaches();
+        Cursor cursor;
+        if (displayFoundCaches)
+            cursor = dao.list("");
+        else
+            cursor = dao.listWithoutFound("");
+
 		location = l;
 		SimpleCursorAdapter la = new SimpleCursorAdapter(c,
 				R.layout.caches_row, cursor, CacheDAO.from, CacheDAO.to);

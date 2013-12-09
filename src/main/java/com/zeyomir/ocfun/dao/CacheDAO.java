@@ -118,9 +118,29 @@ public class CacheDAO {
 						+ "% or " + DbAdapter.KEY_CACHES_NAME + " like %"
 						+ query + "%" + " COLLATE NOCASE")*/
 				+ " ORDER BY " + DbAdapter.KEY_CACHES_NAME);
-		Log.i("CacheDAO", "w bazie jest " + c.getCount() + " obiektow");
 		return c;
 	}
+    public Cursor listWithoutFound(String query) {
+        Cursor c = db.fetch("select "
+                + DbAdapter.KEY_CACHES_ID
+                + ", "
+                + DbAdapter.KEY_CACHES_TYPE
+                + ", "
+                + DbAdapter.KEY_CACHES_NAME
+                + ", "
+                + DbAdapter.KEY_CACHES_COORDS
+                + ", "
+                + DbAdapter.KEY_CACHES_IS_FOUND
+                + " from "
+                + DbAdapter.DATABASE_TABLE_CACHES
+                + " where " + DbAdapter.KEY_CACHES_IS_FOUND + "<>0"
+				/*+ (query.equals("") ? query : (" where "
+						+ DbAdapter.KEY_CACHES_CODE + " like %" + query
+						+ "% or " + DbAdapter.KEY_CACHES_NAME + " like %"
+						+ query + "%" + " COLLATE NOCASE")*/
+                + " ORDER BY " + DbAdapter.KEY_CACHES_NAME);
+        return c;
+    }
 
 	public static Cache get(long id) {
 		DbAdapter db = DbAdapter.open();
