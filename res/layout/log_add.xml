@@ -67,4 +67,16 @@
             android:visibility="gone"
             android:text="@string/log_maintenance"
             android:id="@+id/checkBox3"/>
+
+    <org.holoeverywhere.widget.TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="@string/note_disclamer"
+            android:id="@+id/note_disclamer"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"/>
 </LinearLayout>

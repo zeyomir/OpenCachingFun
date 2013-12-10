@@ -27,14 +27,15 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
     private Cache cache;
 
     private boolean passwordRequired = false;
-    private boolean isOfFoundItType = true;
     private boolean rateFieldVisible = false;
     private boolean passwordFieldVisible = false;
     private boolean recommendFieldVisible = false;
     private boolean maintenanceFieldVisible = false;
     private boolean moreOptionsVisible = false;
     private boolean wantToRate = false;
-    private long spinnerSelectedId;
+    private boolean isOfFoundItType = true;
+    private boolean isANote = false;
+    private long spinnerSelectedId = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,12 +76,13 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
             recommendFieldVisible = moreOptionsVisible;
         }
 
-        findViewById(R.id.editText2).setVisibility(passwordFieldVisible ? View.VISIBLE : View.GONE);
-        findViewById(R.id.button).setVisibility(!moreOptionsVisible ? View.VISIBLE : View.GONE);
-        findViewById(R.id.checkBox).setVisibility(rateFieldVisible ? View.VISIBLE : View.GONE);
-        findViewById(R.id.ratingBar).setVisibility(rateFieldVisible && wantToRate ? View.VISIBLE : View.GONE);
-        findViewById(R.id.checkBox2).setVisibility(recommendFieldVisible ? View.VISIBLE : View.GONE);
-        findViewById(R.id.checkBox3).setVisibility(maintenanceFieldVisible ? View.VISIBLE : View.GONE);
+        findViewById(R.id.editText2).setVisibility(!isANote && passwordFieldVisible ? View.VISIBLE : View.GONE);
+        findViewById(R.id.button).setVisibility(!isANote && !moreOptionsVisible ? View.VISIBLE : View.GONE);
+        findViewById(R.id.checkBox).setVisibility(!isANote && rateFieldVisible ? View.VISIBLE : View.GONE);
+        findViewById(R.id.ratingBar).setVisibility(!isANote && rateFieldVisible && wantToRate ? View.VISIBLE : View.GONE);
+        findViewById(R.id.checkBox2).setVisibility(!isANote && recommendFieldVisible ? View.VISIBLE : View.GONE);
+        findViewById(R.id.checkBox3).setVisibility(!isANote && maintenanceFieldVisible ? View.VISIBLE : View.GONE);
+        findViewById(R.id.note_disclamer).setVisibility(isANote ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -124,8 +126,10 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
             type = InternalResourceMapper.found.id();
         else if (spinnerSelectedId == 1)
             type = InternalResourceMapper.notfound.id();
-        else
+        else if (spinnerSelectedId == 2)
             type = InternalResourceMapper.comment.id();
+        else
+            type = InternalResourceMapper.note.id();
 
         String password;
         if (passwordFieldVisible)
@@ -171,6 +175,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         spinnerSelectedId = id;
         isOfFoundItType = id == 0;
+        isANote = id == 3;
         updateViews();
     }
 

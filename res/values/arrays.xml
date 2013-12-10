@@ -9,7 +9,7 @@
         <item name="300">Ponad 300 keszy</item>
         <item name="400">Ponad 400 keszy</item>
     </string-array>
-    
+
     <string-array name="limitValues">
         <item name="10">10</item>
         <item name="25">25</item>
@@ -19,9 +19,11 @@
         <item name="300">300</item>
         <item name="400">400</item>
     </string-array>
+
     <string-array name="logTypes">
         <item name="found">Znaleziona</item>
         <item name="not_found">Nie znaleziona</item>
         <item name="comment">Komentarz</item>
+        <item name="note">Notatka</item>
     </string-array>
 </resources>
