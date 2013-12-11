@@ -64,4 +64,8 @@ public class PreferencesDAO {
     public boolean getDisplayFoundCaches(){
         return sp.getBoolean("displayFoundCaches", true);
     }
+
+    public String getLogTemplate(){
+        return sp.getString("logTemplate", "Wysłane przez OCFun");
+    }
 }

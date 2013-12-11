@@ -33,6 +33,12 @@
                 holo:summary="dopiero kiedy będę chciał je wyświetlić"
                 holo:title="Pobieraj zdjęcia na żądanie">
         </CheckBoxPreference>
+        <EditTextPreference
+                holo:key="logTemplate"
+                holo:summary="wpisu do logbooka"
+                holo:title="Ustaw szablon"
+                holo:defaultValue="Wysłane przez OCFun">
+        </EditTextPreference>
         <CheckBoxPreference
                 holo:key="displayFoundCaches"
                 holo:summary="na liście zapisanych skrzynek"

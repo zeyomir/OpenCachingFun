@@ -13,6 +13,7 @@ import com.zeyomir.ocfun.controller.AddLog;
 import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import com.zeyomir.ocfun.dao.LogDAO;
+import com.zeyomir.ocfun.dao.PreferencesDAO;
 import com.zeyomir.ocfun.model.Cache;
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.*;
@@ -61,6 +62,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
 
     private void fillData() {
         ((TextView) findViewById(R.id.textView)).setText(cache.name);
+        ((EditText) findViewById(R.id.editText)).setText(new PreferencesDAO(this).getLogTemplate());
         updateViews();
     }
 
@@ -83,6 +85,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
         findViewById(R.id.checkBox2).setVisibility(!isANote && recommendFieldVisible ? View.VISIBLE : View.GONE);
         findViewById(R.id.checkBox3).setVisibility(!isANote && maintenanceFieldVisible ? View.VISIBLE : View.GONE);
         findViewById(R.id.note_disclamer).setVisibility(isANote ? View.VISIBLE : View.GONE);
+
     }
 
     @Override
