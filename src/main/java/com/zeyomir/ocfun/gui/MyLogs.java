@@ -7,10 +7,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.ContextMenu;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.ListMyLogs;
+import com.zeyomir.ocfun.dao.PreferencesDAO;
 import org.holoeverywhere.app.ListActivity;
+import org.holoeverywhere.widget.Toast;
 
 public class MyLogs extends ListActivity {
     private static final int DELETE_ID = 1;
@@ -46,7 +50,7 @@ public class MyLogs extends ListActivity {
 		sca.getCursor().close();
 	}
 
-	private void fillData() {
+	public void fillData() {
 		sca = ListMyLogs.createAdapter(this);
 		setListAdapter(sca);
 	}
@@ -69,6 +73,13 @@ public class MyLogs extends ListActivity {
         return super.onContextItemSelected(item);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.my_logs, menu);
+        return true;
+    }
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
@@ -78,6 +89,17 @@ public class MyLogs extends ListActivity {
 				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(i);
 				return true;
+            case R.id.menu_sync:
+                if (new PreferencesDAO(this).isAuthenticated()){
+                    new ListMyLogs(this).synchronize();
+                    Toast.makeText(this,"Trwa synchronizacja", Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(this,R.string.dialog_authenticate, Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.menu_delete:
+                ListMyLogs.clean();
+                fillData();
+                return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

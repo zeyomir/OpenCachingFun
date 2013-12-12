@@ -15,6 +15,7 @@
     <string name="menu_compass">Prowadź do</string>
     <string name="menu_web">Otwórz w oc.pl</string>
     <string name="menu_coords">Skopiuj współrzędne</string>
+    <string name="menu_sync">Synchronizuj</string>
     <!-- cache - list and single -->
     <string name="list_empty">Na razie pusto</string>
     <string name="last_found">Ostatnio znaleziona:</string>

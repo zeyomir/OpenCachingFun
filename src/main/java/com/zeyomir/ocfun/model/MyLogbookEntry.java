@@ -17,7 +17,11 @@ public class MyLogbookEntry {
     public final String errorMessage;
 
     public MyLogbookEntry(long cacheId, String cacheCode, String cacheName, String user, String date, String message, int type, String password, int rating, boolean recommendation, boolean needsMaintenance, String errorMessage) {
-        this.id = 0;
+        this(0, cacheId, cacheCode, cacheName, user, date, message, type, password, rating, recommendation, needsMaintenance, errorMessage);
+    }
+
+    public MyLogbookEntry(long id, long cacheId, String cacheCode, String cacheName, String user, String date, String message, int type, String password, int rating, boolean recommendation, boolean needsMaintenance, String errorMessage) {
+        this.id = id;
         this.cacheId = cacheId;
         this.cacheCode = cacheCode;
         this.cacheName = cacheName;
