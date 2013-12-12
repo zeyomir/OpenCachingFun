@@ -1,10 +1,10 @@
 package com.zeyomir.ocfun.controller;
 
+import android.content.ContentValues;
 import android.content.Context;
 import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
 import com.zeyomir.ocfun.dao.MyLogDAO;
-import com.zeyomir.ocfun.model.Cache;
 import com.zeyomir.ocfun.model.MyLogbookEntry;
 
 import java.text.SimpleDateFormat;
@@ -36,9 +36,10 @@ public class AddLog {
         MyLogbookEntry myLogbookEntry = new MyLogbookEntry(cacheId, cacheCode, cacheName, user, date, message, type, password, rating, recommendation, needsMaintenance, errorMessage);
         MyLogDAO.save(myLogbookEntry);
         if (type == InternalResourceMapper.found.id()) {
-            Cache cache = CacheDAO.get(cacheId);
-            Cache updatedCache = new Cache(cache.id, cache.code, cache.name, cache.coords, cache.type, cache.owner, cache.size, cache.difficulty, cache.terrain, cache.requiresPassword, cache.description, cache.notes, cache.attributes, cache.hint, myLogbookEntry.date.split(" ")[0], true);
-            CacheDAO.update(updatedCache);
+            ContentValues contentValues = new ContentValues();
+            CacheDAO.setFoundStatus(contentValues, true);
+            CacheDAO.setLastFoundDate(contentValues, myLogbookEntry.date.split(" ")[0]);
+            CacheDAO.update(contentValues, cacheId);
         }
     }
 }

@@ -163,8 +163,17 @@ public class CacheDAO {
 		DbAdapter.close();
 	}
 
-    public static void update(Cache updatedCache) {
+    public static void update(ContentValues contentValues, long cacheId) {
         DbAdapter db = DbAdapter.open();
-        db.update(map(updatedCache), DbAdapter.DATABASE_TABLE_CACHES, ""+updatedCache.id);
+        db.update(contentValues, DbAdapter.DATABASE_TABLE_CACHES, ""+cacheId);
+        DbAdapter.close();
+    }
+
+    public static void setFoundStatus(ContentValues contentValues, boolean value) {
+        contentValues.put(DbAdapter.KEY_CACHES_IS_FOUND, value ? 1 : 0);
+    }
+
+    public static void setLastFoundDate(ContentValues contentValues, String value) {
+        contentValues.put(DbAdapter.KEY_CACHES_LAST_FOUND, value);
     }
 }
