@@ -10,9 +10,10 @@
         android:fastScrollEnabled="true" />
         
   	<TextView android:id="@id/android:empty"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/list_empty"/>
+        android:text="@string/list_empty" android:gravity="center_vertical|center_horizontal"
+        android:textAlignment="center"/>
         
 </LinearLayout>

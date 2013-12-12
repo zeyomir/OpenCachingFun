@@ -3,7 +3,8 @@ package com.zeyomir.ocfun.dao;
 import com.zeyomir.ocfun.R;
 
 public enum InternalResourceMapper {
-	comment(3),
+	note(2),
+    comment(3),
 	found(4),
 	notfound(5),
 	event(6),
@@ -29,8 +30,10 @@ public enum InternalResourceMapper {
 
 	public static int map(int myResId) {
 		switch (myResId) {
-			case 3:
-				return R.drawable.comment;
+            case 2:
+                return R.drawable.note;
+            case 3:
+                return R.drawable.comment;
 			case 4:
 				return R.drawable.found;
 			case 5:

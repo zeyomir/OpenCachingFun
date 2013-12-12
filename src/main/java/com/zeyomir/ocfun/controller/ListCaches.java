@@ -11,6 +11,7 @@ import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.helper.LocationHelper;
 import com.zeyomir.ocfun.dao.CacheDAO;
 import com.zeyomir.ocfun.dao.InternalResourceMapper;
+import com.zeyomir.ocfun.dao.PreferencesDAO;
 import com.zeyomir.ocfun.gui.SingleCache;
 import org.holoeverywhere.widget.TextView;
 
@@ -46,7 +47,7 @@ public class ListCaches {
 					}
 					return true;
 				case R.id.list_found:
-					if (cursor.getString(columnIndex).equals("true"))
+					if (cursor.getInt(columnIndex)==1)
 						((ImageView) view).setImageResource(R.drawable.found);
 					else
 						((ImageView) view).setImageResource(R.drawable.empty);
@@ -58,7 +59,14 @@ public class ListCaches {
 	};
 
 	public static SimpleCursorAdapter createAdapter(Context c, Location l) {
-		Cursor cursor = dao.list("");
+        PreferencesDAO p = new PreferencesDAO(c);
+        boolean displayFoundCaches = p.getDisplayFoundCaches();
+        Cursor cursor;
+        if (displayFoundCaches)
+            cursor = dao.list("");
+        else
+            cursor = dao.listWithoutFound("");
+
 		location = l;
 		SimpleCursorAdapter la = new SimpleCursorAdapter(c,
 				R.layout.caches_row, cursor, CacheDAO.from, CacheDAO.to);
@@ -90,6 +98,12 @@ public class ListCaches {
 
 		dao.open();
 	}
+
+    public static void delete(long id){
+        ListImages.deleteForCacheId(id);
+        ListLogs.deleteForCacheId(id);
+        CacheDAO.delete(id);
+    }
 
 	public static void openDB() {
 		if (dao == null)

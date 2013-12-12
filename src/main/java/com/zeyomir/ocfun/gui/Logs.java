@@ -9,6 +9,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.R;
 import com.zeyomir.ocfun.controller.ListLogs;
+import com.zeyomir.ocfun.dao.LogDAO;
 import org.holoeverywhere.app.ListActivity;
 
 public class Logs extends ListActivity {
@@ -64,10 +65,12 @@ public class Logs extends ListActivity {
 				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(i);
 				return true;
-		/*case R.id.add_log:
-			//i = new Intent(this, OCFun.class);
-			//startActivity(i);
-			return true;*/
+		case R.id.add_log:
+			i = new Intent(this, LogAdd.class);
+            long id = this.getIntent().getExtras().getLong(LogDAO.cacheIdColumn);
+            i.putExtra(LogDAO.cacheIdColumn, id);
+			startActivity(i);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

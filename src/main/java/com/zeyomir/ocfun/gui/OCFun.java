@@ -57,6 +57,9 @@ public class OCFun extends Activity {
 				i.putExtra("lat", l.getLatitude() + "");
 				i.putExtra("lon", l.getLongitude() + "");
 				break;
+            case R.id.button4:
+                i = new Intent(this, MyLogs.class);
+                break;
 			case R.id.button5:
 				i = new Intent(this, Settings.class);
 				break;

@@ -60,9 +60,9 @@ public class ImageDAO {
 
 	}
 
-	public static void delete(long id) {
+	public static void deleteForCache(long id) {
 		DbAdapter db = DbAdapter.open();
-		db.clean(DbAdapter.DATABASE_TABLE_IMAGES, " where id=" + id);
+		db.clean(DbAdapter.DATABASE_TABLE_IMAGES, "cacheId=" + id);
 		DbAdapter.close();
 	}
 }

@@ -37,14 +37,14 @@ public class CacheDAO {
 		values.put(DbAdapter.KEY_CACHES_NAME, c.name);
 		values.put(DbAdapter.KEY_CACHES_ATTRIBUTES, c.attributes);
 		values.put(DbAdapter.KEY_CACHES_DESCRIPTION, c.description);
+        values.put(DbAdapter.KEY_CACHES_NOTE, c.notes);
 		values.put(DbAdapter.KEY_CACHES_DIFFICULTY, "" + c.difficulty);
 		values.put(DbAdapter.KEY_CACHES_HINT, c.hint);
-		values.put(DbAdapter.KEY_CACHES_IS_FOUND, "" + c.isFound);
+		values.put(DbAdapter.KEY_CACHES_IS_FOUND, c.isFound ? 1 : 0);
 		values.put(DbAdapter.KEY_CACHES_LAST_FOUND, c.lastFoundOn);
 		values.put(DbAdapter.KEY_CACHES_COORDS, c.coords);
 		values.put(DbAdapter.KEY_CACHES_OWNER, c.owner);
-		values.put(DbAdapter.KEY_CACHES_REQUIRE_PASSWORD, ""
-				+ c.requiresPassword);
+		values.put(DbAdapter.KEY_CACHES_REQUIRE_PASSWORD, c.requiresPassword ? 1 : 0);
 		values.put(DbAdapter.KEY_CACHES_SIZE, "" + c.size);
 		values.put(DbAdapter.KEY_CACHES_TERRAIN, "" + c.terrain);
 		values.put(DbAdapter.KEY_CACHES_TYPE, "" + c.type);
@@ -71,21 +71,24 @@ public class CacheDAO {
 				.getColumnIndex(DbAdapter.KEY_CACHES_DIFFICULTY));
 		double terrain = c.getDouble(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_TERRAIN));
-		boolean requiresPassword = c.getString(
-				c.getColumnIndex(DbAdapter.KEY_CACHES_REQUIRE_PASSWORD))
-				.equals("true");
+		boolean requiresPassword =
+                    c.getInt(c.getColumnIndex(DbAdapter.KEY_CACHES_REQUIRE_PASSWORD))==1;
 		String description = c.getString(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_DESCRIPTION));
+        String notes = c
+                .getString(c.getColumnIndex(DbAdapter.KEY_CACHES_NOTE));
+        if (notes == null)
+            notes = "";
 		String attributes = c.getString(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_ATTRIBUTES));
 		String hint = c.getString(c.getColumnIndex(DbAdapter.KEY_CACHES_HINT));
 		String lastFoundOn = c.getString(c
 				.getColumnIndex(DbAdapter.KEY_CACHES_LAST_FOUND));
-		boolean isFound = c.getString(
-				c.getColumnIndex(DbAdapter.KEY_CACHES_IS_FOUND)).equals("true");
+		boolean isFound =
+                c.getInt(c.getColumnIndex(DbAdapter.KEY_CACHES_IS_FOUND))==1;
 
 		return new Cache(id, code, name, coords, type, owner, size,
-				difficulity, terrain, requiresPassword, description,
+				difficulity, terrain, requiresPassword, description, notes,
 				attributes, hint, lastFoundOn, isFound);
 	}
 
@@ -115,9 +118,29 @@ public class CacheDAO {
 						+ "% or " + DbAdapter.KEY_CACHES_NAME + " like %"
 						+ query + "%" + " COLLATE NOCASE")*/
 				+ " ORDER BY " + DbAdapter.KEY_CACHES_NAME);
-		Log.i("CacheDAO", "w bazie jest " + c.getCount() + " obiektow");
 		return c;
 	}
+    public Cursor listWithoutFound(String query) {
+        Cursor c = db.fetch("select "
+                + DbAdapter.KEY_CACHES_ID
+                + ", "
+                + DbAdapter.KEY_CACHES_TYPE
+                + ", "
+                + DbAdapter.KEY_CACHES_NAME
+                + ", "
+                + DbAdapter.KEY_CACHES_COORDS
+                + ", "
+                + DbAdapter.KEY_CACHES_IS_FOUND
+                + " from "
+                + DbAdapter.DATABASE_TABLE_CACHES
+                + " where " + DbAdapter.KEY_CACHES_IS_FOUND + "<>1"
+				/*+ (query.equals("") ? query : (" where "
+						+ DbAdapter.KEY_CACHES_CODE + " like %" + query
+						+ "% or " + DbAdapter.KEY_CACHES_NAME + " like %"
+						+ query + "%" + " COLLATE NOCASE")*/
+                + " ORDER BY " + DbAdapter.KEY_CACHES_NAME);
+        return c;
+    }
 
 	public static Cache get(long id) {
 		DbAdapter db = DbAdapter.open();
@@ -136,7 +159,21 @@ public class CacheDAO {
 
 	public static void delete(long id) {
 		DbAdapter db = DbAdapter.open();
-		db.clean(DbAdapter.DATABASE_TABLE_CACHES, "where id=" + id);
+		db.clean(DbAdapter.DATABASE_TABLE_CACHES, "_id=" + id);
 		DbAdapter.close();
 	}
+
+    public static void update(ContentValues contentValues, long cacheId) {
+        DbAdapter db = DbAdapter.open();
+        db.update(contentValues, DbAdapter.DATABASE_TABLE_CACHES, ""+cacheId);
+        DbAdapter.close();
+    }
+
+    public static void setFoundStatus(ContentValues contentValues, boolean value) {
+        contentValues.put(DbAdapter.KEY_CACHES_IS_FOUND, value ? 1 : 0);
+    }
+
+    public static void setLastFoundDate(ContentValues contentValues, String value) {
+        contentValues.put(DbAdapter.KEY_CACHES_LAST_FOUND, value);
+    }
 }

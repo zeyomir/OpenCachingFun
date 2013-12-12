@@ -1,7 +1,6 @@
 package com.zeyomir.ocfun.gui;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
@@ -11,14 +10,13 @@ import com.actionbarsherlock.view.ContextMenu;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.zeyomir.ocfun.LocationProvider;
 import com.zeyomir.ocfun.R;
-import com.zeyomir.ocfun.controller.ListCaches;
+import com.zeyomir.ocfun.controller.ListMyLogs;
+import com.zeyomir.ocfun.dao.PreferencesDAO;
 import org.holoeverywhere.app.ListActivity;
-import org.holoeverywhere.widget.ListView;
+import org.holoeverywhere.widget.Toast;
 
-public class List extends ListActivity {
-
+public class MyLogs extends ListActivity {
     private static final int DELETE_ID = 1;
     private ActionBar actionBar;
 	private SimpleCursorAdapter sca;
@@ -34,7 +32,7 @@ public class List extends ListActivity {
 
 	private void setActionBarOptions() {
 		actionBar.setDisplayShowTitleEnabled(true);
-		actionBar.setTitle(R.string.list);
+		actionBar.setTitle(R.string.my_logs);
 		actionBar.setDisplayShowHomeEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
@@ -43,7 +41,6 @@ public class List extends ListActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		ListCaches.openDB();
 		fillData();
 	}
 
@@ -51,15 +48,12 @@ public class List extends ListActivity {
 	protected void onPause() {
 		super.onPause();
 		sca.getCursor().close();
-		ListCaches.closeDB();
 	}
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		startActivity(ListCaches.createIntent(this, id));
+	public void fillData() {
+		sca = ListMyLogs.createAdapter(this);
+		setListAdapter(sca);
 	}
-
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, android.view.ContextMenu.ContextMenuInfo menuInfo) {
@@ -72,68 +66,41 @@ public class List extends ListActivity {
         switch(item.getItemId()) {
             case DELETE_ID:
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                ListCaches.delete(info.id);
-                onResume();
+                ListMyLogs.delete(info.id);
+                fillData();
                 return true;
         }
         return super.onContextItemSelected(item);
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.list, menu);
-		/*MenuItem mi = menu.findItem(R.id.menu_search);
-		EditText et =(EditText)mi.getActionView(); 
-		et.setHint("Szukaj");
-		et.setText("");*/
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.my_logs, menu);
+        return true;
+    }
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
+		Intent i;
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				Intent intent = new Intent(this, OCFun.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
+				i = new Intent(this, OCFun.class);
+				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(i);
 				return true;
-/*		case R.id.menu_search:
-			item.expandActionView();
-			((EditText)item.getActionView()).setWidth(LayoutParams.MATCH_PARENT);
-			return true;*/
-			case R.id.menu_refresh:
-				refresh();
-				return true;
-			case R.id.menu_delete:
-				ListCaches.clean();
-				fillData();
-				return true;
+            case R.id.menu_sync:
+                if (new PreferencesDAO(this).isAuthenticated()){
+                    new ListMyLogs(this).synchronize();
+                    Toast.makeText(this,"Trwa synchronizacja", Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(this,R.string.dialog_authenticate, Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.menu_delete:
+                ListMyLogs.clean();
+                fillData();
+                return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	private void fillData() {
-		Location l = ((LocationProvider) getApplication()).getLast();
-		sca = ListCaches.createAdapter(this, l);
-		setListAdapter(sca);
-	}
-
-	private void refresh() {
-		sca.notifyDataSetInvalidated();
-		fillData();
-	}
-
-    @Override
-    public void onBackPressed() {
-        getBackHome();
-        finish();
-    }
-
-    private void getBackHome() {
-        Intent intent = new Intent(this, OCFun.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
 }

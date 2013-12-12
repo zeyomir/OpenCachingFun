@@ -72,8 +72,14 @@ public class SingleCache extends Activity implements LocationUser {
 		((TextView) findViewById(R.id.cache_description))
 				.setText(android.text.Html
 						.fromHtml("Opis:" + cache.description));
-
-		if (cache.type != InternalResourceMapper.custom.id()) {
+        TextView note = (TextView) findViewById(R.id.note);
+        if (cache.notes.length() == 0) {
+            note.setVisibility(View.GONE);
+            findViewById(R.id.note_phrase).setVisibility(View.GONE);
+        } else {
+            note.setText(cache.notes);
+        }
+        if (cache.type != InternalResourceMapper.custom.id()) {
 			((TextView) findViewById(R.id.size)).setText(Cache
 					.getSizeResource(cache.size));
 			((TextView) findViewById(R.id.diff)).setText(cache.difficulty + "");

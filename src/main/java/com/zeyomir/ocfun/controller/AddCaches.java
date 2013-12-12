@@ -144,7 +144,7 @@ public class AddCaches implements CacheDownloader {
 				InternalResourceMapper.custom.id(), "Moja skrzynka", 0.0, 0.0,
 				0.0, false, "<p>"
 				+ data.get("description").replaceAll("\n", "<br>")
-				+ "</p>", "", "", "", false);
+				+ "</p>", "", "", "", "", false);
 		CacheDAO.save(c);
 		Toast.makeText(context, "Dodano do bazy", Toast.LENGTH_SHORT).show();
 	}
@@ -207,7 +207,7 @@ public class AddCaches implements CacheDownloader {
 			int progress = 0;
 			Log.i("DEBUG", "get prefs");
 			String f = new PreferencesDAO(context).isAuthenticated() ? fields
-					+ "|is_found" : fields;
+					+ "|my_notes|is_found" : fields;
 			Log.i("DEBUG", "fields ready");
 			for (int i = 0; i < max; i++) {
 				if (isCancelled())
@@ -215,10 +215,12 @@ public class AddCaches implements CacheDownloader {
 				publishProgress(i, progress);
 				Log.i("downloading", codes[i]);
 
-				String link = ConnectionHelper.baseLink
-						+ "/services/caches/geocache?cache_code=" + codes[i]
-						+ "&fields=" + ConnectionHelper.encode(f)
-						+ "&langpref=pl";
+				String link = new StringBuilder()
+                        .append(ConnectionHelper.baseLink).append("/services/caches/geocache")
+                        .append("?cache_code=").append(codes[i])
+                        .append("&fields=").append(ConnectionHelper.encode(f))
+                        .append("&langpref=pl")
+                        .toString();
 				String answer = ConnectionHelper.get(link, context);
 				if (answer == null)
 					continue;
