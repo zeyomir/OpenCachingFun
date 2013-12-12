@@ -215,10 +215,12 @@ public class AddCaches implements CacheDownloader {
 				publishProgress(i, progress);
 				Log.i("downloading", codes[i]);
 
-				String link = ConnectionHelper.baseLink
-						+ "/services/caches/geocache?cache_code=" + codes[i]
-						+ "&fields=" + ConnectionHelper.encode(f)
-						+ "&langpref=pl";
+				String link = new StringBuilder()
+                        .append(ConnectionHelper.baseLink).append("/services/caches/geocache")
+                        .append("?cache_code=").append(codes[i])
+                        .append("&fields=").append(ConnectionHelper.encode(f))
+                        .append("&langpref=pl")
+                        .toString();
 				String answer = ConnectionHelper.get(link, context);
 				if (answer == null)
 					continue;
