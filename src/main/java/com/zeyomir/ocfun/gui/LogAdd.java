@@ -26,6 +26,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
     private ActionBar actionBar;
     private long cacheId;
     private Cache cache;
+    private String templateMessage;
 
     private boolean passwordRequired = false;
     private boolean rateFieldVisible = false;
@@ -47,6 +48,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
         setContentView(R.layout.log_add);
         ((Spinner) findViewById(R.id.spinner)).setOnItemSelectedListener(this);
 
+        templateMessage = new PreferencesDAO(this).getLogTemplate();
         actionBar = getSupportActionBar();
         setActionBarOptions();
         fillData();
@@ -62,7 +64,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
 
     private void fillData() {
         ((TextView) findViewById(R.id.textView)).setText(cache.name);
-        ((EditText) findViewById(R.id.editText)).setText(new PreferencesDAO(this).getLogTemplate());
+        ((EditText) findViewById(R.id.editText)).setText(templateMessage);
         updateViews();
     }
 
@@ -179,6 +181,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
         spinnerSelectedId = id;
         isOfFoundItType = id == 0;
         isANote = id == 3;
+        ((EditText) findViewById(R.id.editText)).setText(isOfFoundItType ? templateMessage : "");
         updateViews();
     }
 
