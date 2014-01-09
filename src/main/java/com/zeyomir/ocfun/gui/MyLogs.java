@@ -90,6 +90,10 @@ public class MyLogs extends ListActivity {
 				startActivity(i);
 				return true;
             case R.id.menu_sync:
+                if (sca.isEmpty()){
+                    Toast.makeText(this,"Brak wpisów do zsynchronizowania", Toast.LENGTH_LONG).show();
+                    return true;
+                }
                 if (new PreferencesDAO(this).isAuthenticated()){
                     new ListMyLogs(this).synchronize();
                     Toast.makeText(this,"Trwa synchronizacja", Toast.LENGTH_LONG).show();
