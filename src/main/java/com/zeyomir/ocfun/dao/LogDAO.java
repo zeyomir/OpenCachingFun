@@ -32,7 +32,7 @@ public class LogDAO {
 
 	public static Cursor list(long id) {
 		DbAdapter db = DbAdapter.open();
-		Cursor c = db.fetch("select * from " + DbAdapter.DATABASE_TABLE_LAST_LOGS + " where " + DbAdapter.KEY_LOGS_CACHE_ID + " = " + id + " UNION select " + DbAdapter.KEY_LOGS_ID + ", " + DbAdapter.KEY_LOGS_CACHE_ID + ", " + DbAdapter.KEY_LOGS_DATE + ", " + DbAdapter.KEY_LOGS_TYPE + ", " + DbAdapter.KEY_LOGS_WHO + ", " + DbAdapter.KEY_LOGS_BODY +  " from " + DbAdapter.DATABASE_TABLE_MY_LOGS + " where " + DbAdapter.KEY_LOGS_CACHE_ID + " = " + id + " and " + DbAdapter.KEY_LOGS_TYPE + " <> " + InternalResourceMapper.note.id() + " order by " + DbAdapter.KEY_LOGS_DATE + " desc");
+		Cursor c = db.fetch("select * from " + DbAdapter.DATABASE_TABLE_LAST_LOGS + " where " + DbAdapter.KEY_LOGS_CACHE_ID + " = " + id + " UNION ALL select " + DbAdapter.KEY_LOGS_ID + ", " + DbAdapter.KEY_LOGS_CACHE_ID + ", " + DbAdapter.KEY_LOGS_DATE + ", " + DbAdapter.KEY_LOGS_TYPE + ", " + DbAdapter.KEY_LOGS_WHO + ", " + DbAdapter.KEY_LOGS_BODY +  " from " + DbAdapter.DATABASE_TABLE_MY_LOGS + " where " + DbAdapter.KEY_LOGS_CACHE_ID + " = " + id + " and " + DbAdapter.KEY_LOGS_TYPE + " <> " + InternalResourceMapper.note.id() + " order by " + DbAdapter.KEY_LOGS_DATE + " desc");
 		DbAdapter.close();
 		return c;
 	}
