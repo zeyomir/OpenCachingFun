@@ -1,13 +1,13 @@
 package com.zeyomir.ocfun.gui;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+import android.webkit.WebView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 import com.zeyomir.ocfun.R;
@@ -54,7 +54,7 @@ public class SingleImage extends Activity {
 
     private void download(String path) {
         View imageView = findViewById(R.id.imageView1);
-        imageView.setVisibility(View.INVISIBLE);
+        imageView.setVisibility(View.GONE);
 
         View textView = findViewById(R.id.textView1);
         View progressBarView = findViewById(R.id.progressBar1);
@@ -62,10 +62,10 @@ public class SingleImage extends Activity {
         boolean internetAvailable = ConnectionHelper.isInternetAvailable(this);
         if (!internetAvailable){
             textView.setVisibility(View.VISIBLE);
-            progressBarView.setVisibility(View.INVISIBLE);
+            progressBarView.setVisibility(View.GONE);
             return;
         }
-        textView.setVisibility(View.INVISIBLE);
+        textView.setVisibility(View.GONE);
         progressBarView.setVisibility(View.VISIBLE);
 
         OnDemandImagesDownloader onDemandImagesDownloader = new OnDemandImagesDownloader();
@@ -73,12 +73,15 @@ public class SingleImage extends Activity {
     }
 
     private void displayImage(String path) {
-        findViewById(R.id.textView1).setVisibility(View.INVISIBLE);
-        findViewById(R.id.progressBar1).setVisibility(View.INVISIBLE);
+        findViewById(R.id.textView1).setVisibility(View.GONE);
+        findViewById(R.id.progressBar1).setVisibility(View.GONE);
         findViewById(R.id.imageView1).setVisibility(View.VISIBLE);
 
-        ((ImageView) findViewById(R.id.imageView1))
-                .setImageBitmap(BitmapFactory.decodeFile(path));
+        WebView wv = ((WebView) findViewById(R.id.imageView1));
+        wv.setBackgroundColor(Color.BLACK);
+        wv.getSettings().setSupportZoom(true);
+        wv.getSettings().setBuiltInZoomControls(true);
+        wv.loadUrl("file:///" + path);
     }
 
     @Override
