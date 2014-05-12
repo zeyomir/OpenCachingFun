@@ -68,7 +68,7 @@ public class Settings extends PreferenceActivity implements
 	}
 
 	private void adjustView() {
-		Preference auth = (Preference) findPreference("auth");
+		Preference auth = findPreference("auth");
 		CheckBoxPreference own = (CheckBoxPreference) findPreference("own");
 		if (prefDAO.isAuthenticated()) {
 			own.setEnabled(true);
@@ -80,8 +80,7 @@ public class Settings extends PreferenceActivity implements
 			auth.setSummary(R.string.auth_do_summary);
 		}
 		auth.setOnPreferenceClickListener(this);
-		((Preference) findPreference("feedback"))
-				.setOnPreferenceClickListener(this);
+		findPreference("feedback").setOnPreferenceClickListener(this);
 	}
 
 	@Override
