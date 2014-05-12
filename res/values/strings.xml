@@ -94,6 +94,7 @@
     <string name="auth_do">Autoryzuj aplikację</string>
     <string name="auth_do_summary">by móc korzystać z bardziej zaawansowanych opcji</string>
     <string name="auth_undo">Anuluj autoryzację</string>
+    <string name="auth_undo_summary">aplikacja ma autoryzację- możesz ją anulować</string>
     <string name="dummy_name">NAZWA</string>
     <string name="dummy_owner">OWNER</string>
     <string name="dummy_code">CODEXX</string>

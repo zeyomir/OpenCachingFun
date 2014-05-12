@@ -73,7 +73,7 @@ public class Settings extends PreferenceActivity implements
 		if (prefDAO.isAuthenticated()) {
 			own.setEnabled(true);
 			auth.setTitle(R.string.auth_undo);
-			auth.setSummary(R.string.auth_undo);
+			auth.setSummary(R.string.auth_undo_summary);
 		} else {
 			own.setEnabled(false);
 			auth.setTitle(R.string.auth_do);
