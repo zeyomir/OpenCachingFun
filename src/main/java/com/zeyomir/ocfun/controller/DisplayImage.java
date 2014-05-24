@@ -6,9 +6,9 @@ import com.zeyomir.ocfun.dao.ImageDAO;
 import com.zeyomir.ocfun.model.Image;
 
 public class DisplayImage {
-	public static Image getImage(Intent i) {
-		Bundle b = i.getExtras();
-		long id = b.getLong(ImageDAO.idColumn);
-		return ImageDAO.get(id);
-	}
+    public static Image getImage(Intent i) {
+        Bundle b = i.getExtras();
+        long id = b.getLong(ImageDAO.idColumn);
+        return ImageDAO.get(id);
+    }
 }

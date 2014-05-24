@@ -10,19 +10,19 @@ import org.holoeverywhere.app.Fragment;
 import org.holoeverywhere.widget.CheckBox;
 
 public class CustomFragment extends Fragment {
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	                         Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.add_custom, container, false);
-	}
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.add_custom, container, false);
+    }
 
-	@Override
-	public void onStart() {
-		super.onStart();
-		Add a = ((Add) getActivity());
-		a.setCurrentFragmentTag(R.id.add_custom);
-		((CheckBox) a.findViewById(R.id.switch1)).setChecked(false);
-	}
+    @Override
+    public void onStart() {
+        super.onStart();
+        Add a = ((Add) getActivity());
+        a.setCurrentFragmentTag(R.id.add_custom);
+        ((CheckBox) a.findViewById(R.id.switch1)).setChecked(false);
+    }
 }

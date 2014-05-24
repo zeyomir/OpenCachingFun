@@ -14,41 +14,41 @@ import com.zeyomir.ocfun.gui.SingleImage;
 import org.holoeverywhere.app.Activity;
 
 public class ListLogs {
-	static private final SimpleCursorAdapter.ViewBinder imagesBinder = new SimpleCursorAdapter.ViewBinder() {
-		@Override
-		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-			switch (view.getId()) {
-				case R.id.list_logs_type:
-					int i = cursor.getInt(columnIndex);
-					((ImageView) view).setImageResource(InternalResourceMapper
-							.map(i));
-					return true;
-				default:
-					return false;
-			}
-		}
-	};
+    static private final SimpleCursorAdapter.ViewBinder imagesBinder = new SimpleCursorAdapter.ViewBinder() {
+        @Override
+        public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+            switch (view.getId()) {
+                case R.id.list_logs_type:
+                    int i = cursor.getInt(columnIndex);
+                    ((ImageView) view).setImageResource(InternalResourceMapper
+                            .map(i));
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    };
 
-	public static SimpleCursorAdapter createAdapter(Activity c) {
-		long id = c.getIntent().getExtras().getLong(LogDAO.cacheIdColumn);
-		Cursor cursor = LogDAO.list(id);
-		SimpleCursorAdapter la = new SimpleCursorAdapter(c,
-				R.layout.logs_row, cursor, LogDAO.from, LogDAO.to);
-		la.setViewBinder(imagesBinder);
-		return la;
-	}
+    public static SimpleCursorAdapter createAdapter(Activity c) {
+        long id = c.getIntent().getExtras().getLong(LogDAO.cacheIdColumn);
+        Cursor cursor = LogDAO.list(id);
+        SimpleCursorAdapter la = new SimpleCursorAdapter(c,
+                R.layout.logs_row, cursor, LogDAO.from, LogDAO.to);
+        la.setViewBinder(imagesBinder);
+        return la;
+    }
 
-	public static Intent createIntent(Context c, long id) {//TODO: niby nie potrzebne, ale przyda sie przy robieniu 'dodaj wpis'
-		Intent i = new Intent(c, SingleImage.class);
-		i.putExtra(ImageDAO.idColumn, id);
-		return i;
-	}
+    public static Intent createIntent(Context c, long id) {//TODO: niby nie potrzebne, ale przyda sie przy robieniu 'dodaj wpis'
+        Intent i = new Intent(c, SingleImage.class);
+        i.putExtra(ImageDAO.idColumn, id);
+        return i;
+    }
 
-	public static void clean() {
-		LogDAO.clean();
-	}
+    public static void clean() {
+        LogDAO.clean();
+    }
 
-    public static void deleteForCacheId(long id){
+    public static void deleteForCacheId(long id) {
         LogDAO.deleteForCache(id);
     }
 }

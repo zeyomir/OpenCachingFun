@@ -1,200 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true" >
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+            android:id="@+id/relativeLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/type_ico"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="2dip"
-            android:src="@drawable/traditional" />
+                android:id="@+id/type_ico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="2dip"
+                android:src="@drawable/traditional"/>
 
         <TextView
-            android:id="@+id/cache_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_margin="2dip"
-            android:layout_toRightOf="@id/type_ico"
-            android:gravity="fill_horizontal"
-            android:text="@string/dummy_name"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:id="@+id/cache_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_margin="2dip"
+                android:layout_toRightOf="@id/type_ico"
+                android:gravity="fill_horizontal"
+                android:text="@string/dummy_name"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         <TextView
-            android:id="@+id/cache_owner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cache_name"
-            android:layout_margin="2dip"
-            android:layout_toRightOf="@+id/type_ico"
-            android:text="@string/dummy_owner" />
+                android:id="@+id/cache_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cache_name"
+                android:layout_margin="2dip"
+                android:layout_toRightOf="@+id/type_ico"
+                android:text="@string/dummy_owner"/>
 
         <TextView
-            android:id="@+id/cache_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/cache_owner"
-            android:layout_alignParentRight="true"
-            android:layout_margin="2dip"
-            android:text="@string/dummy_code" >
+                android:id="@+id/cache_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/cache_owner"
+                android:layout_alignParentRight="true"
+                android:layout_margin="2dip"
+                android:text="@string/dummy_code">
         </TextView>
 
         <TextView
-            android:id="@+id/diff_phrase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/cache_owner"
-            android:layout_margin="2dip"
-            android:text="@string/difficulty"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:id="@+id/diff_phrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/cache_owner"
+                android:layout_margin="2dip"
+                android:text="@string/difficulty"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <TextView
-            android:id="@+id/diff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/diff_phrase"
-            android:layout_margin="2dip"
-            android:layout_toRightOf="@id/diff_phrase"
-            android:text="@string/dummy_diff1"
-            android:textColor="#50A0FF" >
+                android:id="@+id/diff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/diff_phrase"
+                android:layout_margin="2dip"
+                android:layout_toRightOf="@id/diff_phrase"
+                android:text="@string/dummy_diff1"
+                android:textColor="#50A0FF">
         </TextView>
 
         <TextView
-            android:id="@+id/slash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/diff"
-            android:layout_margin="2dip"
-            android:layout_toRightOf="@+id/diff"
-            android:text="@string/slash"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:id="@+id/slash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/diff"
+                android:layout_margin="2dip"
+                android:layout_toRightOf="@+id/diff"
+                android:text="@string/slash"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <TextView
-            android:id="@+id/terrain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/slash"
-            android:layout_margin="2dip"
-            android:layout_toRightOf="@+id/slash"
-            android:text="@string/dummy_diff2"
-            android:textColor="#20CC70" >
+                android:id="@+id/terrain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/slash"
+                android:layout_margin="2dip"
+                android:layout_toRightOf="@+id/slash"
+                android:text="@string/dummy_diff2"
+                android:textColor="#20CC70">
         </TextView>
 
         <TextView
-            android:id="@+id/size_phrase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/terrain"
-            android:layout_margin="2dip"
-            android:layout_toLeftOf="@+id/size"
-            android:text="@string/size"
-            android:textAppearance="?android:attr/textAppearanceSmall" >
+                android:id="@+id/size_phrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/terrain"
+                android:layout_margin="2dip"
+                android:layout_toLeftOf="@+id/size"
+                android:text="@string/size"
+                android:textAppearance="?android:attr/textAppearanceSmall">
         </TextView>
 
         <TextView
-            android:id="@+id/size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/size_phrase"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/cache_code"
-            android:layout_margin="2dip"
-            android:text="@string/size_big"
-            android:textAppearance="?android:attr/textAppearanceSmall" >
+                android:id="@+id/size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/size_phrase"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/cache_code"
+                android:layout_margin="2dip"
+                android:text="@string/size_big"
+                android:textAppearance="?android:attr/textAppearanceSmall">
         </TextView>
 
         <TextView
-            android:id="@+id/last_found_phrase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/diff_phrase"
-            android:layout_margin="2dip"
-            android:text="@string/last_found" >
+                android:id="@+id/last_found_phrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/diff_phrase"
+                android:layout_margin="2dip"
+                android:text="@string/last_found">
         </TextView>
 
         <TextView
-            android:id="@+id/last_found"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/last_found_phrase"
-            android:layout_alignParentRight="true"
-            android:layout_margin="2dip"
-            android:text="@string/dummy_date" >
+                android:id="@+id/last_found"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/last_found_phrase"
+                android:layout_alignParentRight="true"
+                android:layout_margin="2dip"
+                android:text="@string/dummy_date">
         </TextView>
 
         <TextView
-            android:id="@+id/cache_location_phrase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/last_found_phrase"
-            android:layout_margin="2dip"
-            android:text="@string/coords" >
+                android:id="@+id/cache_location_phrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/last_found_phrase"
+                android:layout_margin="2dip"
+                android:text="@string/coords">
         </TextView>
 
         <TextView
-            android:id="@+id/cache_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/cache_location_phrase"
-            android:layout_alignParentRight="true"
-            android:layout_margin="2dip"
-            android:text="@string/dummy_coords" >
+                android:id="@+id/cache_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/cache_location_phrase"
+                android:layout_alignParentRight="true"
+                android:layout_margin="2dip"
+                android:text="@string/dummy_coords">
         </TextView>
 
         <TextView
-            android:id="@+id/distance_phrase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/cache_location_phrase"
-            android:layout_margin="2dip"
-            android:text="@string/distance" >
+                android:id="@+id/distance_phrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/cache_location_phrase"
+                android:layout_margin="2dip"
+                android:text="@string/distance">
         </TextView>
 
         <TextView
-            android:id="@+id/distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/distance_phrase"
-            android:layout_alignParentRight="true"
-            android:layout_margin="2dip"
-            android:text="@string/gps_wait" >
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/distance_phrase"
+                android:layout_alignParentRight="true"
+                android:layout_margin="2dip"
+                android:text="@string/gps_wait">
         </TextView>
 
         <TextView
-            android:id="@+id/attributes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/distance_phrase"
-            android:layout_margin="2dip"
-            android:text="@string/dummy_atributes" />
+                android:id="@+id/attributes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/distance_phrase"
+                android:layout_margin="2dip"
+                android:text="@string/dummy_atributes"/>
 
         <TextView
-            android:id="@+id/cache_description"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/attributes"
-            android:layout_marginBottom="5dip"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip"
-            android:layout_marginTop="20dip"
-            android:linksClickable="true"
-            android:text="@string/dummy_lorem" />
+                android:id="@+id/cache_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/attributes"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_marginTop="20dip"
+                android:linksClickable="true"
+                android:text="@string/dummy_lorem"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -210,39 +210,39 @@
                 android:text="@string/dummy_lorem"
                 android:id="@+id/note" android:layout_below="@+id/note_phrase" android:layout_margin="5dip"/>
         <TextView
-            android:id="@+id/hint_phrase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/note"
-            android:layout_margin="2dip"
-            android:text="@string/hint" />
+                android:id="@+id/hint_phrase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/note"
+                android:layout_margin="2dip"
+                android:text="@string/hint"/>
 
         <TextView
-            android:id="@+id/cache_hint"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/hint_phrase"
-            android:layout_marginBottom="10dip"
-            android:layout_marginLeft="2dip"
-            android:layout_marginRight="2dip"
-            android:layout_marginTop="2dip"
-            android:background="#444"
-            android:clickable="true"
-            android:onClick="onClick"
-            android:text="@string/dummy_hint"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:id="@+id/cache_hint"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/hint_phrase"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="2dip"
+                android:layout_marginTop="2dip"
+                android:background="#444"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:text="@string/dummy_hint"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:visibility="invisible"
-            android:text="@string/dummy_workaround"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:visibility="invisible"
+                android:text="@string/dummy_workaround"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     </RelativeLayout>
 

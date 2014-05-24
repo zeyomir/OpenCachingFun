@@ -21,7 +21,7 @@ import org.holoeverywhere.widget.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LogAdd extends Activity implements AdapterView.OnItemSelectedListener{
+public class LogAdd extends Activity implements AdapterView.OnItemSelectedListener {
 
     private ActionBar actionBar;
     private long cacheId;
@@ -68,7 +68,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
         updateViews();
     }
 
-    private void updateViews(){
+    private void updateViews() {
         passwordFieldVisible = false;
         rateFieldVisible = false;
         recommendFieldVisible = false;
@@ -106,12 +106,12 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
                 startActivity(intent);
                 return true;
             case R.id.menu_add:
-                if (passwordFieldVisible && ((EditText)findViewById(R.id.editText2)).getText().length() == 0){
-                    Toast.makeText(this,"Musisz podać hasło!", Toast.LENGTH_SHORT).show();
+                if (passwordFieldVisible && ((EditText) findViewById(R.id.editText2)).getText().length() == 0) {
+                    Toast.makeText(this, "Musisz podać hasło!", Toast.LENGTH_SHORT).show();
                     return true;
                 }
                 (new AddLog(this)).add(gatherData());
-                Toast.makeText(this,"Dodawanie wpisu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Dodawanie wpisu", Toast.LENGTH_SHORT).show();
                 onBackPressed();
                 return true;
         }
@@ -124,7 +124,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
         long cacheId = cache.id;
         String cacheCode = cache.code;
         String cacheName = cache.name;
-        String message = ((EditText)findViewById(R.id.editText)).getText().toString();
+        String message = ((EditText) findViewById(R.id.editText)).getText().toString();
 
         int type;
         if (isOfFoundItType)
@@ -138,28 +138,28 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
 
         String password;
         if (passwordFieldVisible)
-            password = ((EditText)findViewById(R.id.editText2)).getText().toString();
+            password = ((EditText) findViewById(R.id.editText2)).getText().toString();
         else
             password = null;
 
         int rating;
         if (rateFieldVisible && wantToRate)
-            rating = (int) ((RatingBar)findViewById(R.id.ratingBar)).getRating();
+            rating = (int) ((RatingBar) findViewById(R.id.ratingBar)).getRating();
         else
             rating = 0;
 
-        boolean recommendation = ((CheckBox)findViewById(R.id.checkBox2)).isChecked();
-        boolean needsMaintenance = ((CheckBox)findViewById(R.id.checkBox3)).isChecked();
+        boolean recommendation = ((CheckBox) findViewById(R.id.checkBox2)).isChecked();
+        boolean needsMaintenance = ((CheckBox) findViewById(R.id.checkBox3)).isChecked();
 
-        data.put("cacheId", ""+cacheId);
+        data.put("cacheId", "" + cacheId);
         data.put("cacheCode", cacheCode);
         data.put("cacheName", cacheName);
         data.put("message", message);
-        data.put("type", ""+type);
+        data.put("type", "" + type);
         data.put("password", password);
-        data.put("rating", ""+rating);
-        data.put("recommendation", ""+recommendation);
-        data.put("needsMaintenance", ""+needsMaintenance);
+        data.put("rating", "" + rating);
+        data.put("recommendation", "" + recommendation);
+        data.put("needsMaintenance", "" + needsMaintenance);
 
         return data;
     }
@@ -170,7 +170,7 @@ public class LogAdd extends Activity implements AdapterView.OnItemSelectedListen
                 moreOptionsVisible = true;
                 break;
             case R.id.checkBox:
-                wantToRate = ((CheckBox)findViewById(R.id.checkBox)).isChecked();
+                wantToRate = ((CheckBox) findViewById(R.id.checkBox)).isChecked();
                 break;
         }
         updateViews();

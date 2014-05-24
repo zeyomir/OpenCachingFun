@@ -16,49 +16,47 @@ import com.zeyomir.ocfun.gui.SingleCache;
 import org.holoeverywhere.widget.TextView;
 
 public class ListCaches {
-	private static Location location = null;
+    private static Location location = null;
+    static private final SimpleCursorAdapter.ViewBinder imagesBinder = new SimpleCursorAdapter.ViewBinder() {
 
-	private static CacheDAO dao;
+        @Override
+        public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+            switch (view.getId()) {
+                case R.id.list_type_ico:
+                    int i = cursor.getInt(columnIndex);
+                    ((ImageView) view).setImageResource(InternalResourceMapper
+                            .map(i));
+                    return true;
+                case R.id.list_distance:
+                    if (location == null)
+                        ((TextView) view).setText("Nieznana odległość");
+                    else {
+                        String[] coords = cursor.getString(columnIndex)
+                                .split("\\|");
+                        Location l = new Location("???");
+                        l.setLatitude(Double.parseDouble(coords[0]));
+                        l.setLongitude(Double.parseDouble(coords[1]));
 
-	static private final SimpleCursorAdapter.ViewBinder imagesBinder = new SimpleCursorAdapter.ViewBinder() {
+                        String d = LocationHelper.getDistance(location, l);
+                        String a = LocationHelper.getAzimuth(location, l);
+                        String distance = d + ", " + a;
+                        ((TextView) view).setText(distance);
+                    }
+                    return true;
+                case R.id.list_found:
+                    if (cursor.getInt(columnIndex) == 1)
+                        ((ImageView) view).setImageResource(R.drawable.found);
+                    else
+                        ((ImageView) view).setImageResource(R.drawable.empty);
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    };
+    private static CacheDAO dao;
 
-		@Override
-		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-			switch (view.getId()) {
-				case R.id.list_type_ico:
-					int i = cursor.getInt(columnIndex);
-					((ImageView) view).setImageResource(InternalResourceMapper
-							.map(i));
-					return true;
-				case R.id.list_distance:
-					if (location == null)
-						((TextView) view).setText("Nieznana odległość");
-					else {
-						String[] coords = cursor.getString(columnIndex)
-								.split("\\|");
-						Location l = new Location("???");
-						l.setLatitude(Double.parseDouble(coords[0]));
-						l.setLongitude(Double.parseDouble(coords[1]));
-
-						String d = LocationHelper.getDistance(location, l);
-						String a = LocationHelper.getAzimuth(location, l);
-						String distance = d + ", " + a;
-						((TextView) view).setText(distance);
-					}
-					return true;
-				case R.id.list_found:
-					if (cursor.getInt(columnIndex)==1)
-						((ImageView) view).setImageResource(R.drawable.found);
-					else
-						((ImageView) view).setImageResource(R.drawable.empty);
-					return true;
-				default:
-					return false;
-			}
-		}
-	};
-
-	public static SimpleCursorAdapter createAdapter(Context c, Location l) {
+    public static SimpleCursorAdapter createAdapter(Context c, Location l) {
         PreferencesDAO p = new PreferencesDAO(c);
         boolean displayFoundCaches = p.getDisplayFoundCaches();
         Cursor cursor;
@@ -67,51 +65,51 @@ public class ListCaches {
         else
             cursor = dao.listWithoutFound("");
 
-		location = l;
-		SimpleCursorAdapter la = new SimpleCursorAdapter(c,
-				R.layout.caches_row, cursor, CacheDAO.from, CacheDAO.to);
-		/*
-		 * la.setFilterQueryProvider(new FilterQueryProvider() { public Cursor
+        location = l;
+        SimpleCursorAdapter la = new SimpleCursorAdapter(c,
+                R.layout.caches_row, cursor, CacheDAO.from, CacheDAO.to);
+        /*
+         * la.setFilterQueryProvider(new FilterQueryProvider() { public Cursor
 		 * runQuery(CharSequence constraint) { String partialItemName = null; if
 		 * (constraint != null) { partialItemName = constraint.toString(); }
 		 * Cursor filtered = CacheDAO.list(partialItemName);
 		 * 
 		 * return filtered; } });
 		 */// TODO for searching
-		la.setViewBinder(imagesBinder);
-		la.setStringConversionColumn(cursor
-				.getColumnIndexOrThrow(CacheDAO.searchableColumn));
-		return la;
-	}
+        la.setViewBinder(imagesBinder);
+        la.setStringConversionColumn(cursor
+                .getColumnIndexOrThrow(CacheDAO.searchableColumn));
+        return la;
+    }
 
-	public static Intent createIntent(Context c, long id) {
-		Intent i = new Intent(c, SingleCache.class);
-		i.putExtra(CacheDAO.idColumn, id);
-		return i;
-	}
+    public static Intent createIntent(Context c, long id) {
+        Intent i = new Intent(c, SingleCache.class);
+        i.putExtra(CacheDAO.idColumn, id);
+        return i;
+    }
 
-	public static void clean() {
-		dao.clean();
-		dao.close();
-		ListImages.clean();
-		ListLogs.clean();
+    public static void clean() {
+        dao.clean();
+        dao.close();
+        ListImages.clean();
+        ListLogs.clean();
 
-		dao.open();
-	}
+        dao.open();
+    }
 
-    public static void delete(long id){
+    public static void delete(long id) {
         ListImages.deleteForCacheId(id);
         ListLogs.deleteForCacheId(id);
         CacheDAO.delete(id);
     }
 
-	public static void openDB() {
-		if (dao == null)
-			dao = new CacheDAO();
-		dao.open();
-	}
+    public static void openDB() {
+        if (dao == null)
+            dao = new CacheDAO();
+        dao.open();
+    }
 
-	public static void closeDB() {
-		dao.close();
-	}
+    public static void closeDB() {
+        dao.close();
+    }
 }

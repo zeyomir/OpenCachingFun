@@ -21,55 +21,55 @@ public class List extends ListActivity {
 
     private static final int DELETE_ID = 1;
     private ActionBar actionBar;
-	private SimpleCursorAdapter sca;
+    private SimpleCursorAdapter sca;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		actionBar = getSupportActionBar();
-		setActionBarOptions();
-		setContentView(R.layout.list);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        actionBar = getSupportActionBar();
+        setActionBarOptions();
+        setContentView(R.layout.list);
         registerForContextMenu(getListView());
-	}
+    }
 
-	private void setActionBarOptions() {
-		actionBar.setDisplayShowTitleEnabled(true);
-		actionBar.setTitle(R.string.list);
-		actionBar.setDisplayShowHomeEnabled(true);
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeButtonEnabled(true);
-	}
+    private void setActionBarOptions() {
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle(R.string.list);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		ListCaches.openDB();
-		fillData();
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ListCaches.openDB();
+        fillData();
+    }
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		sca.getCursor().close();
-		ListCaches.closeDB();
-	}
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sca.getCursor().close();
+        ListCaches.closeDB();
+    }
 
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		startActivity(ListCaches.createIntent(this, id));
-	}
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        startActivity(ListCaches.createIntent(this, id));
+    }
 
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, android.view.ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0,DELETE_ID,0, R.string.menu_delete_one);
+        menu.add(0, DELETE_ID, 0, R.string.menu_delete_one);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case DELETE_ID:
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 ListCaches.delete(info.id);
@@ -79,51 +79,51 @@ public class List extends ListActivity {
         return super.onContextItemSelected(item);
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.list, menu);
-		/*MenuItem mi = menu.findItem(R.id.menu_search);
-		EditText et =(EditText)mi.getActionView(); 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.list, menu);
+        /*MenuItem mi = menu.findItem(R.id.menu_search);
+        EditText et =(EditText)mi.getActionView();
 		et.setHint("Szukaj");
 		et.setText("");*/
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				Intent intent = new Intent(this, OCFun.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
-				return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, OCFun.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
 /*		case R.id.menu_search:
-			item.expandActionView();
+            item.expandActionView();
 			((EditText)item.getActionView()).setWidth(LayoutParams.MATCH_PARENT);
 			return true;*/
-			case R.id.menu_refresh:
-				refresh();
-				return true;
-			case R.id.menu_delete:
-				ListCaches.clean();
-				fillData();
-				return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+            case R.id.menu_refresh:
+                refresh();
+                return true;
+            case R.id.menu_delete:
+                ListCaches.clean();
+                fillData();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-	private void fillData() {
-		Location l = ((LocationProvider) getApplication()).getLast();
-		sca = ListCaches.createAdapter(this, l);
-		setListAdapter(sca);
-	}
+    private void fillData() {
+        Location l = ((LocationProvider) getApplication()).getLast();
+        sca = ListCaches.createAdapter(this, l);
+        setListAdapter(sca);
+    }
 
-	private void refresh() {
-		sca.notifyDataSetInvalidated();
-		fillData();
-	}
+    private void refresh() {
+        sca.notifyDataSetInvalidated();
+        fillData();
+    }
 
     @Override
     public void onBackPressed() {

@@ -28,20 +28,20 @@ import java.util.List;
 
 public class ListMyLogs {
     static private final SimpleCursorAdapter.ViewBinder myLogsBinder = new SimpleCursorAdapter.ViewBinder() {
-		@Override
-		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-			switch (view.getId()) {
-				case R.id.list_logs_type:
-					int i = cursor.getInt(columnIndex);
-					((ImageView) view).setImageResource(InternalResourceMapper
-							.map(i));
-					return true;
+        @Override
+        public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+            switch (view.getId()) {
+                case R.id.list_logs_type:
+                    int i = cursor.getInt(columnIndex);
+                    ((ImageView) view).setImageResource(InternalResourceMapper
+                            .map(i));
+                    return true;
                 case R.id.list_logs_recommend:
                 case R.id.list_logs_maintenance:
                     view.setVisibility(View.VISIBLE);
                     int visible = cursor.getInt(columnIndex);
                     if (visible != 1) {
-                            view.setVisibility(View.GONE);
+                        view.setVisibility(View.GONE);
                     }
                     return true;
                 case R.id.list_logs_rating1:
@@ -59,10 +59,10 @@ public class ListMyLogs {
                         view.setVisibility(View.GONE);
                     }
                     return false;
-				default:
-					return false;
-			}
-		}
+                default:
+                    return false;
+            }
+        }
 
         private void handleRating(View view, Cursor cursor, int columnIndex) {
             view.setVisibility(View.VISIBLE);
@@ -70,10 +70,10 @@ public class ListMyLogs {
             int rating = cursor.getInt(columnIndex);
             int id = view.getId();
             if (id == R.id.list_logs_rating5 && rating < 5
-             || id == R.id.list_logs_rating4 && rating < 4
-             || id == R.id.list_logs_rating3 && rating < 3
-             || id == R.id.list_logs_rating2 && rating < 2
-             || id == R.id.list_logs_rating1 && rating < 1)
+                    || id == R.id.list_logs_rating4 && rating < 4
+                    || id == R.id.list_logs_rating3 && rating < 3
+                    || id == R.id.list_logs_rating2 && rating < 2
+                    || id == R.id.list_logs_rating1 && rating < 1)
                 view.setVisibility(View.GONE);
         }
     };
@@ -82,23 +82,23 @@ public class ListMyLogs {
     private static LogSyncronizer syncronizer;
     private final Context context;
 
-    public ListMyLogs(Context context){
+    public ListMyLogs(Context context) {
         this.context = context;
     }
 
     public static SimpleCursorAdapter createAdapter(Activity c) {
-		Cursor cursor = MyLogDAO.list();
-		SimpleCursorAdapter la = new SimpleCursorAdapter(c,
-				R.layout.my_logs_row, cursor, MyLogDAO.from, MyLogDAO.to);
-		la.setViewBinder(myLogsBinder);
-		return la;
-	}
+        Cursor cursor = MyLogDAO.list();
+        SimpleCursorAdapter la = new SimpleCursorAdapter(c,
+                R.layout.my_logs_row, cursor, MyLogDAO.from, MyLogDAO.to);
+        la.setViewBinder(myLogsBinder);
+        return la;
+    }
 
-	public static void clean() {
-		MyLogDAO.clean();
-	}
+    public static void clean() {
+        MyLogDAO.clean();
+    }
 
-    public static void delete(long id){
+    public static void delete(long id) {
         MyLogDAO.delete(id);
     }
 
@@ -128,7 +128,7 @@ public class ListMyLogs {
         syncronizer.execute(entriesList.toArray(new MyLogbookEntry[0]));
     }
 
-    private class LogSyncronizer extends AsyncTask<MyLogbookEntry,Integer ,Integer > {
+    private class LogSyncronizer extends AsyncTask<MyLogbookEntry, Integer, Integer> {
         MyLogbookEntry[] entries;
         int max = 0;
 
@@ -138,7 +138,7 @@ public class ListMyLogs {
             this.max = entries.length;
             int progress = 0;
 
-            for (int i = 0; i < max; i++){
+            for (int i = 0; i < max; i++) {
                 publishProgress(i, progress);
                 MyLogbookEntry item = entries[i];
 
@@ -159,7 +159,7 @@ public class ListMyLogs {
                         .append("&when=").append(item.date.replace(' ', 'T').replace('.', '-'))
                         .append("&langpref=pl");
                 if (item.password != null && !item.password.isEmpty())
-                    link.append("&password="+ConnectionHelper.encode(item.password));
+                    link.append("&password=" + ConnectionHelper.encode(item.password));
                 if (item.rating != 0)
                     link.append("&rating=" + item.rating);
                 if (item.recommendation)
@@ -186,7 +186,7 @@ public class ListMyLogs {
                 } catch (JSONException e) {
                     Log.w("SyncLogs", "unable to read status for log " + item.id);
                 }
-                if (success){
+                if (success) {
                     MyLogDAO.delete(item.id);
                     progress++;
                 } else {
@@ -205,7 +205,7 @@ public class ListMyLogs {
             notification.contentView.setTextViewText(R.id.text2, "Wysłano "
                     + params[1] + " z " + max);
             mManager.notify(44, notification);
-            ((MyLogs)context).fillData();
+            ((MyLogs) context).fillData();
         }
 
         protected void onPostExecute(Integer param) {
@@ -220,7 +220,7 @@ public class ListMyLogs {
             notification.contentIntent = contentIntent;
             notification.flags = Notification.FLAG_AUTO_CANCEL;
             mManager.notify(44, notification);
-            ((MyLogs)context).fillData();
+            ((MyLogs) context).fillData();
         }
     }
 }

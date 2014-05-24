@@ -19,99 +19,98 @@ import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.TextView;
 
 public class Compass extends Activity implements LocationUser, SensorEventListener {
-	public static final double EASING_FACTOR = 0.374;
-	private Cache cache;
-	private Location cacheLocation;
-	private double azimuth, error;
-	private String distance;
-
-	SensorManager sensorManager;
-	private Sensor sensorAccelerometer, sensorMagneticField;
-
-
-	private double userOrientation = 0, lastUserOrientation = 0;
-	private ImageView compassImage;
-	private TextView distanceText;
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.compass);
-		compassImage = (ImageView) findViewById(R.id.imageView);
-		distanceText = (TextView) findViewById(R.id.textView1);
-
-		cache = DisplayCache.getCache(getIntent());
-		String[] coords = cache.coords.split("\\|");
-		cacheLocation = new Location("???");
-		cacheLocation.setLatitude(Double.parseDouble(coords[0]));
-		cacheLocation.setLongitude(Double.parseDouble(coords[1]));
-
-		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-		sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-		sensorMagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+    public static final double EASING_FACTOR = 0.374;
+    SensorManager sensorManager;
+    private Cache cache;
+    private Location cacheLocation;
+    private double azimuth, error;
+    private String distance;
+    private Sensor sensorAccelerometer, sensorMagneticField;
 
 
-		((LocationProvider) getApplicationContext())
-				.registerForFrequentlyLocationUpdates(this);
-	}
+    private double userOrientation = 0, lastUserOrientation = 0;
+    private ImageView compassImage;
+    private TextView distanceText;
 
-	@Override
-	protected void onResume() {
-		sensorManager.registerListener(this,
-				sensorAccelerometer,
-				SensorManager.SENSOR_DELAY_NORMAL);
-		sensorManager.registerListener(this,
-				sensorMagneticField,
-				SensorManager.SENSOR_DELAY_NORMAL);
-		super.onResume();
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.compass);
+        compassImage = (ImageView) findViewById(R.id.imageView);
+        distanceText = (TextView) findViewById(R.id.textView1);
 
-	@Override
-	protected void onPause() {
-		sensorManager.unregisterListener(this,
-				sensorAccelerometer);
-		sensorManager.unregisterListener(this,
-				sensorMagneticField);
-		((LocationProvider) getApplicationContext())
-				.unregister(this);
-		super.onPause();
-	}
+        cache = DisplayCache.getCache(getIntent());
+        String[] coords = cache.coords.split("\\|");
+        cacheLocation = new Location("???");
+        cacheLocation.setLatitude(Double.parseDouble(coords[0]));
+        cacheLocation.setLongitude(Double.parseDouble(coords[1]));
 
-	@Override
-	public void locationFound(Location l) {
-		distance = LocationHelper.getDistance(l, cacheLocation);
-		error = l.getAccuracy();
-		azimuth = l.bearingTo(cacheLocation);
-		if (azimuth < 0)
-			azimuth += 360;
-		updateArrowDirection();
-	}
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorMagneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
-	private void updateArrowDirection() {
-		//low pass filter to smooth out the readings from sensor and get rid of the noise
-		userOrientation = lastUserOrientation * (1 - EASING_FACTOR) + userOrientation * EASING_FACTOR;
-		float direction = (float) (azimuth - userOrientation);
-		lastUserOrientation = userOrientation;
-		int sdk = android.os.Build.VERSION.SDK_INT;
-		if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
-			RotateAnimation animation = DisplayCompass.getAnimation(direction);
-			compassImage.startAnimation(animation);
-		} else {
-			compassImage.setRotation(direction);
-		}
-		distanceText.setText(distance + " (+/- " + error + " m)");
-	}
 
-	@Override
-	public void onSensorChanged(SensorEvent event) {
-		Double computedUserOrientation = DisplayCompass.getUserOrientation(event);
-		if (computedUserOrientation == null)
-			return;
-		userOrientation = computedUserOrientation;
-		updateArrowDirection();
-	}
+        ((LocationProvider) getApplicationContext())
+                .registerForFrequentlyLocationUpdates(this);
+    }
 
-	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-	}
+    @Override
+    protected void onResume() {
+        sensorManager.registerListener(this,
+                sensorAccelerometer,
+                SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this,
+                sensorMagneticField,
+                SensorManager.SENSOR_DELAY_NORMAL);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        sensorManager.unregisterListener(this,
+                sensorAccelerometer);
+        sensorManager.unregisterListener(this,
+                sensorMagneticField);
+        ((LocationProvider) getApplicationContext())
+                .unregister(this);
+        super.onPause();
+    }
+
+    @Override
+    public void locationFound(Location l) {
+        distance = LocationHelper.getDistance(l, cacheLocation);
+        error = l.getAccuracy();
+        azimuth = l.bearingTo(cacheLocation);
+        if (azimuth < 0)
+            azimuth += 360;
+        updateArrowDirection();
+    }
+
+    private void updateArrowDirection() {
+        //low pass filter to smooth out the readings from sensor and get rid of the noise
+        userOrientation = lastUserOrientation * (1 - EASING_FACTOR) + userOrientation * EASING_FACTOR;
+        float direction = (float) (azimuth - userOrientation);
+        lastUserOrientation = userOrientation;
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
+            RotateAnimation animation = DisplayCompass.getAnimation(direction);
+            compassImage.startAnimation(animation);
+        } else {
+            compassImage.setRotation(direction);
+        }
+        distanceText.setText(distance + " (+/- " + error + " m)");
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        Double computedUserOrientation = DisplayCompass.getUserOrientation(event);
+        if (computedUserOrientation == null)
+            return;
+        userOrientation = computedUserOrientation;
+        updateArrowDirection();
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
 }

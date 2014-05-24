@@ -19,25 +19,25 @@ import org.holoeverywhere.app.Activity;
 import java.io.File;
 
 public class SingleImage extends Activity {
-	private Image image;
-	private ActionBar actionBar;
+    private Image image;
+    private ActionBar actionBar;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.image);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.image);
 
-		image = DisplayImage.getImage(getIntent());
-		actionBar = getSupportActionBar();
-		setActionBarOptions();
-		fillData();
-	}
+        image = DisplayImage.getImage(getIntent());
+        actionBar = getSupportActionBar();
+        setActionBarOptions();
+        fillData();
+    }
 
-	private void setActionBarOptions() {
-		actionBar.hide();
-	}
+    private void setActionBarOptions() {
+        actionBar.hide();
+    }
 
-	private void fillData() {
+    private void fillData() {
         String path = getAbsoluteImagePath();
         Log.i("Image", path);
         if (new File(path).exists())
@@ -49,7 +49,7 @@ public class SingleImage extends Activity {
 
     private String getAbsoluteImagePath() {
         return Environment.getExternalStorageDirectory().toString()
-                    + "/OCFun/" + image.path;
+                + "/OCFun/" + image.path;
     }
 
     private void download(String path) {
@@ -60,7 +60,7 @@ public class SingleImage extends Activity {
         View progressBarView = findViewById(R.id.progressBar1);
 
         boolean internetAvailable = ConnectionHelper.isInternetAvailable(this);
-        if (!internetAvailable){
+        if (!internetAvailable) {
             textView.setVisibility(View.VISIBLE);
             progressBarView.setVisibility(View.GONE);
             return;
@@ -85,18 +85,18 @@ public class SingleImage extends Activity {
     }
 
     @Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				Intent intent = new Intent(this, OCFun.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
-				return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, OCFun.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-    private class OnDemandImagesDownloader extends AsyncTask<String, Integer, Integer>{
+    private class OnDemandImagesDownloader extends AsyncTask<String, Integer, Integer> {
 
         @Override
         protected Integer doInBackground(String... strings) {
@@ -107,7 +107,7 @@ public class SingleImage extends Activity {
         }
 
         @Override
-        protected void onPostExecute(Integer param){
+        protected void onPostExecute(Integer param) {
             displayImage(getAbsoluteImagePath());
         }
     }

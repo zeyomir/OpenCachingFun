@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/add_standard"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+                android:id="@+id/add_standard"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
     <RadioGroup
-        android:id="@+id/radioGroup1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:checked="true" 
-            android:text="@string/codes" />
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:checked="true"
+                android:text="@string/codes"/>
 
         <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="@string/name" />
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="@string/name"/>
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:singleLine="true"
-        android:imeOptions="actionNext"
-        android:hint="@string/hint_codes"
-        android:layout_below="@+id/radioGroup1" >
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+            android:hint="@string/hint_codes"
+            android:layout_below="@+id/radioGroup1">
 
-        <requestFocus />
+        <requestFocus/>
     </EditText>
 
 </RelativeLayout>

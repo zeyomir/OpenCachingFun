@@ -1,57 +1,172 @@
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<style>
-body {background: #222; color: #eee; padding: 5px 5px 2000px 5px; }
-#nav {list-style-type: none;}
-#nav, #nav li {margin: 0; padding: 10px 0;}
-p {text-align: justify;}
-ul, ul li {margin: 0 5px; padding: 0 10px;}
-p a {display: inline;}
-a {text-align: right; display: block;}
-li a {text-align: left;}
-h1 + a, div, div + a {position: relative; top: -40px;}
-a[href]:before {content: "\2192\00a0";}
-a[name] {margin-top: 1000px;}
-a[name=top] {margin: 0;}
-a, a:visited {color: #fff; text-decoration: none;}
-h1 {font-size: 1.5em;}
-h2 {font-size: 1.3em;}
-</style>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        body {
+            background: #222;
+            color: #eee;
+            padding: 5px 5px 2000px 5px;
+        }
+
+        #nav {
+            list-style-type: none;
+        }
+
+        #nav, #nav li {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        ul, ul li {
+            margin: 0 5px;
+            padding: 0 10px;
+        }
+
+        p a {
+            display: inline;
+        }
+
+        a {
+            text-align: right;
+            display: block;
+        }
+
+        li a {
+            text-align: left;
+        }
+
+        h1 + a, div, div + a {
+            position: relative;
+            top: -40px;
+        }
+
+        a[href]:before {
+            content: "\2192\00a0";
+        }
+
+        a[name] {
+            margin-top: 1000px;
+        }
+
+        a[name=top] {
+            margin: 0;
+        }
+
+        a, a:visited {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 1.5em;
+        }
+
+        h2 {
+            font-size: 1.3em;
+        }
+    </style>
 </head>
 <body>
 <a name="top"></a>
 <ul id="nav">
-<li><a href="#short">Krótkie info</a></li>
-<li><a href="#long">Dłuższe info</a></li>
-<li><a href="#help">Pomoc</a></li>
+    <li><a href="#short">Krótkie info</a></li>
+    <li><a href="#long">Dłuższe info</a></li>
+    <li><a href="#help">Pomoc</a></li>
 </ul>
-<a name="short"></a><h1>Krótkie info</h1><a href="#top">powrót</a>
-<div><p>OpenCachingFun jest otwartym programem pozwalającym używać telefonu z androidem do geocachingu. Korzysta z zasobów serwisu opencaching.pl.</p></div>
+<a name="short"></a>
+
+<h1>Krótkie info</h1><a href="#top">powrót</a>
+
+<div><p>OpenCachingFun jest otwartym programem pozwalającym używać telefonu z androidem do geocachingu. Korzysta z
+    zasobów serwisu opencaching.pl.</p></div>
 <a href="#top">powrót</a>
 <br>
-<a name="long"></a><h1>Dłuższe info</h1><a href="#top">powrót</a>
-<div><p>Strona projektu dostępna jest pod adresem <a href="http://mzawisza.pl/opecachingfun" target="_blank">mzawisza.pl/ocfun</a>. Kod źródłowy dostępny jest na licencji GPLv3 na <a href="https://github.com/zeyomir/OpenCachingFun" target="_blank">GitHubie</a>. Pomoc w rozwoju aplikacji mile widziana ;).</p>
-<p>Aplikacja korzysta z bibliotek: </p>
-<ul>
-<li>SignPost</li>
-<li>HoloEverywhere</li>
-<li>ActionBarSherlock</li>
-</ul>
+<a name="long"></a>
+
+<h1>Dłuższe info</h1><a href="#top">powrót</a>
+
+<div><p>Strona projektu dostępna jest pod adresem <a href="http://mzawisza.pl/opecachingfun" target="_blank">mzawisza.pl/ocfun</a>.
+    Kod źródłowy dostępny jest na licencji GPLv3 na <a href="https://github.com/zeyomir/OpenCachingFun" target="_blank">GitHubie</a>.
+    Pomoc w rozwoju aplikacji mile widziana ;).</p>
+
+    <p>Aplikacja korzysta z bibliotek: </p>
+    <ul>
+        <li>SignPost</li>
+        <li>HoloEverywhere</li>
+        <li>ActionBarSherlock</li>
+    </ul>
 </div>
 <a href="#top">powrót</a>
 
 
-<a name="help"></a><h1>Pomoc</h1><a href="#top">powrót</a>
+<a name="help"></a>
+
+<h1>Pomoc</h1><a href="#top">powrót</a>
+
 <div><h2>Dodawanie skrzynek</h2>
-<p>Skrzynki można dodawać na 2 sposoby- po jej kodzie lub nazwie (przy nazwie można używać * która zastępuje inne znaki) oraz po odległości od punktu (współrzędnych, adresu, lub innej skrzynki).</p><p>Współrzędne podajemy w dowolnym formacie (w samych stopniach, stopniach z minutami lub stopniach z minutami i sekundami). Długość od szerokości oddzielamy przecinkiem, miejsca dziesiętne kropką, a stopnie od minut i sekund spacją.</p><p>Możemy również pobrać skrzynki wybrane wcześniej na komputerze- służy do tego zakładka 'obserwowane'. Własna skrzynka pozwala nam dodać ręcznie "skrzynkę" z własnym opisem i współrzędnymi- np kolejnego etapu multicacha, albo miejsca gdzie zaparkowaliśmy auto.</p><p>Aby przerwać pobieranie skrzynek wystarczy kliknąć w powiadomienie, a następnie wybrać "Anuluj".</p>
-<h2>Przeglądanie skrzynek</h2>
-<p>Lista skrzynek jest posortowana alfabetycznie, odległości do skrzynek możemy na nowo przeliczyć używając przycisku odśwież. Dłuższe kliknięcie pozwala usuwać pojedyncze skrzynki. Z poziomu ustawień, możemy ukryć skrzynki już znalezione.</p><p>Po wybraniu konkretnej skrzynki możemy zobaczyć wszystkie informacje na jej temat, łącznie z własnymi notatkami dodanymi do skrzynki w serwisie. Mamy też dostęp do zdjęć (spoilery oznaczone są stosownym komentarzem) oraz do ostatnich logów. Kliknięcie w hinta pozwala go odkodować.</p><p>Z menu możemy skopiować współrzędne (by użyć ich np w jakimś programie do nawigacji), otworzyć opis skrzynki w przeglądarce, wyświetlić mapę wycentrowaną na danej skrzynce oraz otworzyć "kompas" który będzie wskazywał kierunek i odległość do skrzynki.</p>
-<h2>Używanie mapy</h2>
-<p>Mapka domyślnie centruje się na naszej pozycji, jej kliknięcie wyświetla informacje na temat aktualnej dokładności z jaką ta pozycja została ustalona. Kliknięcie na ikonę skrzynki przeniesie nas do jej opisu. Widok satelitarny można włączyć w ustawieniach.</p>
-<h2>Logi</h2>
-<p>Po wyświetleniu logbooka danej skrzynki mamy możliwość dodania tam własnego wpisu. Wpisy te pojawią się w logbooku danej skrzynki, możemy je również wszystkie wyświetlić z głównego menu. Tam też możemy je pojedynczo usuwać, lub dokonać synchronizacji i tym samym zalogować skrzynki w serwisie.</p><p>Dodatkowym typem wpisu jest 'Notatka'- wpisy te nie będą synchronizowane z serwisem, a mogą posłużyć np do notowania kodów potrzebnych do finałowej skrzynki jakiegoś projektu, albo TrackingCode zostawionego w skrzynce GeoKreta.</p>
-<h2>Ustawienia</h2>
-<p>Można tu połączyć aplikację ze swoim kontem na oc.pl, co pozwoli na pomijanie własnych i już znalezionych skrzynek przy pobieraniu, pobieranie własnych notatek oraz skrzynek obserwowanych. Jest to też wymagane do synchronizacji wpisów z logbooka.</p><p>Można tu włączyć wyświetlanie ostrzeżenia przed pobieraniem dużej ilości skrzynek, ustawić by domyślnie opisy skrzynek w przeglądarce pokazywane były przy użyciu mobilnej wersji strony. </p><p>Opcja pobierania zdjęć na żądanie pozwala zaoszczędzić trochę czasu i pakietu kiedy jesteśmy zmuszeni do pobierania skrzynek używając internetu mobilnego- zdjęcia nie zostaną pobrane razem z opisem skrynki, dopiero próba wyświetlenia któregoś zdjęcia spowoduje jego pobranie.</p><p>Przydatne jest także ustawienie własnego szablonu wpisu do logbooka- dzięki temu będziemy mogli szybciej dokonywać wpisów.</p>
+
+    <p>Skrzynki można dodawać na 2 sposoby- po jej kodzie lub nazwie (przy nazwie można używać * która zastępuje inne
+        znaki) oraz po odległości od punktu (współrzędnych, adresu, lub innej skrzynki).</p>
+
+    <p>Współrzędne podajemy w dowolnym formacie (w samych stopniach, stopniach z minutami lub stopniach z minutami i
+        sekundami). Długość od szerokości oddzielamy przecinkiem, miejsca dziesiętne kropką, a stopnie od minut i sekund
+        spacją.</p>
+
+    <p>Możemy również pobrać skrzynki wybrane wcześniej na komputerze- służy do tego zakładka 'obserwowane'. Własna
+        skrzynka pozwala nam dodać ręcznie "skrzynkę" z własnym opisem i współrzędnymi- np kolejnego etapu multicacha,
+        albo miejsca gdzie zaparkowaliśmy auto.</p>
+
+    <p>Aby przerwać pobieranie skrzynek wystarczy kliknąć w powiadomienie, a następnie wybrać "Anuluj".</p>
+
+    <h2>Przeglądanie skrzynek</h2>
+
+    <p>Lista skrzynek jest posortowana alfabetycznie, odległości do skrzynek możemy na nowo przeliczyć używając
+        przycisku odśwież. Dłuższe kliknięcie pozwala usuwać pojedyncze skrzynki. Z poziomu ustawień, możemy ukryć
+        skrzynki już znalezione.</p>
+
+    <p>Po wybraniu konkretnej skrzynki możemy zobaczyć wszystkie informacje na jej temat, łącznie z własnymi notatkami
+        dodanymi do skrzynki w serwisie. Mamy też dostęp do zdjęć (spoilery oznaczone są stosownym komentarzem) oraz do
+        ostatnich logów. Kliknięcie w hinta pozwala go odkodować.</p>
+
+    <p>Z menu możemy skopiować współrzędne (by użyć ich np w jakimś programie do nawigacji), otworzyć opis skrzynki w
+        przeglądarce, wyświetlić mapę wycentrowaną na danej skrzynce oraz otworzyć "kompas" który będzie wskazywał
+        kierunek i odległość do skrzynki.</p>
+
+    <h2>Używanie mapy</h2>
+
+    <p>Mapka domyślnie centruje się na naszej pozycji, jej kliknięcie wyświetla informacje na temat aktualnej
+        dokładności z jaką ta pozycja została ustalona. Kliknięcie na ikonę skrzynki przeniesie nas do jej opisu. Widok
+        satelitarny można włączyć w ustawieniach.</p>
+
+    <h2>Logi</h2>
+
+    <p>Po wyświetleniu logbooka danej skrzynki mamy możliwość dodania tam własnego wpisu. Wpisy te pojawią się w
+        logbooku danej skrzynki, możemy je również wszystkie wyświetlić z głównego menu. Tam też możemy je pojedynczo
+        usuwać, lub dokonać synchronizacji i tym samym zalogować skrzynki w serwisie.</p>
+
+    <p>Dodatkowym typem wpisu jest 'Notatka'- wpisy te nie będą synchronizowane z serwisem, a mogą posłużyć np do
+        notowania kodów potrzebnych do finałowej skrzynki jakiegoś projektu, albo TrackingCode zostawionego w skrzynce
+        GeoKreta.</p>
+
+    <h2>Ustawienia</h2>
+
+    <p>Można tu połączyć aplikację ze swoim kontem na oc.pl, co pozwoli na pomijanie własnych i już znalezionych
+        skrzynek przy pobieraniu, pobieranie własnych notatek oraz skrzynek obserwowanych. Jest to też wymagane do
+        synchronizacji wpisów z logbooka.</p>
+
+    <p>Można tu włączyć wyświetlanie ostrzeżenia przed pobieraniem dużej ilości skrzynek, ustawić by domyślnie opisy
+        skrzynek w przeglądarce pokazywane były przy użyciu mobilnej wersji strony. </p>
+
+    <p>Opcja pobierania zdjęć na żądanie pozwala zaoszczędzić trochę czasu i pakietu kiedy jesteśmy zmuszeni do
+        pobierania skrzynek używając internetu mobilnego- zdjęcia nie zostaną pobrane razem z opisem skrynki, dopiero
+        próba wyświetlenia któregoś zdjęcia spowoduje jego pobranie.</p>
+
+    <p>Przydatne jest także ustawienie własnego szablonu wpisu do logbooka- dzięki temu będziemy mogli szybciej
+        dokonywać wpisów.</p>
 </div>
 <a href="#top">powrót</a>
 </body>

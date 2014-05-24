@@ -13,7 +13,7 @@ public class PropertiesLoader {
     public final String googleMapsApiKey;
 
 
-    private PropertiesLoader(){
+    private PropertiesLoader() {
         Properties properties = loadProperties();
         if (properties == null) {
             this.applicationVersionName = "";
@@ -28,6 +28,12 @@ public class PropertiesLoader {
         }
     }
 
+    public static PropertiesLoader get() {
+        if (instance == null)
+            instance = new PropertiesLoader();
+        return instance;
+    }
+
     private Properties loadProperties() {
         Properties properties = new Properties();
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -39,11 +45,5 @@ public class PropertiesLoader {
             e.printStackTrace();
         }
         return properties;
-    }
-
-    public static PropertiesLoader get() {
-        if (instance == null)
-            instance = new PropertiesLoader();
-        return instance;
     }
 }

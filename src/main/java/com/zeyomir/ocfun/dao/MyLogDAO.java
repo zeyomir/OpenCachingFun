@@ -23,18 +23,18 @@ public class MyLogDAO {
 
     private static ContentValues map(MyLogbookEntry l) {
         ContentValues values = new ContentValues();
-        values.put(DbAdapter.KEY_LOGS_CACHE_ID ,l.cacheId);
-        values.put(DbAdapter.KEY_LOGS_CACHE_CODE ,l.cacheCode);
-        values.put(DbAdapter.KEY_LOGS_CACHE_NAME ,l.cacheName);
-        values.put(DbAdapter.KEY_LOGS_WHO ,l.user);
-        values.put(DbAdapter.KEY_LOGS_DATE ,l.date);
-        values.put(DbAdapter.KEY_LOGS_BODY ,l.message);
-        values.put(DbAdapter.KEY_LOGS_TYPE ,l.type);
-        values.put(DbAdapter.KEY_LOGS_PASSWORD ,l.password);
-        values.put(DbAdapter.KEY_LOGS_RATING ,l.rating);
-        values.put(DbAdapter.KEY_LOGS_RECOMMEND ,l.recommendation ? 1 : 0);
-        values.put(DbAdapter.KEY_LOGS_MAINTENANCE ,l.needsMaintenance ? 1 : 0);
-        values.put(DbAdapter.KEY_LOGS_ERROR ,l.errorMessage);
+        values.put(DbAdapter.KEY_LOGS_CACHE_ID, l.cacheId);
+        values.put(DbAdapter.KEY_LOGS_CACHE_CODE, l.cacheCode);
+        values.put(DbAdapter.KEY_LOGS_CACHE_NAME, l.cacheName);
+        values.put(DbAdapter.KEY_LOGS_WHO, l.user);
+        values.put(DbAdapter.KEY_LOGS_DATE, l.date);
+        values.put(DbAdapter.KEY_LOGS_BODY, l.message);
+        values.put(DbAdapter.KEY_LOGS_TYPE, l.type);
+        values.put(DbAdapter.KEY_LOGS_PASSWORD, l.password);
+        values.put(DbAdapter.KEY_LOGS_RATING, l.rating);
+        values.put(DbAdapter.KEY_LOGS_RECOMMEND, l.recommendation ? 1 : 0);
+        values.put(DbAdapter.KEY_LOGS_MAINTENANCE, l.needsMaintenance ? 1 : 0);
+        values.put(DbAdapter.KEY_LOGS_ERROR, l.errorMessage);
         return values;
     }
 
@@ -57,7 +57,7 @@ public class MyLogDAO {
         DbAdapter.close();
     }
 
-    public static List<MyLogbookEntry> listForSyncronization(){
+    public static List<MyLogbookEntry> listForSyncronization() {
         DbAdapter db = DbAdapter.open();
         Cursor c = db.fetch("select * from " + DbAdapter.DATABASE_TABLE_MY_LOGS + " where " + DbAdapter.KEY_LOGS_TYPE + "<>" + InternalResourceMapper.note.id());
         c.moveToFirst();
@@ -65,7 +65,7 @@ public class MyLogDAO {
 
         do {
             entriesList.add(getMyLogbookData(c));
-        } while(c.moveToNext());
+        } while (c.moveToNext());
 
 
         DbAdapter.close();
@@ -92,7 +92,7 @@ public class MyLogDAO {
 
     public static void update(ContentValues contentValues, long logId) {
         DbAdapter db = DbAdapter.open();
-        db.update(contentValues, DbAdapter.DATABASE_TABLE_MY_LOGS, ""+logId);
+        db.update(contentValues, DbAdapter.DATABASE_TABLE_MY_LOGS, "" + logId);
         DbAdapter.close();
     }
 

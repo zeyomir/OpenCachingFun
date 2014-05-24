@@ -15,11 +15,11 @@ public class AddLog {
     private Context context;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
-    public AddLog(Context context){
+    public AddLog(Context context) {
         this.context = context;
     }
 
-    public void add(Map<String, String> data){
+    public void add(Map<String, String> data) {
         long cacheId = Long.parseLong(data.get("cacheId"));
         String cacheCode = data.get("cacheCode");
         String cacheName = data.get("cacheName");
