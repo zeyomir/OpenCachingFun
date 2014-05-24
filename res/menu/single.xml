@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    
+
     <item android:id="@+id/menu_photo"
           android:title="@string/menu_photo"
-          android:showAsAction="always" />
+          android:showAsAction="always"/>
     <item android:id="@+id/menu_logs"
           android:title="@string/menu_logs"
-          android:showAsAction="always" />
-	<item android:id="@+id/menu_map"
-		  android:title="@string/menu_map"
-		  android:showAsAction="never" />
-	<item android:id="@+id/menu_compass"
-		  android:title="@string/menu_compass"
-		  android:showAsAction="never" />
+          android:showAsAction="always"/>
+    <item android:id="@+id/menu_map"
+          android:title="@string/menu_map"
+          android:showAsAction="never"/>
+    <item android:id="@+id/menu_compass"
+          android:title="@string/menu_compass"
+          android:showAsAction="never"/>
     <item android:id="@+id/menu_web"
           android:title="@string/menu_web"
-          android:showAsAction="never" />
-    <item android:id="@+id/menu_coords"
-          android:title="@string/menu_coords"
-          android:showAsAction="never" />
+          android:showAsAction="never"/>
+    <item android:id="@+id/menu_copy"
+          android:title="@string/menu_copy"
+          android:showAsAction="never">
+        <menu>
+            <item android:id="@+id/menu_code"
+                  android:title="@string/menu_copy_code"
+                  android:showAsAction="never"/>
+            <item android:id="@+id/menu_name"
+                  android:title="@string/menu_copy_name"
+                  android:showAsAction="never"/>
+            <item android:id="@+id/menu_coords"
+                  android:title="@string/menu_copy_coords"
+                  android:showAsAction="never"/>
+            <item android:id="@+id/menu_hint"
+                  android:title="@string/menu_copy_hint"
+                  android:showAsAction="never"/>
+            <item android:id="@+id/menu_description"
+                  android:title="@string/menu_copy_description"
+                  android:showAsAction="never"/>
+        </menu>
+    </item>
 </menu>
