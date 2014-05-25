@@ -187,7 +187,7 @@ public class SingleCache extends Activity implements LocationUser {
     }
 
     private void sendToClipboard(int target) {
-        String text = (String) ((TextView) findViewById(target)).getText();
+        String text = ((TextView) findViewById(target)).getText().toString();
         sendToClipboard(text);
     }
 
