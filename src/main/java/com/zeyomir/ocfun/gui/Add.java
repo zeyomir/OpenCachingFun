@@ -1,6 +1,5 @@
 package com.zeyomir.ocfun.gui;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
@@ -36,10 +35,10 @@ public class Add extends Activity implements LocationUser {
     private static final int internetDialog = 2;
     private static final int locationDialog = 3;
     private static final int tooMany = 4;
-    private static String[] _cachesToDownload;
-    private static CacheDownloader _cachesDownloader;
     private static boolean waitingForLocation = false;
-    private static int currentFragmentTag;
+    private String[] _cachesToDownload;
+    private CacheDownloader _cachesDownloader;
+    private int currentFragmentTag;
     private PreferencesDAO p;
     private ActionBar actionBar;
 
@@ -149,8 +148,7 @@ public class Add extends Activity implements LocationUser {
     protected Dialog onCreateDialog(int id) {
         Dialog dialog;
         AlertDialog.Builder builder;
-        final Context c = this;
-        DialogInterface.OnClickListener cl = new DialogInterface.OnClickListener() {
+        DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -165,26 +163,26 @@ public class Add extends Activity implements LocationUser {
                     builder.setMessage(R.string.dialog_authenticate);
                 else
                     builder.setMessage(R.string.dialog_fill_fields);
-                builder.setPositiveButton(R.string.dialog_ok, cl);
+                builder.setPositiveButton(R.string.dialog_ok, onClickListener);
                 dialog = builder.create();
                 break;
             case locationDialog:
                 builder = new AlertDialog.Builder(this);
                 builder.setMessage(R.string.dialog_wait_for_location);
-                builder.setPositiveButton(R.string.dialog_ok, cl);
+                builder.setPositiveButton(R.string.dialog_ok, onClickListener);
                 dialog = builder.create();
                 break;
             case internetDialog:
                 builder = new AlertDialog.Builder(this);
                 builder.setMessage(R.string.dialog_no_internet);
-                builder.setPositiveButton(R.string.dialog_ok, cl);
+                builder.setPositiveButton(R.string.dialog_ok, onClickListener);
                 dialog = builder.create();
                 break;
             case tooMany:
                 Log.i("warning", "happened");
                 builder = new AlertDialog.Builder(this);
                 builder.setMessage("Skrzynek do ściągnięcia: " + _cachesToDownload.length + ".\nCzy kontynuować?"); //TODO !!!
-                builder.setNegativeButton("Anuluj", cl);
+                builder.setNegativeButton("Anuluj", onClickListener);
                 builder.setPositiveButton("Tak, ściągaj", new DialogInterface.OnClickListener() {
 
                     @Override

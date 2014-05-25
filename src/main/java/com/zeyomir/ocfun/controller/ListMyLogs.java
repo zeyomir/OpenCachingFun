@@ -77,10 +77,9 @@ public class ListMyLogs {
                 view.setVisibility(View.GONE);
         }
     };
-    private static NotificationManager mManager;
-    private static Notification notification;
-    private static LogSyncronizer syncronizer;
     private final Context context;
+    private NotificationManager mManager;
+    private Notification notification;
 
     public ListMyLogs(Context context) {
         this.context = context;
@@ -117,14 +116,13 @@ public class ListMyLogs {
         notification.contentView = contentView;
 
         Intent notificationIntent = new Intent(context, LogAdd.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+        notification.contentIntent = PendingIntent.getActivity(context, 0,
                 notificationIntent, 0);
-        notification.contentIntent = contentIntent;
         notification.flags |= Notification.FLAG_AUTO_CANCEL
                 | Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
         mManager.notify(44, notification);
         Log.i("DEBUG", "run- before execute");
-        syncronizer = new LogSyncronizer();
+        LogSyncronizer syncronizer = new LogSyncronizer();
         syncronizer.execute(entriesList.toArray(new MyLogbookEntry[0]));
     }
 
@@ -158,10 +156,10 @@ public class ListMyLogs {
                         .append("&comment_format=plaintext")
                         .append("&when=").append(item.date.replace(' ', 'T').replace('.', '-'))
                         .append("&langpref=pl");
-                if (item.password != null && !item.password.isEmpty())
-                    link.append("&password=" + ConnectionHelper.encode(item.password));
+                if (item.password != null && !"".equals(item.password))
+                    link.append("&password=").append(ConnectionHelper.encode(item.password));
                 if (item.rating != 0)
-                    link.append("&rating=" + item.rating);
+                    link.append("&rating=").append(item.rating);
                 if (item.recommendation)
                     link.append("&recommend=true");
                 if (item.needsMaintenance)
@@ -215,9 +213,8 @@ public class ListMyLogs {
             notification.contentView.setTextViewText(R.id.text,
                     "Wysłano logów: " + param);
             Intent notificationIntent = new Intent(context, MyLogs.class);
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+            notification.contentIntent = PendingIntent.getActivity(context, 0,
                     notificationIntent, 0);
-            notification.contentIntent = contentIntent;
             notification.flags = Notification.FLAG_AUTO_CANCEL;
             mManager.notify(44, notification);
             ((MyLogs) context).fillData();

@@ -43,8 +43,9 @@ public class Cache {
         this.hint = data.getString("hint");
         String lastFound = data.getString("last_found").split("T")[0].replace(
                 '-', '.');
-        if (lastFound.contains("1970.01.01") || lastFound.equals("null"))
+        if (lastFound.contains("1970.01.01") || lastFound.equals("null")) {
             lastFound = "nigdy";
+        }
         this.lastFoundOn = lastFound;
         this.isFound = data.isNull("is_found") ? false : data
                 .getBoolean("is_found");
@@ -73,47 +74,49 @@ public class Cache {
     }
 
     public static int getSizeResource(double size) {
-        if (size >= 5)
+        if (size >= 5) {
             return R.string.size_vbig;
-        else if (size >= 4)
+        } else if (size >= 4) {
             return R.string.size_big;
-        else if (size >= 3)
+        } else if (size >= 3) {
             return R.string.size_med;
-        else if (size >= 2)
+        } else if (size >= 2) {
             return R.string.size_small;
-        else if (size >= 1)
+        } else if (size >= 1) {
             return R.string.size_vsmall;
-        else
+        } else {
             return R.string.size_none;
+        }
     }
 
     public String getUrl(boolean mobile) {
-        if (mobile)
+        if (mobile) {
             return "http://m." + url + code;
-        else
-            return "http://" + url + code;
+        }
+        return "http://" + url + code;
     }
 
     private int getTypeImageResource(String s) {
         s = s.toLowerCase();
 
-        if (s.equals("traditional"))
+        if (s.equals("traditional")) {
             return InternalResourceMapper.traditional.id();
-        else if (s.equals("multi"))
+        } else if (s.equals("multi")) {
             return InternalResourceMapper.multi.id();
-        else if (s.equals("quiz"))
+        } else if (s.equals("quiz")) {
             return InternalResourceMapper.quiz.id();
-        else if (s.equals("moving"))
+        } else if (s.equals("moving")) {
             return InternalResourceMapper.moving.id();
-        else if (s.equals("owncache"))
+        } else if (s.equals("owncache")) {
             return InternalResourceMapper.owncache.id();
-        else if (s.equals("event"))
+        } else if (s.equals("event")) {
             return InternalResourceMapper.event.id();
-        else if (s.equals("virtual"))
+        } else if (s.equals("virtual")) {
             return InternalResourceMapper.virtual.id();
-        else if (s.equals("webcam"))
+        } else if (s.equals("webcam")) {
             return InternalResourceMapper.webcam.id();
-        else
+        } else {
             return InternalResourceMapper.unknown.id();
+        }
     }
 }

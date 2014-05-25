@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <properties>
         <version>0.7.0.1</version>
 
-        <okapiOauthSecret></okapiOauthSecret>
-        <okapiOauthKey></okapiOauthKey>
-        <debugMapsApiKey></debugMapsApiKey>
+        <okapiOauthSecret>KRrTaBBuGgCBQHEhGHehnRYpC2qcMgsnYH6Y9yjG</okapiOauthSecret>
+        <okapiOauthKey>4HfdC8c7KPLRaUbbJU2q</okapiOauthKey>
+        <debugMapsApiKey>0YtyAdk6bxBiL-HPnKaZ_wj0t4lciCw_7I-bCiQ</debugMapsApiKey>
         <!-- You won't need these if you are just running the app in emulator or on your own device -->
-        <releaseMapsApiKey></releaseMapsApiKey>
-        <keystorePath></keystorePath>
-        <keystorePassword></keystorePassword>
-        <keyAlias></keyAlias>
-        <keyPassword></keyPassword>
+        <releaseMapsApiKey>0YtyAdk6bxBjbnnGaZbRigmrsABUfO9liFQjtJw</releaseMapsApiKey>
+        <keystorePath>my-release-key.keystore</keystorePath>
+        <keystorePassword>qwerty</keystorePassword>
+        <keyAlias>zeyomir</keyAlias>
+        <keyPassword>qwerty</keyPassword>
         <!-- You probably don't want to change these -->
         <sdk>19</sdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

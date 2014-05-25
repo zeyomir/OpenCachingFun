@@ -63,7 +63,7 @@ public class ConnectionHelper {
         createDirIfNeeded(dir);
 
         InputStream in = null;
-        FileOutputStream out = null;
+        FileOutputStream out;
         byte buffer[] = new byte[1024];
         int length;
 
@@ -92,13 +92,15 @@ public class ConnectionHelper {
 
     private static void addNoMediaFileIfNeeded(String dirPath) {
         File noMediaFile = new File(dirPath + "/.nomedia");
-        if (!noMediaFile.exists()) {
-            try {
-                noMediaFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (noMediaFile.exists()) {
+            return;
         }
+        try {
+            noMediaFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static InputStream openHttpConnection(String strURL) throws IOException {

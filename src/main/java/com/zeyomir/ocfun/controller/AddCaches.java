@@ -179,9 +179,8 @@ public class AddCaches implements CacheDownloader {
         notification.contentView = contentView;
 
         Intent notificationIntent = new Intent(context, Cancel.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+        notification.contentIntent = PendingIntent.getActivity(context, 0,
                 notificationIntent, 0);
-        notification.contentIntent = contentIntent;
         notification.flags |= Notification.FLAG_AUTO_CANCEL
                 | Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
         mManager.notify(42, notification);
@@ -194,10 +193,10 @@ public class AddCaches implements CacheDownloader {
     private class DownloadCaches extends AsyncTask<String[], Integer, Integer> {
         String[] codes;
         int max = 0;
-        boolean dowloadImagesOnDemand;
+        boolean downloadImagesOnDemand;
 
-        DownloadCaches(boolean dowloadImagesOnDemand) {
-            this.dowloadImagesOnDemand = dowloadImagesOnDemand;
+        DownloadCaches(boolean downloadImagesOnDemand) {
+            this.downloadImagesOnDemand = downloadImagesOnDemand;
         }
 
         @Override
@@ -249,7 +248,7 @@ public class AddCaches implements CacheDownloader {
                     for (int j = 0; j < images.length(); j++) {
                         JSONObject JSONimage = (JSONObject) images.get(j);
                         Image image = new Image(id, c.code, JSONimage);
-                        if (!dowloadImagesOnDemand) {
+                        if (!downloadImagesOnDemand) {
                             ConnectionHelper.download(JSONimage.getString("url"),
                                     image.path);
                         }
@@ -289,9 +288,8 @@ public class AddCaches implements CacheDownloader {
             notification.contentView.setTextViewText(R.id.text,
                     "Pobrano skrzynek: " + param);
             Intent notificationIntent = new Intent(context, List.class);
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+            notification.contentIntent = PendingIntent.getActivity(context, 0,
                     notificationIntent, 0);
-            notification.contentIntent = contentIntent;
             notification.flags = Notification.FLAG_AUTO_CANCEL;
             mManager.notify(42, notification);
         }
@@ -303,9 +301,8 @@ public class AddCaches implements CacheDownloader {
             notification.contentView.setTextViewText(R.id.text,
                     "Anulowano! Pobrano skrzynek: " + param);
             Intent notificationIntent = new Intent(context, List.class);
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+            notification.contentIntent = PendingIntent.getActivity(context, 0,
                     notificationIntent, 0);
-            notification.contentIntent = contentIntent;
             notification.flags = Notification.FLAG_AUTO_CANCEL;
             mManager.notify(42, notification);
         }
