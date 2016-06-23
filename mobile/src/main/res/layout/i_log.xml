@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:src="@drawable/quiz" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_alignBottom="@+id/icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/icon"
+        android:layout_gravity="start"
+        android:layout_toLeftOf="@+id/date"
+        android:layout_toRightOf="@+id/icon"
+        android:gravity="start|center"
+        android:paddingLeft="8dp"
+        android:textColor="@color/title_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="name" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:paddingTop="4dp"
+        android:textColor="@color/content_text"
+        android:textSize="14sp"
+        tools:text="A very long comment, indeed. Made out of multiple sentences etc" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/icon"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/icon"
+        android:layout_gravity="end"
+        android:gravity="end|center"
+        android:textColor="@color/light_text"
+        tools:text="2016-06-08 13:47" />
+</RelativeLayout>

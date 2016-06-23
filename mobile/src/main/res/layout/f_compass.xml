@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.codetail.widget.RevealFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/heading_label"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:text="@string/azimuth"
+            app:layout_widthPercent="33%" />
+
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/heading_label"
+            android:layout_alignRight="@id/heading_label"
+            android:layout_below="@id/heading_label"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="320* WNW" />
+
+        <TextView
+            android:id="@+id/distance_label"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:text="@string/distance"
+            app:layout_widthPercent="33%" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/distance_label"
+            android:layout_alignRight="@id/distance_label"
+            android:layout_below="@id/distance_label"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="1600m" />
+
+        <ImageView
+            android:id="@+id/compass"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:ico_color="@color/fab_icon"
+            app:ico_icon="gmd-navigation"
+            app:layout_widthPercent="33%"
+            tools:src="@drawable/ic_near_me" />
+
+        <ImageView
+            android:id="@+id/compass2"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@drawable/compass"
+            app:layout_widthPercent="75%" />
+
+        <TextView
+            android:id="@+id/gps_accuracy_label"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_horizontal"
+            android:text="@string/gps_accuracy"
+            app:layout_heightPercent="10%"
+            app:layout_widthPercent="33%" />
+
+        <TextView
+            android:id="@+id/gps_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/gps_accuracy_label"
+            android:layout_alignLeft="@+id/gps_accuracy_label"
+            android:layout_alignRight="@+id/gps_accuracy_label"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="+/-10m" />
+
+
+        <TextView
+            android:id="@+id/compass_accuracy_label"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center_horizontal"
+            android:text="@string/compass_accuracy"
+            app:layout_heightPercent="10%"
+            app:layout_widthPercent="33%" />
+
+        <TextView
+            android:id="@+id/compass_accuracy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/compass_accuracy_label"
+            android:layout_alignLeft="@+id/compass_accuracy_label"
+            android:layout_alignRight="@+id/compass_accuracy_label"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/medium"
+            android:text="@string/medium" />
+    </android.support.percent.PercentRelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/gps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.9"
+        android:background="@color/window"
+        tools:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:rotation="-18"
+            android:text="@string/no_gps"
+            android:textColor="@color/spoiler_text"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+</io.codetail.widget.RevealFrameLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text">#d000</color>
+    <color name="primary">#FFA000</color>
+    <color name="primary_darker">#FFC107</color>
+    <color name="primary_dark">#FF8800</color>
+    <color name="text_primary">#333</color>
+    <color name="accent">#FFE57F</color>
+    <color name="accent_darker">#FFC400</color>
+    <color name="accent_dark">#FFAB00</color>
+    <color name="window">#eee</color>
+
+    <color name="log_type_found">#6fc765</color>
+    <color name="log_type_not_found">#e75246</color>
+    <color name="log_type_comment">#7b9fc6</color>
+
+    <color name="title_text">#d000</color>
+    <color name="content_text">#b000</color>
+    <color name="light_text">#a000</color>
+    <color name="list_hint">#555</color>
+    <color name="fab_icon">#7000</color>
+    <color name="fab_background">@color/accent</color>
+    <color name="spoiler_background">#2000</color>
+    <color name="spoiler_text">#4000</color>
+    <color name="good">@color/log_type_found</color>
+    <color name="medium">@color/log_type_comment</color>
+    <color name="bad">@color/primary_darker</color>
+    <color name="tragedy">@color/log_type_not_found</color>
+</resources>

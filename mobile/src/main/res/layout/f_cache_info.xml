@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:src="@drawable/quiz" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="start|top"
+                    android:layout_toLeftOf="@+id/lock"
+                    android:layout_toRightOf="@+id/icon"
+                    android:gravity="start"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/title_text"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="name" />
+
+                <ImageView
+                    android:id="@+id/lock"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    app:ico_color="@color/light_text"
+                    app:ico_icon="gmd-lock"
+                    app:ico_size="20dp"
+                    tools:src="@drawable/ic_drawer" />
+
+                <TextView
+                    android:id="@+id/tagline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_toRightOf="@+id/icon"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/content_text"
+                    android:textSize="14sp"
+                    tools:text="Short description" />
+
+                <TextView
+                    android:id="@+id/owner_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/tagline"
+                    android:layout_gravity="end"
+
+                    android:layout_marginTop="4dp"
+                    android:text="@string/cache_info_owner"
+                    android:textColor="@color/content_text" />
+
+                <TextView
+                    android:id="@+id/owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tagline"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
+                    android:layout_toLeftOf="@+id/code"
+                    android:layout_toRightOf="@+id/owner_label"
+                    android:paddingLeft="4dp"
+                    android:textColor="@color/content_text"
+                    tools:text="Owner" />
+
+                <TextView
+                    android:id="@+id/code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="end"
+                    android:textColor="@color/content_text"
+                    tools:text="OP9876" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/custom_note_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/custom_note_icon"
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    app:ico_color="@color/light_text"
+                    app:ico_icon="gmd-note"
+                    app:ico_size="16dp"
+                    tools:src="@drawable/ic_near_me" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/custom_note_icon"
+                    android:layout_alignTop="@id/custom_note_icon"
+                    android:layout_toRightOf="@+id/custom_note_icon"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="@string/cache_info_custom_note"
+                    android:textColor="@color/light_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/custom_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/custom_note_icon"
+                    android:padding="8dp"
+                    android:textColor="@color/content_text"
+                    tools:text="Lorem ipsum dolor sit amet" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/cache_info_coordinates"
+                    android:textColor="@color/content_text" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/light_text"
+                    tools:text="50.274534, 20.32432" />
+
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/location"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/content_text"
+                    tools:text="distance" />
+
+                <TextView
+                    android:id="@+id/bearing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/distance"
+                    android:layout_gravity="end"
+                    android:layout_toLeftOf="@+id/bearing_ico"
+                    android:paddingRight="8dp"
+                    android:textColor="@color/content_text"
+                    tools:text="178*" />
+
+                <ImageView
+                    android:id="@+id/bearing_ico"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignBottom="@+id/distance"
+                    android:layout_alignParentRight="true"
+                    android:transformPivotX="8dp"
+                    android:transformPivotY="8dp"
+                    app:ico_color="@color/light_text"
+                    app:ico_icon="gmd-navigation"
+                    app:ico_size="16dp"
+                    tools:src="@drawable/ic_near_me" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/cache_info_last_found"
+                    android:textColor="@color/content_text" />
+
+                <TextView
+                    android:id="@+id/last_found"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/light_text"
+                    tools:text="2016.03.24" />
+
+                <ImageView
+                    android:id="@+id/founds_ico"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_below="@+id/last_found"
+                    android:layout_marginTop="4dp"
+                    app:ico_color="@color/log_type_found"
+                    app:ico_icon="gmd-done-all"
+                    app:ico_size="16dp"
+                    tools:src="@mipmap/ic_launcher"
+                    tools:tint="@color/log_type_found" />
+
+                <TextView
+                    android:id="@+id/founds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/last_found"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@+id/founds_ico"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/content_text"
+                    tools:text="56" />
+
+
+                <ImageView
+                    android:id="@+id/not_founds_ico"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/last_found"
+                    android:layout_marginTop="4dp"
+                    app:ico_color="@color/log_type_not_found"
+                    app:ico_icon="gmd-remove-circle"
+                    app:ico_size="16dp"
+                    tools:src="@mipmap/ic_launcher"
+                    tools:tint="@color/log_type_not_found" />
+
+                <TextView
+                    android:id="@+id/not_founds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/last_found"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
+                    android:layout_toLeftOf="@+id/not_founds_ico"
+                    android:paddingRight="8dp"
+                    android:textColor="@color/content_text"
+                    tools:text="13" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/cache_info_size"
+                    android:textColor="@color/content_text" />
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/light_text"
+                    tools:text="Mała" />
+
+                <TextView
+                    android:id="@+id/difficulty_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/size"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/cache_info_difficulty"
+                    android:textColor="@color/light_text" />
+
+                <TextView
+                    android:id="@+id/difficulty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/size"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@+id/difficulty_label"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/log_type_comment"
+                    tools:text="2.5" />
+
+
+                <TextView
+                    android:id="@+id/terrain_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/size"
+                    android:layout_marginTop="4dp"
+                    android:layout_toLeftOf="@+id/terrain"
+                    android:text="@string/cache_info_terrain"
+                    android:textColor="@color/light_text" />
+
+                <TextView
+                    android:id="@+id/terrain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/size"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="4dp"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/log_type_found"
+                    tools:text="2.5" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/trackables_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/cache_info_trackables"
+                    android:textColor="@color/light_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/trackables"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textColor="@color/content_text"
+                    tools:text="Trackable#1, Trackable#2" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/attributes_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <TextView
+                android:id="@+id/attributes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/content_text"
+                tools:text="Can take kids, On foot, Quick cache" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:textColor="@color/content_text"
+                tools:text="Lorem ipsum dolor sit amet" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/hint_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/cache_info_hint"
+                    android:textColor="@color/light_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textColor="@color/content_text"
+                    tools:text="Lorem ipsum dolor sit amet" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/cache_info_hint_hint"
+                    android:textColor="@color/light_text"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>

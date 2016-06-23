@@ -1,0 +1,130 @@
+<resources>
+    <string name="app_name" translatable="false">OCFun</string>
+
+    <string name="drawer_menu_item_caches">Lista skrzynek</string>
+    <string name="drawer_menu_item_logbook">Mój Logbook</string>
+    <string name="drawer_menu_item_map">Mapa</string>
+    <string name="drawer_menu_item_settings">Ustawienia</string>
+    <string name="drawer_menu_item_help">Pomoc</string>
+    <string name="drawer_menu_item_contact">Kontakt</string>
+
+    <string name="toolbar_title_caches">Skrzynki</string>
+    <string name="toolbar_title_single_cache">Skrzynka</string>
+    <string name="toolbar_title_map">Mapa</string>
+
+    <string name="permission_gps_denied">Bez dostępu do gps większość funkcji aplikacji nie będzie działać.</string>
+    <string name="permission_gps_neverask">Zawsze możesz dać dostęp do gps w systemowych ustawieniach aplikacji.</string>
+    <string name="permission_gps_rationale">Dostęp do gps potrzebny jest do:\n - określania odległości do skrzynek,\n - łatwego pobierania skrzynek z okolicy,\n - pokazywania Twojej pozycji na mapie.</string>
+    <string name="permission_dialog_yes">OK!</string>
+    <string name="permission_dialog_no">Może później!</string>
+
+    <string name="log_out">wyloguj się</string>
+    <string name="log_in">zaloguj się</string>
+
+    <string name="logout_dialog_title">Wylogowanie</string>
+    <string name="logout_dialog_message">Czy chcesz odłączyć aplikację od swojego konta na opencaching.pl?</string>
+    <string name="logout_dialog_yes">Niestety tak!</string>
+    <string name="logout_dialog_no">Żartowałem!</string>
+
+    <string name="login_dialog_title">Logowanie</string>
+    <string name="login_dialog_message">Czy chcesz połączyć aplikację ze swoim kontem na opencaching.pl? Znacznie rozszerza to funkcjonalność aplikacji!</string>
+    <string name="login_dialog_yes">Jasne!</string>
+    <string name="login_dialog_no">Innym razem!</string>
+
+    <string name="delete_caches_dialog_title">Usunąć wszystkie zapisane skrzynki?</string>
+    <string name="delete_caches_dialog_message">To usunie dane o skrzynkach, logach oraz zdjęcia.\nTwoje logi i notatki do skrzynek pozostaną bezpieczne.\nKontynuować?</string>
+    <string name="delete_caches_dialog_yes">Tak!</string>
+    <string name="delete_caches_dialog_no">Nie!</string>
+
+    <string name="dialog_add_caches_by_name_title">Wyszukaj skrzynki z nazwą</string>
+    <string name="dialog_add_caches_by_name_message">* zastępuje dowolny ciąg znaków.</string>
+    <string name="dialog_add_caches_by_name_yes">Szukaj</string>
+    <string name="dialog_add_caches_by_name_cancel">Anuluj</string>
+
+    <string name="dialog_old_gps_title">Nieaktualna lokalizacja</string>
+    <string name="dialog_old_gps_message">Ostatnia znana lokalizacja pochodzi sprzed %s. Chcesz jej użyć, czy poczekać na ustalenie nowej?</string>
+    <string name="dialog_old_gps_use_old">Użyj starej</string>
+    <string name="dialog_old_gps_wait">Poczekam na nową</string>
+
+    <string name="calibration_dialog_title">Kalibracja kompasu</string>
+    <string name="calibration_dialog_message">Aby poprawić dokładność odczytu z kompasu, należy go skalibrować.\n\nW tym celu narysuj urządzeniem w powietrzu kształ ósemki. Najlepiej zrób to kilka razy.</string>
+
+    <string name="time_elapsed_one_minute">minuty</string>
+    <string name="time_elapsed_minutes">"%d minut"</string>
+    <string name="time_elapsed_hour">godziny</string>
+    <string name="time_elapsed_hour_and_half">półtorej godziny</string>
+    <string name="time_elapsed_2_hours">2 godzin</string>
+    <string name="time_elapsed_3_hours">3 godzin</string>
+    <string name="time_elapsed_few_hours">kilku godzin</string>
+    <string name="time_elapsed_dozen_hours">kilkunastu godzin</string>
+    <string name="time_elapsed_24_hours">24 godzin</string>
+    <string name="time_elapsed_2_days">2 dni</string>
+    <string name="time_elapsed_few_days">kilku dni</string>
+
+    <string name="notification_syncing_title">Synchronizacja wpisów</string>
+    <string name="notification_syncing_text">Wysłano %1$d z %2$d.</string>
+    <string name="notification_caches_title">Pobieranie skrzynek</string>
+    <string name="notification_images_title">Pobieranie zdjęć</string>
+    <string name="notification_downloading_text">Pobrano %1$d z %2$d.</string>
+    <string name="notification_no_network">Problemy z dostępem do internetu- sprawdź połączenie!</string>
+    <string name="notification_server_error">Wystąpił problem w komunikacji z serwerem- serwer zwrócił nieoczekiwaną odpowiedź. Już pracuję nad rozwiązaiem :).</string>
+
+    <string name="snack_coming_soon">Już wkrótce…</string>
+
+    <string name="menu_change_sort">Sortuj</string>
+    <string name="menu_sort_distance">Wg odległości</string>
+    <string name="menu_sort_name">Wg nazwy</string>
+    <string name="menu_search">Szukaj</string>
+    <string name="menu_remove_all">Usuń wszystkie</string>
+    <string name="menu_map">Mapa</string>
+    <string name="menu_compass">Prowadź do skrzynki</string>
+
+    <string name="caches_list_empty">Pusto :(\nMoże coś dodasz?</string>
+    <string name="search_hint">nazwa skrzynki</string>
+    <string name="snack_no_last_location">Brak danych z gps…</string>
+    <string name="skittle_gps">z okolicy</string>
+    <string name="skittle_name">po nazwie</string>
+    <string name="skittle_watched">obserwowane</string>
+
+    <string name="cache_info_tab_title">Szczegóły</string>
+    <string name="cache_info_coordinates">Współrzędne:</string>
+    <string name="cache_info_last_found">Ostatnio znaleziona:</string>
+    <string name="cache_info_size">Rozmiar:</string>
+    <string name="cache_info_difficulty">Trudnośc zadań</string>
+    <string name="cache_info_terrain">Trudność terenu</string>
+    <string name="cache_info_password_needed">Skrzynka wymaga podania hasła przy tworzeniu wpisu do logu.</string>
+    <string name="cache_info_owner">Właściciel:</string>
+    <string name="cache_info_trackables">Geokrety:</string>
+    <string name="cache_info_custom_note">Własna notatka:</string>
+    <string name="cache_info_hint">Podpowiedź:</string>
+    <string name="cache_info_hint_hint">* Kliknij, by odkodować</string>
+
+    <string name="cache_photos_tab_title">Zdjęcia</string>
+    <string name="images_list_empty">Ta skrzynka nie ma obrazków :(</string>
+    <string name="image_spoiler">SPOILER</string>
+
+    <string name="cache_logs_tab_title">Logi</string>
+    <string name="logs_list_empty">Ta skrzynka nie ma jeszcze żadnych logów :(</string>
+
+    <string name="no_gps">BRAK DANYCH\nZ GPS</string>
+    <string name="high">DOSKONAŁA</string>
+    <string name="medium">DOBRA</string>
+    <string name="low">SŁABA</string>
+    <string name="unreliable">SKALIBRUJ</string>
+    <string name="accuracy">+/- %dm</string>
+    <string name="azimuth">Azymut</string>
+    <string name="distance">Odległość</string>
+    <string name="gps_accuracy">Dokładność GPS</string>
+    <string name="compass_accuracy">Dokładność kompasu</string>
+
+    <string name="cache_size_none">Bez pojemnika</string>
+    <string name="cache_size_nano">Nano</string>
+    <string name="cache_size_micro">Mikro</string>
+    <string name="cache_size_small">Mała</string>
+    <string name="cache_size_regular">Normalna</string>
+    <string name="cache_size_large">Duża</string>
+    <string name="cache_size_xlarge">Bardzo duża</string>
+    <string name="cache_size_other">Inny</string>
+    <string name="no_matching_caches">Nie znaleziono żadnych pasujących skrzynek</string>
+
+</resources>

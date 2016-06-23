@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/quiz" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="start|top"
+        android:layout_toRightOf="@+id/icon"
+        android:gravity="start"
+        android:paddingLeft="8dp"
+        android:textColor="@color/title_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="name" />
+
+    <TextView
+        android:id="@+id/tagline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_toRightOf="@+id/icon"
+        android:paddingLeft="8dp"
+        android:textColor="@color/content_text"
+        android:textSize="14sp"
+        tools:text="Short description" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tagline"
+        android:layout_gravity="end"
+        android:layout_toLeftOf="@+id/bearing"
+        android:paddingRight="8dp"
+        android:textColor="@color/light_text"
+        tools:text="distance" />
+
+    <ImageView
+        android:id="@+id/bearing"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignBottom="@+id/distance"
+        android:layout_alignParentRight="true"
+        android:transformPivotX="8dp"
+        android:transformPivotY="8dp"
+        app:ico_color="@color/light_text"
+        app:ico_icon="gmd-navigation"
+        app:ico_size="16dp"
+        tools:src="@drawable/ic_near_me" />
+</RelativeLayout>
